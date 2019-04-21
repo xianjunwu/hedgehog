@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "t_web_info")
-public class WebInfo implements Serializable {
+@Table(name = "t_web_site")
+public class WebSite implements Serializable {
 
     private static final long serialVersionUID = -1278343970853674015L;
 
@@ -19,18 +19,18 @@ public class WebInfo implements Serializable {
      * 网站名
      */
     @Column(length = 20)
-    private String pwebName;
+    private String name;
     /**
      * 网站标语
      */
     @Column(length = 40)
-    private String pwebSlogen;
+    private String slogen;
 
     /**
      * 页脚版权信息
      */
     @Column(length = 250)
-    private String pwebCopyright;
+    private String copyright;
 
     /**
      * 网站标志
