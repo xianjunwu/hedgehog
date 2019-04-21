@@ -7,7 +7,7 @@ import pro.dengyi.hedgehog.service.ArticleService;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-  @Autowired
-  private ArticleDao articleDao;
+    @Autowired
+    private ArticleDao articleDao;
 
 }

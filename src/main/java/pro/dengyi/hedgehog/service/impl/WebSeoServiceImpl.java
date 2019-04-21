@@ -8,7 +8,7 @@ import pro.dengyi.hedgehog.service.WebSeoService;
 @Service
 public class WebSeoServiceImpl implements WebSeoService {
 
-  @Autowired
-  private WebSeoDao webSeoDao;
+    @Autowired
+    private WebSeoDao webSeoDao;
 
 }

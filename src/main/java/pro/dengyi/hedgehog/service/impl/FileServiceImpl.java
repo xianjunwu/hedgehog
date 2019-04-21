@@ -7,7 +7,7 @@ import pro.dengyi.hedgehog.service.FileService;
 
 @Service
 public class FileServiceImpl implements FileService {
-  @Autowired
-  private FileDao fileDao;
+    @Autowired
+    private FileDao fileDao;
 
 }

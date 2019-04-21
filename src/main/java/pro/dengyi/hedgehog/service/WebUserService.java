@@ -1,8 +1,8 @@
 package pro.dengyi.hedgehog.service;
 
-import pro.dengyi.hedgehog.entity.WebUser;
+import pro.dengyi.hedgehog.entity.User;
 
 public interface WebUserService {
 
-  WebUser queryUser();
+    User queryUser();
 }

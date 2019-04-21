@@ -8,7 +8,7 @@ import pro.dengyi.hedgehog.service.WebLogService;
 @Service
 public class WebLogServiceImpl implements WebLogService {
 
-  @Autowired
-  private WebLogDao webLogDao;
+    @Autowired
+    private WebLogDao webLogDao;
 
 }

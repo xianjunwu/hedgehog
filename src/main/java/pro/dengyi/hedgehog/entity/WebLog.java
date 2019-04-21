@@ -1,12 +1,13 @@
 package pro.dengyi.hedgehog.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Data;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 操作日志实体类
@@ -16,45 +17,45 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "web_log")
+@Table(name = "t_web_log")
 public class WebLog implements Serializable {
 
-  private static final long serialVersionUID = -2571815432301283171L;
+    private static final long serialVersionUID = -2571815432301283171L;
 
-  /**
-   * id
-   */
-  @Id
-  @GeneratedValue
-  private Long id;
+    /**
+     * id
+     */
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  /**
-   * 标题
-   */
-  private String logTitle;
+    /**
+     * 标题
+     */
+    private String logTitle;
 
-  /**
-   * 内容
-   */
-  private String logContent;
+    /**
+     * 内容
+     */
+    private String logContent;
 
-  /**
-   * 产生日志的ip
-   */
-  private String logIp;
+    /**
+     * 产生日志的ip
+     */
+    private String logIp;
 
-  /**
-   * 产生的时间
-   */
-  private LocalDateTime logDateTime;
+    /**
+     * 产生的时间
+     */
+    private LocalDateTime logDateTime;
 
-  public WebLog() {
-  }
+    public WebLog() {
+    }
 
-  public WebLog(String logTitle, String logContent, String logIp, LocalDateTime logDateTime) {
-    this.logTitle = logTitle;
-    this.logContent = logContent;
-    this.logIp = logIp;
-    this.logDateTime = logDateTime;
-  }
+    public WebLog(String logTitle, String logContent, String logIp, LocalDateTime logDateTime) {
+        this.logTitle = logTitle;
+        this.logContent = logContent;
+        this.logIp = logIp;
+        this.logDateTime = logDateTime;
+    }
 }

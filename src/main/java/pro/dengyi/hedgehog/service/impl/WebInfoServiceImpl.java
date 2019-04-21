@@ -8,7 +8,7 @@ import pro.dengyi.hedgehog.service.WebInfoService;
 @Service
 public class WebInfoServiceImpl implements WebInfoService {
 
-  @Autowired
-  private WebInfoDao webInfoDao;
+    @Autowired
+    private WebInfoDao webInfoDao;
 
 }

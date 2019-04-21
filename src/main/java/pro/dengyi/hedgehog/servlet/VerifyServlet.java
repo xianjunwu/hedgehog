@@ -1,10 +1,5 @@
 package pro.dengyi.hedgehog.servlet;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -12,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /**
  * @author jitwxs
@@ -20,48 +18,39 @@ import javax.servlet.http.HttpSession;
 public class VerifyServlet extends HttpServlet {
 
     private static final long serialVersionUID = -5051097528828603895L;
-
+    /**
+     * codeSequence 表示字符允许出现的序列值
+     */
+    char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     /**
      * 验证码图片的宽度。
      */
     private int width = 100;
-
     /**
-     *  验证码图片的高度。
+     * 验证码图片的高度。
      */
     private int height = 30;
-
     /**
      * 验证码字符个数
      */
     private int codeCount = 4;
-
     /**
      * 字体高度
      */
     private int fontHeight;
-
     /**
      * 干扰线数量
      */
     private int interLine = 16;
-
     /**
      * 第一个字符的x轴值，因为后面的字符坐标依次递增，所以它们的x轴值是codeX的倍数
      */
     private int codeX;
-
     /**
      * codeY ,验证字符的y轴值，因为并行所以值一样
      */
     private int codeY;
-
-    /**
-     * codeSequence 表示字符允许出现的序列值
-     */
-    char[] codeSequence = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
-            'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
     /**
      * 初始化验证图片属性
@@ -91,7 +80,7 @@ public class VerifyServlet extends HttpServlet {
         }
         //width-4 除去左右多余的位置，使验证码更加集中显示，减得越多越集中。
         //codeCount+1     //等比分配显示的宽度，包括左右两边的空格
-        codeX = (width-4) / (codeCount+1);
+        codeX = (width - 4) / (codeCount + 1);
         //height - 10 集中显示验证码
         fontHeight = height - 10;
         codeY = height - 7;
@@ -141,7 +130,7 @@ public class VerifyServlet extends HttpServlet {
             green = random.nextInt(255);
             blue = random.nextInt(255);
             // 用随机产生的颜色将验证码绘制到图像中。
-            gd.setColor(new Color(red,green,blue));
+            gd.setColor(new Color(red, green, blue));
             gd.drawString(strRand, (i + 1) * codeX, codeY);
             // 将产生的四个随机数组合在一起。
             randomCode.append(strRand);
