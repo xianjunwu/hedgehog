@@ -49,9 +49,6 @@ public class WebLog implements Serializable {
      */
     private LocalDateTime logDateTime;
 
-    public WebLog() {
-    }
-
     public WebLog(String logTitle, String logContent, String logIp, LocalDateTime logDateTime) {
         this.logTitle = logTitle;
         this.logContent = logContent;
