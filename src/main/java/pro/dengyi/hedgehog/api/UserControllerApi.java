@@ -12,6 +12,7 @@ import pro.dengyi.hedgehog.entity.User;
  * @author 邓艺
  * @version v1.0
  * @date 2019-04-21 21:10
+ *
  */
 @Api("用户api")
 public interface UserControllerApi {
