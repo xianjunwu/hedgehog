@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin/system")
 public class SystemController {
     /**
-     * 退出系统
+     * 退出系统devdev----------------
      * <br/>
      *
      * @param
