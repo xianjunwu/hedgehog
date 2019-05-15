@@ -19,8 +19,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin/system")
 public class SystemController {
     /**
-     * 退出系统mymymy---------
+     * 退出系统 zzzzzzzzzzz----------
      * <br/>
+     *1111111111111111111111111111111
      *
      * @param
      * @return java.lang.String
