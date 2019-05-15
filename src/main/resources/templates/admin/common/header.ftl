@@ -15,7 +15,8 @@
                         <li><a href="javascript:;" data-toggle="push-menu"><i class="icon icon-bars"></i></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <#--新通知-->
+                        <li data-toggle="tooltip">
                             <a href="javascript:;">
                                     <span>
                                         <i class="icon icon-bell-alt"></i>
@@ -23,6 +24,7 @@
                                     </span>
                             </a>
                         </li>
+                        <#--新评论-->
                         <li>
                             <a href="javascript:;">
                                     <span>
@@ -37,7 +39,7 @@
                                 <li><a href="#">资料设置</a></li>
                                 <li><a href="#">清除缓存</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">注销</a></li>
+                                <li><a href="/admin/system/logout">退出系统</a></li>
                             </ul>
                         </li>
                     </ul>

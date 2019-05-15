@@ -35,13 +35,13 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box bg-info">
+                            <div class="info-box bg-info" onclick="location.href='/article/list/' ">
                                 <div class="info-box-icon">
                                     <i class="icon icon-file-text"></i>
                                 </div>
                                 <div class="info-box-content">
                                     <span class="info-box-text">文章总量</span>
-                                    <span class="info-box-number">320
+                                    <span class="info-box-number">${articleNumber}
                                         <small>篇</small>
                                     </span>
                                 </div>
@@ -148,23 +148,23 @@
                                     <table class="table table-info">
                                         <tr>
                                             <td>操作系统</td>
-                                            <td>Windows</td>
+                                            <td>${systemInfo.systemType}</td>
                                         </tr>
                                         <tr>
-                                            <td>运行环境</td>
-                                            <td>nginx/1.4.6</td>
+                                            <td>JDK版本</td>
+                                            <td>${systemInfo.javaVersion}</td>
                                         </tr>
                                         <tr>
-                                            <td>PHP版本</td>
-                                            <td>5.5.9-1ubuntu4.21</td>
+                                            <td>容器类型</td>
+                                            <td>${systemInfo.containerTypeAndVersion}</td>
                                         </tr>
                                         <tr>
-                                            <td>MYSQL版本</td>
-                                            <td>10.1.11-MariaDB-log</td>
+                                            <td>数据库类型</td>
+                                            <td>${systemInfo.databaseTypeAndVersion}</td>
                                         </tr>
                                         <tr>
-                                            <td>上传限制</td>
-                                            <td>20M</td>
+                                            <td>系统时间</td>
+                                            <td>${systemInfo.systemTime}</td>
                                         </tr>
                                     </table>
                                 </div>
