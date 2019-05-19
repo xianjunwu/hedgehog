@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pro.dengyi.hedgehog.utils.VerificationCodeUtil;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -88,7 +89,7 @@ public class SystemController {
     @ResponseBody
     public Map<String, String> getVerificationCode(HttpSession session) {
         Map<String, String> map = new HashMap<>(1);
-        String verificationCode = "123456";
+        String verificationCode = VerificationCodeUtil.getVerificationCode();
         map.put("verificationCode", verificationCode);
         session.setAttribute("verificationCode", verificationCode);
         return map;
