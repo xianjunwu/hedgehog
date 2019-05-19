@@ -94,6 +94,16 @@ public class SystemController {
         return map;
     }
 
+    /**
+     * 验证验证码正确定性方法
+     * <br/>
+     *
+     * @param code 验证码
+     * @param session
+     * @return map
+     * @author 邓艺
+     * @date 2019/5/19 16:14
+     */
     @PostMapping("/checkVerificationCode")
     @ResponseBody
     public Map<String, Boolean> checkVerificationCode(String code, HttpSession session) {

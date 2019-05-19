@@ -85,7 +85,7 @@
                         notEmpty: {
                             message: '验证码不能为空'
                         },
-                        threshold: 2,//有2字符以上才发送ajax请求
+                        threshold: 6,//有2字符以上才发送ajax请求
                         remote: {//ajax验证。server result:{"valid",true or false}
                             url: "/admin/system/checkVerificationCode",
                             message: '验证码错误',
