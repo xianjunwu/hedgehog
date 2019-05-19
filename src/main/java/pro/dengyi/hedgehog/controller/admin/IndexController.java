@@ -2,7 +2,6 @@ package pro.dengyi.hedgehog.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import pro.dengyi.hedgehog.service.ArticleService;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 /**
  * 管理页面主页controller
@@ -34,6 +32,7 @@ public class IndexController {
     public String index(Model model) {
         Integer articleNumber = articleService.findTheNumberOfArticle();
         model.addAttribute("articleNumber", articleNumber);
+        //创建服务器信息信息map，将信息封装成map并返回给前端
         Map<String, String> systemInfo = new HashMap<>(5);
         systemInfo.put("systemType", System.getProperty("os.name"));
         systemInfo.put("javaVersion", System.getProperty("java.version"));

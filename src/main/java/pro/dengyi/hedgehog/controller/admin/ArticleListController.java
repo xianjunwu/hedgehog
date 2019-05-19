@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 文章列表controller
- *1111111111111111111111111111111111111111
  * @author 邓艺
  * @version v1.0
  * @date 2019-05-13 12:41

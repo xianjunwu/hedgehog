@@ -39,7 +39,7 @@
                                 <li><a href="#">资料设置</a></li>
                                 <li><a href="#">清除缓存</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/admin/system/logout">退出系统</a></li>
+                                <li><a href="/admin/system/showLoginPage">退出系统</a></li>
                             </ul>
                         </li>
                     </ul>
