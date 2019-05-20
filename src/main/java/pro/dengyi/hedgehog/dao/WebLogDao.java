@@ -1,8 +1,8 @@
 package pro.dengyi.hedgehog.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pro.dengyi.hedgehog.entity.WebLog;
+import pro.dengyi.hedgehog.entity.Log;
 
-public interface WebLogDao extends JpaRepository<WebLog, Long> {
+public interface WebLogDao extends JpaRepository<Log, Long> {
 
 }

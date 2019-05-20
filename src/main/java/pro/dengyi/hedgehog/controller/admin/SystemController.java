@@ -2,11 +2,14 @@ package pro.dengyi.hedgehog.controller.admin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pro.dengyi.hedgehog.entity.User;
+import pro.dengyi.hedgehog.service.UserService;
 import pro.dengyi.hedgehog.utils.VerificationCodeUtil;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +27,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin/system")
 public class SystemController {
+    @Autowired
+    private UserService userService;
+
     /**
      * 退出系统
      * <br/>
@@ -53,13 +59,14 @@ public class SystemController {
      * @date 2019/5/16 1:31
      */
     @PostMapping("/doLogin")
-    public String login(HttpSession session) {
+    public String doLogin(HttpSession session, User user) {
         try {
-            session.setAttribute("loginUser", null);
+            User userLogin = userService.doLogin(user);
+            session.setAttribute("loginUser", userLogin);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/admin/login";
+        return "/admin/index";
     }
 
     /**

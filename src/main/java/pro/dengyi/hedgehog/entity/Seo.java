@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "t_web_seo")
-public class WebSeo {
+@Table(name = "t_seo")
+public class Seo {
 
     @Id
     @GeneratedValue

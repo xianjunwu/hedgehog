@@ -13,4 +13,14 @@ public interface UserService {
 
     User findAdminUser();
 
+    /**
+     * 用户登录方法
+     * <br/>
+     *
+     * @param user user实体
+     * @return pro.dengyi.hedgehog.entity.User
+     * @author 邓艺
+     * @date 2019/5/20 13:27
+     */
+    User doLogin(User user);
 }

@@ -3,6 +3,7 @@ package pro.dengyi.hedgehog.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "t_user")
+@EqualsAndHashCode
 public class User implements Serializable {
 
     private static final long serialVersionUID = -5144055068797033748L;
@@ -60,6 +62,6 @@ public class User implements Serializable {
      */
     @JsonIgnore
     @ApiModelProperty("最后一次登录时间")
-    private LocalDateTime loginLast;
+    private LocalDateTime lastLoginTime;
 
 }

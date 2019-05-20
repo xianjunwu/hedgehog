@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pro.dengyi.hedgehog.service.ArticleService;
+import pro.dengyi.hedgehog.service.CateGoryService;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -27,11 +28,17 @@ public class IndexController {
 
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private CateGoryService cateGoryService;
 
-    @GetMapping("/")
+    @GetMapping
     public String index(Model model) {
+        //文章总数
         Integer articleNumber = articleService.findTheNumberOfArticle();
         model.addAttribute("articleNumber", articleNumber);
+        //栏目总数
+        int categoryNumber = cateGoryService.findNumberOfCategorys();
+        model.addAttribute("categoryNumber", categoryNumber);
         //创建服务器信息信息map，将信息封装成map并返回给前端
         Map<String, String> systemInfo = new HashMap<>(5);
         systemInfo.put("systemType", System.getProperty("os.name"));

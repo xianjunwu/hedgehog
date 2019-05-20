@@ -4,7 +4,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">主要菜单</li>
                 <li class="active">
-                    <a href="/admin/index/">
+                    <a href="/admin/index">
                         <i class="icon icon-dashboard"></i>
                         <span>仪表盘</span>
                         <span class="pull-right-container">
@@ -74,6 +74,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/sys/"><i class="icon icon-circle-blank"></i>网站设置</a></li>
+                        <li><a href="/admin/sys/"><i class="icon icon-circle-blank"></i>系统备份</a></li>
                     </ul>
                 </li>
 

@@ -8,6 +8,7 @@ import org.springframework.util.CollectionUtils;
 import pro.dengyi.hedgehog.dao.UserDao;
 import pro.dengyi.hedgehog.entity.User;
 import pro.dengyi.hedgehog.service.UserService;
+import pro.dengyi.hedgehog.utils.Md5Util;
 
 import java.util.List;
 
@@ -35,5 +36,16 @@ public class UserServiceImpl implements UserService {
             return userList.get(0);
         }
 
+    }
+
+    @Override
+    public User doLogin(User user) {
+        String encodePassword = Md5Util.encodePassword(user.getPassword());
+        user.setPassword(encodePassword);
+        User adminUser = findAdminUser();
+        if (adminUser.equals(user)) {
+            return adminUser;
+        }
+        return null;
     }
 }

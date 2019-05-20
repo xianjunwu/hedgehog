@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="info-box-content">
                                     <span class="info-box-text">栏目总量</span>
-                                    <span class="info-box-number">8
+                                    <span class="info-box-number">${categoryNumber}
                                         <small>个</small>
                                     </span>
                                 </div>

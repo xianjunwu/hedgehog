@@ -36,10 +36,9 @@ public class Article implements Serializable {
      */
     @Column(columnDefinition = "text")
     private String summary;
-    /**
-     * 文章类型 0 博客 1 教程 2 读书 3 开源项目
-     */
-    private Integer type;
+
+    @OneToOne
+    private Category category;
     /**
      * 文章内容
      */

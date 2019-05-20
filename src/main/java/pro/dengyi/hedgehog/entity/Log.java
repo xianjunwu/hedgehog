@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -17,10 +16,8 @@ import java.time.LocalDateTime;
  */
 @Data
 @Entity
-@Table(name = "t_web_log")
-public class WebLog implements Serializable {
-
-    private static final long serialVersionUID = -2571815432301283171L;
+@Table(name = "t_log")
+public class Log {
 
     /**
      * id
@@ -49,7 +46,7 @@ public class WebLog implements Serializable {
      */
     private LocalDateTime logDateTime;
 
-    public WebLog(String logTitle, String logContent, String logIp, LocalDateTime logDateTime) {
+    public Log(String logTitle, String logContent, String logIp, LocalDateTime logDateTime) {
         this.logTitle = logTitle;
         this.logContent = logContent;
         this.logIp = logIp;

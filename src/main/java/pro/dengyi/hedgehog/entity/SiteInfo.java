@@ -3,14 +3,11 @@ package pro.dengyi.hedgehog.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "t_web_site")
-public class WebSite implements Serializable {
-
-    private static final long serialVersionUID = -1278343970853674015L;
+@Table(name = "t_site_info")
+public class SiteInfo {
 
     @Id
     @GeneratedValue
@@ -19,7 +16,7 @@ public class WebSite implements Serializable {
      * 网站名
      */
     @Column(length = 20)
-    private String name;
+    private String siteName;
     /**
      * 网站标语
      */
@@ -36,12 +33,12 @@ public class WebSite implements Serializable {
      * 网站标志
      */
     @Column(length = 150)
-    private String pwebLogoUrl;
+    private String logoUrl;
 
     /**
      * 网页图标
      */
     @Column(length = 150)
-    private String pwebFaviconUrl;
+    private String faviconUrl;
 
 }

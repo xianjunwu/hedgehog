@@ -6,14 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "t_file")
-public class File implements Serializable {
+public class File {
 
-    private static final long serialVersionUID = -7537148724807595508L;
     @Id
     @GeneratedValue
     private Long id;

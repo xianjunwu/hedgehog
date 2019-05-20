@@ -1,73 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="baidu-site-verification" content="${webSeo.btoken}"/>
-  <meta name="google-site-verification" content="${webSeo.gtoken}"/>
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <meta name="description" content="${webSeo.description}">
-  <meta name="author" content="${webSeo.author}">
-  <meta name="keywords" content="${webSeo.keywords}"/>
-  <link rel="icon" href="${commonInfo.pwebFaviconUrl}">
-  <title>dengyi.pro</title>
-  <!-- Bootstrap core CSS -->
-  <script src="/static/plugins/jquery/jquery-1.12.4.min.js"></script>
-  <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
-  <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/css/cover.css" rel="stylesheet">
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <#--<meta name="baidu-site-verification" content="${webSeo.btoken}"/>-->
+    <#--<meta name="google-site-verification" content="${webSeo.gtoken}"/>-->
+    <#--<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ &ndash;&gt;-->
+    <#--<meta name="description" content="${webSeo.description}">-->
+    <#--<meta name="author" content="${webSeo.author}">-->
+    <#--<meta name="keywords" content="${webSeo.keywords}"/>-->
+    <#--<link rel="icon" href="${commonInfo.pwebFaviconUrl}">-->
+    <title>dengyi.pro</title>
+    <!-- jquery js -->
+    <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+    <!-- zui css -->
+    <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
+    <link rel="stylesheet" href="/static/theme/blue.css">
+    <!-- app css -->
+    <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
-<div class="site-wrapper">
-  <div class="site-wrapper-inner">
-    <div class="cover-container">
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand hidden-xs hidden-sm">dengyi.pro</h3>
-          <nav>
-            <ul class="nav masthead-nav">
-              <li class="active"><a href="/">首页</a></li>
-              <li><a href="/article">博客</a></li>
-              <li><a href="/teach">教程</a></li>
-              <li><a href="/readBook">读书</a></li>
-              <li><a href="/openSource">开源项目</a></li>
-              <#--<li><a href="mailto:dengyi@dengyi.pro">联系</a></li>-->
-            </ul>
-          </nav>
+<div class="container-fluid">
+    <nav class="navbar" role="navigation">
+        <div class="container-fluid">
+            <!-- 导航头部 -->
+            <div class="navbar-header">
+                <!-- 移动设备上的导航切换按钮 -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- 品牌名称或logo -->
+                <a class="navbar-brand" href="your/nice/url">ZUI</a>
+            </div>
+            <!-- 导航项目 -->
+            <div class="collapse navbar-collapse navbar-collapse-example">
+                <!-- 一般导航项目 -->
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="your/nice/url">项目</a></li>
+                    <li><a href="your/nice/url">需求</a></li>
+                    <!-- 导航中的下拉菜单 -->
+                    <li class="dropdown">
+                        <a href="your/nice/url" class="dropdown-toggle" data-toggle="dropdown">管理 <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="your/nice/url">任务</a></li>
+                            ...
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- END .navbar-collapse -->
         </div>
-      </div>
-      <div class="inner cover">
-        <h1 class="cover-heading">${commonInfo.pwebName}</h1>
-        <p class="lead" style="margin-top: 40px">${commonInfo.pwebSlogen}</p>
-      </div>
-      <form action="/search" method="get" id="searchForm">
-        <div class="input-group inner cover">
-          <input name="key" type="text" class="form-control" id="searchContent">
-          <span class="input-group-btn">
-             <button class="btn btn-success" type="button" onclick="doSubmit()">搜索</button>
-          </span>
+    </nav>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div style="background-color: #1a1a1a" class="text-center">
+
+                <img src="http://zui.sexy/docs/img/img2.jpg" width="200px" height="200px" class="img-circle" alt="圆形图片">
+                <div class="input-group">
+                    <div class="input-control search-box search-box-circle has-icon-left has-icon-right search-example" id="searchboxExample">
+                        <input id="inputSearchExample3" type="search" class="form-control search-input" placeholder="搜索">
+                        <label for="inputSearchExample3" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
+                    </div>
+                    <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">搜索</button>
+            </span>
+                </div>
+            </div>
+
         </div>
-      </form>
-      <div class="mastfoot" style="position: absolute;bottom: 10px">
-        <div class="inner">
-          <p style="color: gray"> ${commonInfo.pwebCopyright}</p>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
-<script>
-  function doSubmit() {
-    if ($("#searchContent").val() != "") {
-      $("#searchForm").submit();
-    }
-  }
-</script>
+
+<!-- zui js -->
+<script src="/static/plugins/zui/js/zui.min.js"></script>
+<!-- app js -->
+<script src="/static/js/app.js"></script>
 </body>
 </html>
