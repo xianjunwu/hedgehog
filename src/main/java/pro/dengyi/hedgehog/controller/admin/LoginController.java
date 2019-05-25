@@ -22,12 +22,12 @@ public class LoginController {
         return "admin/admin_login";
     }
 
-    @PostMapping(value = "/doLogin")
-    @ResponseBody
-    public BaseResult<String> doLogin(String userName, String password, HttpSession session) {
-        BaseResult<String> baseResult = new BaseResult<>();
-        User webUser = webUserService.queryUser();
-        return baseResult;
-    }
+//    @PostMapping(value = "/doLogin")
+//    @ResponseBody
+//    public BaseResult<String> doLogin(String userName, String password, HttpSession session) {
+//        BaseResult<String> baseResult = new BaseResult<>();
+//        User webUser = webUserService.queryUser();
+//        return baseResult;
+//    }
 
 }

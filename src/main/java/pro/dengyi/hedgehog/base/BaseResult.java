@@ -11,21 +11,18 @@ import java.io.Serializable;
  * @date 2018/9/23 20:18
  */
 @Data
-public class BaseResult<T> implements Serializable {
+public class BaseResult implements Serializable {
 
     private static final long serialVersionUID = -5003879251992191601L;
 
     /**
      * 执行状态
      */
-    private Boolean status = true;
+    public String result;
     /**
      * 信息
      */
-    private String message;
-    /**
-     * 结果
-     */
-    private T data;
+    public String message;
+
 
 }

@@ -30,7 +30,7 @@
 </head>
 <body>
 <nav class="navbar" role="navigation">
-    <div class="container-fluid">
+    <div class="container">
         <!-- 导航头部 -->
         <div class="navbar-header">
             <!-- 移动设备上的导航切换按钮 -->
@@ -41,14 +41,15 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- 品牌名称或logo -->
-            <a class="navbar-brand" href="your/nice/url">ZUI</a>
+            <a class="navbar-brand" href="https://www.dengyi.pro">dengyi.pro</a>
         </div>
         <!-- 导航项目 -->
         <div class="collapse navbar-collapse navbar-collapse-example">
             <!-- 一般导航项目 -->
             <ul class="nav navbar-nav">
-                <li class="active"><a href="your/nice/url">项目</a></li>
-                <li><a href="your/nice/url">需求</a></li>
+                <li class="active"><a href="your/nice/url">学习</a></li>
+                <li><a href="your/nice/url">教程</a></li>
+                <li><a href="your/nice/url">研究</a></li>
             </ul>
         </div><!-- END .navbar-collapse -->
     </div>
@@ -57,34 +58,27 @@
     <div class="text-center">
         <img src="http://zui.sexy/docs/img/img2.jpg" width="200px" height="200px" class="img-circle" alt="圆形图片">
     </div>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-<span class="text-info">这是标语啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊</span>
-    <div class="input-group">
-        <div class="input-control search-box search-box-circle has-icon-left has-icon-right search-example" id="searchboxExample">
-            <input id="inputSearchExample3" type="search" class="form-control search-input" placeholder="搜索">
-            <label for="inputSearchExample3" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
-        </div>
-        <span class="input-group-btn">
-    <button class="btn btn-primary" type="button">搜索</button>
-  </span>
+    <div class="text-center" style="margin: 20px">
+        <span class="text-info">不断学习，不断提高</span>
     </div>
+    <form  id="searchForm" action="/search/doSearch" method="get">
+        <div class="input-group">
+            <div class="input-control search-box search-box-circle has-icon-left has-icon-right search-example" id="searchboxExample">
+                <input id="searchInput" type="search" name="key" class="form-control search-input input-lg" placeholder="搜索">
+                <label for="searchInput" class="input-control-icon-left search-icon "></label>
+            </div>
+            <span class="input-group-btn">
+                <button class="btn btn-primary btn-lg" type="button" onclick="doSearch()">搜索</button>
+        </span>
+        </div>
+    </form>
 </div>
 <footer class="navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center" style="padding-bottom: 20px">
-                    <span style="color: grey">这里是版权信息</span>
+                    <span style="color: #999">Copyright © 2013-2019 菜鸟教程  runoob.com All Rights Reserved. 备案号：闽ICP备15012807号-1</span>
                 </div>
             </div>
         </div>
@@ -92,7 +86,9 @@
     </div>
 </footer>
 <script>
-    function search() {
+    function doSearch() {
+        var searchContent = $("#searchInput").val().trim();
+        $("#searchForm").submit();
 
     }
 </script>

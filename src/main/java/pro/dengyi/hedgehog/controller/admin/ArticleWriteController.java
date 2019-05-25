@@ -19,7 +19,7 @@ import pro.dengyi.hedgehog.service.ArticleService;
  * @date 2019-05-13 13:52
  */
 @Controller
-@RequestMapping("/article/write")
+@RequestMapping("/admin/article/write")
 public class ArticleWriteController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleWriteController.class);
     @Autowired

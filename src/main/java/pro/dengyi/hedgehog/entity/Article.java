@@ -57,9 +57,9 @@ public class Article implements Serializable {
     private LocalDateTime lastUpdateTime;
 
     /**
-     * 0 已发布 1 草稿 2 回收站
+     * true 已发布 false 未
      */
-    private Integer articleStatus = 0;
+    private Boolean articleStatus;
 
     /**
      * 文章访问量

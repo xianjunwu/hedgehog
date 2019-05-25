@@ -34,7 +34,7 @@
             <div class="content-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <form method="post">
+                        <form method="post" action="/admin/article/write/saveOrUpdate">
                             <input type="hidden" id="id" name="id">
                             <div class="col-md-12">
                                 <div class="input-control">
@@ -67,35 +67,54 @@
             KindEditor.create('textarea.kindeditor', {
                 basePath: '/static/plugins/zui/lib/kindeditor/',
                 allowFileManager: true,
-                bodyClass: 'article-content'
+                bodyClass: 'article-content',
+                afterCreate: function () {
+                    this.sync();
+                }, //关键是这两个
+                afterBlur: function () {
+                    this.sync();
+                }//关键是这两个
             });
         });
 
         //在提交之前都去判断
         function saveAsDraft() {
             var tileInput = $("#title");
+            console.log(tileInput.val());
             if (tileInput.val() === '') {
                 tileInput.parent().addClass('has-error');
+                new $.zui.Messager('请将文章填写完整', {
+                    type: 'warning', // 定义颜色主题，
+                    time: 1000,
+                    icon: 'warning-sign'
+                }).show();
             } else {
                 var trueTile = tileInput.val().trim();
-                $.post("/article/write/saveOrUpdate", {id: $("#id").val(), title: trueTile}, function (callback) {
-                    if (callback != null) {
-                        $("#id").val(callback.id);
-                        console.log($("#id").val());
-                        //浮动消息通知
-                        new $.zui.Messager('保存草稿成功！', {
-                            icon: 'bell', // 定义消息图标
-                            time: 1000
-                        }).show();
-                    } else {
-                        //浮动消息通知
-                        new $.zui.Messager('保存草稿失败！', {
-                            icon: 'bell', // 定义消息图标
-                            time: 1000
-                        }).show();
-                    }
+                $.post("/admin/article/write/saveOrUpdate",
+                    {
+                        id: $("#id").val(),
+                        title: trueTile,
+                        summary: $("#summary").val(),
+                        content: $("#content").val()
 
-                });
+                    }, function (callback) {
+                        if (callback != null) {
+                            $("#id").val(callback.id);
+                            //浮动消息通知
+                            new $.zui.Messager('保存草稿成功！', {
+                                type: 'success', // 定义颜色主题，
+                                time: 1000,
+                                icon: 'ok'
+                            }).show();
+                        } else {
+                            //浮动消息通知
+                            new $.zui.Messager('保存草稿失败！', {
+                                icon: 'warning-sign', // 定义消息图标
+                                time: 1000
+                            }).show();
+                        }
+
+                    });
 
             }
         }
@@ -107,11 +126,44 @@
         }
 
         function saveAndPublish() {
-            new $.zui.Messager('文章保存并发布成功', {
-                type: 'success', // 定义颜色主题，
-                time: 1000,
-                icon: 'ok'
-            }).show();
+            var tileInput = $("#title");
+            console.log(tileInput.val());
+            if (tileInput.val() === '') {
+                tileInput.parent().addClass('has-error');
+                new $.zui.Messager('请将文章填写完整', {
+                    type: 'warning', // 定义颜色主题，
+                    time: 1000,
+                    icon: 'warning-sign'
+                }).show();
+            } else {
+                var trueTile = tileInput.val().trim();
+                $.post("/admin/article/write/saveOrUpdate",
+                    {
+                        id: $("#id").val(),
+                        title: trueTile,
+                        summary: $("#summary").val(),
+                        content: $("#content").val()
+
+                    }, function (callback) {
+                        if (callback != null) {
+                            $("#id").val(callback.id);
+                            //浮动消息通知
+                            new $.zui.Messager('保存草稿成功！', {
+                                type: 'success', // 定义颜色主题，
+                                time: 1000,
+                                icon: 'ok'
+                            }).show();
+                        } else {
+                            //浮动消息通知
+                            new $.zui.Messager('保存草稿失败！', {
+                                icon: 'warning-sign', // 定义消息图标
+                                time: 1000
+                            }).show();
+                        }
+
+                    });
+
+            }
         }
     </script>
     <!-- zui js -->

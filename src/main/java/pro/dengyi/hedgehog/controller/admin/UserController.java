@@ -18,24 +18,24 @@ import pro.dengyi.hedgehog.service.UserService;
 @RequestMapping("/user")
 public class UserController implements UserControllerApi {
 
-    @Autowired
-    private UserService userService;
-
-    @Override
-    @PostMapping("/addUser")
-    public BaseResult<User> addUser(@RequestBody User user) {
-        return null;
-    }
-
-    @Override
-    @PutMapping("/updateUser")
-    public BaseResult<User> updateUser(@RequestBody User user) {
-        return null;
-    }
-
-    @Override
-    @GetMapping("/findUserById/{userId}")
-    public BaseResult<User> findUserById(@PathVariable Long userId) {
-        return null;
-    }
+//    @Autowired
+//    private UserService userService;
+//
+//    @Override
+//    @PostMapping("/addUser")
+//    public BaseResult<User> addUser(@RequestBody User user) {
+//        return null;
+//    }
+//
+//    @Override
+//    @PutMapping("/updateUser")
+//    public BaseResult<User> updateUser(@RequestBody User user) {
+//        return null;
+//    }
+//
+//    @Override
+//    @GetMapping("/findUserById/{userId}")
+//    public BaseResult<User> findUserById(@PathVariable Long userId) {
+//        return null;
+//    }
 }

@@ -30,7 +30,7 @@
             <div class="content-header">
                 <ul class="breadcrumb">
                     <li><a href="/admin/index"><i class="icon icon-home"></i></a></li>
-                    <li class="active">文章列表</li>
+                    <li class="active">文章分类列表</li>
                 </ul>
             </div>
             <div class="content-body">
@@ -59,19 +59,15 @@
             $('#datagridExample').datagrid({
                 dataSource: {
                     cols: [
-                        {name: 'id', label: '文章id', width: 80, sort: false},
-                        {name: 'title', label: '标题', width: 0.7, sort: false},
-                        {name: 'views', label: '访问数', width: 134},
-                        {name: 'hearts', label: '心数', width: 109},
-                        {name: 'allowComment', label: '是否允许评论', width: 109, sort: false},
-                        {name: 'createTime', label: '创建时间', width: 160},
-                        {name: 'lastUpdateTime', label: '最后更新时间', width: 160},
-                        {name: 'articleStatus', label: '文章状态', width: 100, sort: false}
+                        {name: 'id', label: '分类id', width: 80, sort: false},
+                        {name: 'categoryName', label: '分类名', width: 0.8, sort: false},
+                        {name: 'categoryDesc', label: '分类描述', width: 134},
+                        {name: 'hearts', label: '心数', width: 109}
                     ],
                     remote: function (params) {
                         return {
                             // 原创请求地址
-                            url: '/article/list/pageQuery',
+                            url: '/admin/category/pageQuery',
                             // 请求类型
                             type: 'GET',
                             // 数据类型

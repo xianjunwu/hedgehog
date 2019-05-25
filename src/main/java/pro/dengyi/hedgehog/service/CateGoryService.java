@@ -1,5 +1,8 @@
 package pro.dengyi.hedgehog.service;
 
+import pro.dengyi.hedgehog.entity.Category;
+import pro.dengyi.hedgehog.entity.DataGridBo;
+
 /**
  * 类别service接口
  *
@@ -19,4 +22,5 @@ public interface CateGoryService {
      */
     int findNumberOfCategorys();
 
+    DataGridBo<Category> pageQuery(Integer page, Integer recPerPage);
 }

@@ -1,6 +1,7 @@
 package pro.dengyi.hedgehog.service;
 
 import pro.dengyi.hedgehog.entity.Article;
+import pro.dengyi.hedgehog.entity.DataGridBo;
 
 public interface ArticleService {
 
@@ -25,4 +26,6 @@ public interface ArticleService {
      * @date 2019/5/15 15:52
      */
     Article saveOrUpdate(Article article);
+
+    DataGridBo<Article> pageQuery(Integer pageNumer, Integer pageSize);
 }
