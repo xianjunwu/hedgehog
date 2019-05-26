@@ -38,12 +38,55 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div id="datagridExample" class="datagrid">
-                                <div class="input-control search-box search-box-circle has-icon-left has-icon-right" id="searchboxExample2"
+                                <div class="input-control search-box search-box-circle has-icon-left has-icon-right"
+                                     id="searchboxExample2"
                                      style="margin-bottom: 10px; max-width: 300px">
-                                    <input id="inputSearchExample2" type="search" class="form-control search-input" placeholder="搜索">
-                                    <label for="inputSearchExample2" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
-                                    <a href="#" class="input-control-icon-right search-clear-btn"><i class="icon icon-remove"></i></a>
-                                    <button class="form-inline" onclick="deleteItems()">删除</button>
+                                    <input id="inputSearchExample2" type="search" class="form-control search-input"
+                                           placeholder="搜索">
+                                    <label for="inputSearchExample2" class="input-control-icon-left search-icon"><i
+                                                class="icon icon-search"></i></label>
+                                    <a href="#" class="input-control-icon-right search-clear-btn"><i
+                                                class="icon icon-remove"></i></a>
+                                    <!-- 大对话框 -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#myLgModal">新增分类
+                                    </button>
+
+                                    <div class="modal fade" id="myLgModal">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        onclick="clearText()"><span
+                                                            aria-hidden="true">×</span><span class="sr-only">关闭</span>
+                                                </button>
+                                                <h4 class="modal-title">新增分类</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" id="id">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="categoryName" class="required">分类名</label>
+                                                        <input type="text" class="form-control"
+                                                               id="categoryName"
+                                                               placeholder="分类名">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="categoryDesc" class="required">分类描述</label>
+                                                        <input type="text" class="form-control"
+                                                               id="categoryDesc" placeholder="分类描述">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" onclick="clearText()"
+                                                        data-dismiss="modal">关闭
+                                                </button>
+                                                <button type="button" class="btn btn-primary" onclick="saveCategory()">
+                                                    保存
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="datagrid-container"></div>
                                 <div class="pager"></div>
@@ -60,7 +103,7 @@
                 dataSource: {
                     cols: [
                         {name: 'id', label: '分类id', width: 80, sort: false},
-                        {name: 'categoryName', label: '分类名', width: 0.8, sort: false},
+                        {name: 'categoryName', label: '分类名', width: 150, sort: false},
                         {name: 'categoryDesc', label: '分类描述', width: 134},
                         {name: 'hearts', label: '心数', width: 109}
                     ],
@@ -114,6 +157,24 @@
             }
             console.log(selectedItems);
 
+        }
+
+        function saveCategory() {
+            $.post("/admin/category/saveOrUpdate",{
+                id:1,
+                categoryName:$("#categoryName").val(),
+                categoryDesc:$("#categoryDesc").val()
+            },function (data) {
+
+            })
+
+        }
+
+
+        //清空输入框js方法
+        function clearText() {
+            $("#categoryName").val('');
+            $("#categoryDesc").val('');
         }
     </script>
 

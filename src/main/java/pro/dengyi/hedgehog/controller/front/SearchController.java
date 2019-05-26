@@ -19,7 +19,7 @@ public class SearchController {
     @GetMapping("/doSearch")
     public String doSearch(String key, @RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
 
-        return "front/search";
+        return "front/searchResult";
 
     }
 

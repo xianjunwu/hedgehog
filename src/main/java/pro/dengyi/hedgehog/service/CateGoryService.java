@@ -23,4 +23,6 @@ public interface CateGoryService {
     int findNumberOfCategorys();
 
     DataGridBo<Category> pageQuery(Integer page, Integer recPerPage);
+
+    Category saveOrUpdate(Category category);
 }

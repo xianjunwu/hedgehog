@@ -44,4 +44,9 @@ public class CateGoryServiceImpl implements CateGoryService {
         int number = articles.getNumber();
         return new DataGridBo<>(content, new DataGridPager(number + 1, totalElements, recPerPage));
     }
+
+    @Override
+    public Category saveOrUpdate(Category category) {
+        return categoryDao.save(category);
+    }
 }
