@@ -40,15 +40,18 @@ public class User extends BaseEntity implements Serializable {
 	/**
 	 * 用户名
 	 */
-	@NotBlank(message = "用户名不能为空")
+	@NotBlank(message = "手机号不能为空")
 	@ApiModelProperty("用户名")
-	private String userName;
+	private String phoneNumber;
+
+	@NotBlank(message = "昵称不能为空")
+	private String nickName;
 
 	/**
 	 * 密码
 	 */
-	@JsonIgnore
 	@NotBlank(message = "密码不能为空")
+	@JsonIgnore
 	private String password;
 
 	/**
@@ -57,6 +60,5 @@ public class User extends BaseEntity implements Serializable {
 	@Email(message = "邮箱格式不正确")
 	@ApiModelProperty("邮箱")
 	private String userEmail;
-
 
 }

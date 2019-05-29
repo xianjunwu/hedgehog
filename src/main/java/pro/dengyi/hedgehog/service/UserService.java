@@ -27,6 +27,8 @@ public interface UserService {
 	/**
 	 * 新增或者修改用户
 	 *
+	 * 新增用户的时候讲用户密码进行简单的md5加密
+	 *
 	 * @param user     用户信息实体
 	 * @return pro.dengyi.hedgehog.model.entity.User
 	 * @author 邓艺

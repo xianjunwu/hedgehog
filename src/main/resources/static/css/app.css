@@ -1282,3 +1282,10 @@ fieldset[disabled] .checkbox-custom label {
 .radio-lg input[type="radio"]:checked + input[type="hidden"] + label::before {
     border-width: 12px;
 }
+.indexCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;;
+}

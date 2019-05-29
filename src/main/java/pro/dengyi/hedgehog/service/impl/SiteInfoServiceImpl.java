@@ -1,5 +1,7 @@
 package pro.dengyi.hedgehog.service.impl;
 
+import java.time.LocalDateTime;
+
 import lombok.extern.slf4j.Slf4j;
 import pro.dengyi.hedgehog.dao.SiteInfoDao;
 import pro.dengyi.hedgehog.model.entity.SiteInfo;
@@ -25,9 +27,10 @@ public class SiteInfoServiceImpl implements SiteInfoService {
 	public SiteInfo saveOrUpdate(SiteInfo siteInfo) {
 		if (siteInfo.getId() == null) {
 			//新增
-
+			siteInfo.setCreateTime(LocalDateTime.now());
 		} else {
 			//更新
+			siteInfo.setUpdateTime(LocalDateTime.now());
 		}
 		return siteInfoDao.save(siteInfo);
 	}

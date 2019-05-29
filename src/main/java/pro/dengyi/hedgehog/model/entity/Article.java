@@ -6,6 +6,7 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 文章实体类
@@ -67,4 +68,6 @@ public class Article extends BaseEntity implements Serializable {
 	 * 是否允许评论
 	 */
 	private Boolean allowComment = true;
+
+
 }

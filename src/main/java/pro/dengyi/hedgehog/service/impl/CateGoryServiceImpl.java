@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import pro.dengyi.hedgehog.dao.CategoryDao;
@@ -48,6 +49,7 @@ public class CateGoryServiceImpl implements CateGoryService {
 	}
 
 	@Override
+	@Transactional
 	public Category saveOrUpdate(Category category) {
 		if (category.getId() == null) {
 			String pinYin = PinYinUtil.getPinYin(category.getCategoryName());

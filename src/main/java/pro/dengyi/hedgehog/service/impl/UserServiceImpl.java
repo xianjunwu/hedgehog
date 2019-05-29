@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import pro.dengyi.hedgehog.dao.UserDao;
@@ -53,8 +54,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User saveOrUpdate(User user) {
 		if (user.getId() == null) {
+			//密码加密
+			String encodePassword = Md5Util.encodePassword(user.getPassword());
+			user.setPassword(encodePassword);
 			user.setCreateTime(LocalDateTime.now());
 		} else {
 			user.setUpdateTime(LocalDateTime.now());

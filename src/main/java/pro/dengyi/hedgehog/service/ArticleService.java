@@ -33,5 +33,6 @@ public interface ArticleService {
 
 	Article findOne(Long id);
 
+
     List<Article> conditionPageQuery(String categoryName, Integer pageNumber, Integer pageSize);
 }

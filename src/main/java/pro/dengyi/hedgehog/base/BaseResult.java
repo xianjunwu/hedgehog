@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 项目标准数据传输实体类
+ * 基础响应类
  *
  * @author Bruce
  * @date 2018/9/23 20:18
@@ -17,6 +17,8 @@ public class BaseResult implements Serializable {
 
     /**
      * 执行状态
+     *
+     * 为什么使用string类型返回执行状态？因为为了兼容zui的datagrid
      */
     public String result;
     /**

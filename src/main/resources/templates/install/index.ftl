@@ -23,13 +23,6 @@
 	<link rel="stylesheet" href="/static/plugins/wizardjs/css/wizard.min.css">
 	<script src="/static/plugins/wizardjs/jquery-wizard.min.js"></script>
 	<style>
-		.indexCenter {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			max-width: 600px;;
-		}
 
 		/* 步骤 */
 		.wizard-steps {
@@ -108,34 +101,35 @@
 		<div class="wizard-content">
 			<div class="wizard-pane" role="tabpanel">
 				<div class="form-horizontal">
+					<input type="hidden" id="userId">
 					<div class="form-group">
-						<label for="exampleInputAccount4" class="col-sm-4 required">管理员账号</label>
+						<label for="phoneNumber" class="col-sm-4 required">管理员账号</label>
 						<div class="col-md-6 col-sm-10">
-							<input type="text" class="form-control" id="exampleInputAccount4" placeholder="手机号">
+							<input type="text" class="form-control" id="phoneNumber" placeholder="手机号">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputAccount4" class="col-sm-4 required">管理员昵称</label>
+						<label for="nickName" class="col-sm-4 required">管理员昵称</label>
 						<div class="col-md-6 col-sm-10">
-							<input type="text" class="form-control" id="exampleInputAccount4" placeholder="昵称">
+							<input type="text" class="form-control" id="nickName" placeholder="昵称">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputAccount4" class="col-sm-4 required">邮箱</label>
+						<label for="userEmail" class="col-sm-4 required">邮箱</label>
 						<div class="col-md-6 col-sm-10">
-							<input type="text" class="form-control" id="exampleInputAccount4" placeholder="邮箱">
+							<input type="text" class="form-control" id="userEmail" placeholder="邮箱">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword4" class="col-sm-4 required">密码</label>
+						<label for="password" class="col-sm-4 required">密码</label>
 						<div class="col-md-6 col-sm-10">
-							<input type="password" class="form-control" id="exampleInputPassword4" placeholder="密码">
+							<input type="password" class="form-control" id="password" placeholder="密码">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword4" class="col-sm-4 required">再次输入密码</label>
+						<label for="repassword" class="col-sm-4 required">再次输入密码</label>
 						<div class="col-md-6 col-sm-10">
-							<input type="password" class="form-control" id="exampleInputPassword4">
+							<input type="password" class="form-control" id="repassword">
 						</div>
 					</div>
 					<div class="form-group">
@@ -147,6 +141,7 @@
 			</div>
 			<div class="wizard-pane" role="tabpanel">
 				<div class="form-horizontal">
+					<input type="hidden" id="websiteid">
 					<div class="form-group">
 						<label for="siteName" class="col-sm-4 required">网站名</label>
 						<div class="col-md-6 col-sm-10">
@@ -187,6 +182,7 @@
 			</div>
 			<div class="wizard-pane" role="tabpanel">
 				<div class="form-horizontal">
+					<input type="hidden" id="seoid">
 					<div class="form-group">
 						<label for="keywords" class="col-sm-4 required">网站关键词</label>
 						<div class="col-md-6 col-sm-10">
@@ -220,7 +216,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" class="btn btn-success pull-left" onclick="toNext(-1)"> 上一步</button>
-							<button type="button" class="btn btn-primary pull-right">保存</button>
+							<button type="button" class="btn btn-primary pull-right" onclick="toNext(2)">保存</button>
 						</div>
 					</div>
 				</div>
@@ -235,6 +231,7 @@
 	</div>
 </div>
 <script>
+    //初始化wizard
     $(function () {
         $("#installstep").wizard({
             templates: {
@@ -249,13 +246,99 @@
 
         if (i === 0) {
             //保存用户设置
-			$.post("")
+            $.post("/install/saveUser", {
+                phoneNumber: $("#phoneNumber").val(),
+                id: $("#userId").val(),
+                nickName: $("#nickName").val(),
+                password: $("#password").val(),
+                userEmail: $("#userEmail").val()
+            }, function (data) {
+                if (data.result === 'success') {
+                    //新增成功
+                    new $.zui.Messager('保存管理员成功！', {
+                        type: 'success', // 定义颜色主题，
+                        time: 1000,
+                        icon: 'ok'
+                    }).show();
+                    //将id存回来，防止倒回来修改
+                    $("#userId").val(data.data.id);
+                    //跳转到下一项
+                    $("#installstep").wizard('goTo', i + 1);
+                } else {
+                    //浮动消息通知
+                    new $.zui.Messager('保存管理员失败！', {
+                        icon: 'warning-sign', // 定义消息图标
+                        time: 1000
+                    }).show();
+                    //重新跳回去
+                    $("#installstep").wizard('goTo', i);
+                }
+
+            })
         } else if (i === 1) {
-			//保存网站基本信息
+            //保存网站基本信息
+            $.post("/install/saveSiteInfo", {
+                siteName: $("#siteName").val(),
+                id: $("#websiteid").val(),
+                slogen: $("#slogen").val(),
+                copyright: $("#copyright").val(),
+                logoUrl: $("#logoUrl").val(),
+                faviconUrl: $("#faviconUrl").val()
+            }, function (data) {
+                if (data.result === 'success') {
+                    //新增成功
+                    new $.zui.Messager('保存网站信息成功！', {
+                        type: 'success', // 定义颜色主题，
+                        time: 1000,
+                        icon: 'ok'
+                    }).show();
+                    //将id存回来，防止倒回来修改
+                    $("#websiteid").val(data.data.id);
+                    //跳转到下一项
+                    $("#installstep").wizard('goTo', i + 1);
+                } else {
+                    //浮动消息通知
+                    new $.zui.Messager('保存网站信息失败！', {
+                        icon: 'warning-sign', // 定义消息图标
+                        time: 1000
+                    }).show();
+                    //重新跳回去
+                    $("#installstep").wizard('goTo', i);
+                }
+
+            })
         } else {
             //保存seo信息
+            $.post("/install/saveSeo", {
+                siteName: $("#siteName").val(),
+                id: $("#seoid").val(),
+                slogen: $("#slogen").val(),
+                copyright: $("#copyright").val(),
+                logoUrl: $("#logoUrl").val(),
+                faviconUrl: $("#faviconUrl").val()
+            }, function (data) {
+                if (data.result === 'success') {
+                    //新增成功
+                    new $.zui.Messager('保存网站信息成功！', {
+                        type: 'success', // 定义颜色主题，
+                        time: 1000,
+                        icon: 'ok'
+                    }).show();
+                    //不用存id这一步是最后一步，不能在安装也修改了
+                    //重定向到管理主页
+                    window.location.replace("/admin/index")
+                } else {
+                    //浮动消息通知
+                    new $.zui.Messager('保存网站信息失败！', {
+                        icon: 'warning-sign', // 定义消息图标
+                        time: 1000
+                    }).show();
+                    //重新跳回去
+                    $("#installstep").wizard('goTo', i);
+                }
+
+            })
         }
-        $("#installstep").wizard('goTo', i + 1);
 
     }
 </script>
