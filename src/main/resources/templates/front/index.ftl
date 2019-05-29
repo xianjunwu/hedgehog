@@ -19,44 +19,14 @@
 	<link rel="stylesheet" href="/static/theme/blue.css">
 	<!-- app css -->
 	<link rel="stylesheet" href="/static/css/app.css">
-	<style>
-		.indexCenter {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			max-width: 400px;;
-		}
-	</style>
 </head>
 <body>
-<nav class="navbar" role="navigation">
-	<div class="container-fluid">
-		<!-- 导航头部 -->
-		<div class="navbar-header">
-			<!-- 移动设备上的导航切换按钮 -->
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
-				<span class="sr-only">切换导航</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<!-- 品牌名称或logo -->
-			<a class="navbar-brand" href="https://www.dengyi.pro">dengyi.pro</a>
-		</div>
-		<!-- 导航项目 -->
-		<div class="collapse navbar-collapse navbar-collapse-example">
-			<!-- 一般导航项目 -->
-			<ul class="nav navbar-nav" id="category">
-			</ul>
-		</div><!-- END .navbar-collapse -->
-	</div>
-</nav>
+<#include "common/header.ftl">
 <div class="indexCenter">
-	<div>
+	<div class="text-center">
 		<img src="http://zui.sexy/docs/img/img2.jpg" width="200px" height="200px" class="img-circle" alt="圆形图片">
 	</div>
-	<div style="margin: 20px">
+	<div  class="text-center" style="margin: 20px">
 		<span class="text-info">不断学习，不断提高</span>
 	</div>
 	<form id="searchForm" action="/search/doSearch" method="get">

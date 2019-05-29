@@ -2,6 +2,7 @@ package pro.dengyi.hedgehog.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ import pro.dengyi.hedgehog.service.CommontService;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 管理页面主页controller
@@ -32,7 +35,7 @@ public class AdminIndexController {
 	private CommontService commontService;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, HttpServletRequest request) {
         //文章总数
         Integer articleNumber = articleService.findTheNumberOfArticle();
         model.addAttribute("articleNumber", articleNumber);

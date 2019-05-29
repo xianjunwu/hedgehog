@@ -1,5 +1,7 @@
 package pro.dengyi.hedgehog.config;
 
+import pro.dengyi.hedgehog.intercepter.InstallIntecepter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -7,18 +9,16 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import pro.dengyi.hedgehog.intercepter.InstallIntecepter;
-
 /**
- * springmvc 配置类，正式环境配置类
+ * springmvc 开发环境配置类，去掉一切校验
  *
  * @author 邓艺
  * @version v1.0
  * @date 2019-05-12 14:16
  */
-@Profile("prod")
+@Profile("dev")
 @Configuration
-public class SpringMvcConfig implements WebMvcConfigurer {
+public class SpringMvcConfigDev implements WebMvcConfigurer {
 	@Autowired
 	private InstallIntecepter installIntecepter;
 
@@ -32,7 +32,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(installIntecepter).addPathPatterns("/admin/**");
+//		registry.addInterceptor(installIntecepter).addPathPatterns("/admin/**");
 
 	}
 

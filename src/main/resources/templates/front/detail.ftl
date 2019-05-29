@@ -22,6 +22,7 @@
 </head>
 <body>
 <article class="article">
+    <#include "common/header.ftl">
     <header>
         <h1 class="text-center">HTML5</h1>
         <dl class="dl-inline">

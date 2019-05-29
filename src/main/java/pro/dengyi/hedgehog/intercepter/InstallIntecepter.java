@@ -22,7 +22,7 @@ public class InstallIntecepter implements HandlerInterceptor {
     private UserService userService;
 
     /**
-     * 在访问之前判断网站是否安装，如果没有安装则转发到安装地址
+     * 在访问之前判断网站是否安装，如果没有安装则重定向到安装地址
      *
      * @param request
      * @param response

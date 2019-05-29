@@ -21,31 +21,7 @@
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
-<nav class="navbar" role="navigation">
-    <div class="container">
-        <!-- 导航头部 -->
-        <div class="navbar-header">
-            <!-- 移动设备上的导航切换按钮 -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-example">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- 品牌名称或logo -->
-            <a class="navbar-brand" href="https://www.dengyi.pro">dengyi.pro</a>
-        </div>
-        <!-- 导航项目 -->
-        <div class="collapse navbar-collapse navbar-collapse-example">
-            <!-- 一般导航项目 -->
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="your/nice/url">学习</a></li>
-                <li><a href="your/nice/url">教程</a></li>
-                <li><a href="your/nice/url">研究</a></li>
-            </ul>
-        </div><!-- END .navbar-collapse -->
-    </div>
-</nav>
+<#include "common/header.ftl">
 <div class="container">
     <div class="row">
         <div class="col-md-12">

@@ -76,7 +76,7 @@
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<div class="info-box bg-danger">
+							<div class="info-box bg-green">
 								<div class="info-box-icon">
 									<i class="icon icon-eye-open"></i>
 								</div>
@@ -89,14 +89,14 @@
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<div class="info-box bg-default">
+							<div class="info-box bg-danger">
 								<div class="info-box-icon">
 									<i class="icon icon-time"></i>
 								</div>
 								<div class="info-box-content">
-									<span class="info-box-text">系统运行天数</span>
-									<span class="info-box-number">8
-                                        <small>天</small>
+									<span class="info-box-text">异常日志数</span>
+									<span class="info-box-number">88
+                                        <small>条</small>
                                     </span>
 								</div>
 							</div>
@@ -136,7 +136,7 @@
 										</tr>
 										<tr>
 											<td>核心框架</td>
-											<td>zui bootstrap</td>
+											<td>zui bootstrap springboot springdatajpa solr mysql</td>
 										</tr>
 										<tr>
 											<td>开发作者</td>

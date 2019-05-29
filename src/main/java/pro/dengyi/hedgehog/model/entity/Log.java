@@ -42,15 +42,10 @@ public class Log extends BaseEntity {
      */
     private String logIp;
 
-    /**
-     * 产生的时间
-     */
-    private LocalDateTime logDateTime;
 
-    public Log(String logTitle, String logContent, String logIp, LocalDateTime logDateTime) {
+    public Log(String logTitle, String logContent, String logIp) {
         this.logTitle = logTitle;
         this.logContent = logContent;
         this.logIp = logIp;
-        this.logDateTime = logDateTime;
     }
 }
