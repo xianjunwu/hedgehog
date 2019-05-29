@@ -20,8 +20,8 @@
                             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/article/list/"><i class="icon icon-circle-blank"></i>文章列表</a></li>
-                        <li><a href="/admin/category/"><i class="icon icon-circle-blank"></i>栏目管理</a></li>
+                        <li><a href="/admin/article/list/"><i class="icon icon-circle-blank"></i>文章列表</a></li>
+                        <li><a href="/admin/category/"><i class="icon icon-circle-blank"></i>分类管理</a></li>
                         <li><a href="layout.html"><i class="icon icon-circle-blank"></i>标签管理</a></li>
                     </ul>
                 </li>
@@ -73,8 +73,9 @@
                             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/admin/sys/"><i class="icon icon-circle-blank"></i>网站设置</a></li>
+                        <li><a href="/admin/sys/"><i class="icon icon-circle-blank"></i>基础设置</a></li>
                         <li><a href="/admin/sys/"><i class="icon icon-circle-blank"></i>系统备份</a></li>
+                        <li><a href="/admin/sys/"><i class="icon icon-circle-blank"></i>系统恢复</a></li>
                     </ul>
                 </li>
 

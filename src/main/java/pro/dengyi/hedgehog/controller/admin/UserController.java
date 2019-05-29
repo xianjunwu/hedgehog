@@ -1,11 +1,7 @@
 package pro.dengyi.hedgehog.controller.admin;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pro.dengyi.hedgehog.api.UserControllerApi;
-import pro.dengyi.hedgehog.base.BaseResult;
-import pro.dengyi.hedgehog.entity.User;
-import pro.dengyi.hedgehog.service.UserService;
 
 /**
  * 用户controller

@@ -1,8 +1,8 @@
-package pro.dengyi.hedgehog.base;
+package pro.dengyi.hedgehog.model.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import pro.dengyi.hedgehog.entity.DataGridPager;
+import pro.dengyi.hedgehog.base.BaseResult;
+import pro.dengyi.hedgehog.model.vo.DataGridPager;
 
 import java.util.List;
 

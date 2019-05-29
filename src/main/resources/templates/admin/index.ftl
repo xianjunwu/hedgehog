@@ -9,6 +9,8 @@
         <title>后台管理页面</title>
         <!-- jquery js -->
         <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+        <link rel="stylesheet" href="/static/plugins/zui/lib/calendar/zui.calendar.min.css">
+        <script src="/static/plugins/zui/lib/calendar/zui.calendar.min.js"></script>
         <!-- zui css -->
         <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
         <link rel="stylesheet" href="/static/theme/blue.css">
@@ -35,7 +37,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box bg-info" onclick="location.href='/article/list/' ">
+                            <div class="info-box bg-info" onclick="location.href='/admin/article/list/' ">
                                 <div class="info-box-icon">
                                     <i class="icon icon-file-text"></i>
                                 </div>
@@ -48,20 +50,20 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box bg-primary">
+                            <div class="info-box bg-primary" onclick="location.href='/admin/article/list/' ">
                                 <div class="info-box-icon">
                                     <i class="icon icon-user"></i>
                                 </div>
                                 <div class="info-box-content">
-                                    <span class="info-box-text">用户总量</span>
+                                    <span class="info-box-text">评论总量</span>
                                     <span class="info-box-number">90
-                                        <small>个</small>
+                                        <small>条</small>
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box bg-warning">
+                            <div class="info-box bg-warning" onclick="location.href='/admin/category/' ">
                                 <div class="info-box-icon">
                                     <i class="icon icon-bars"></i>
                                 </div>
@@ -98,6 +100,13 @@
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- HTML 代码 -->
+                            <div id="calendar" class="calendar"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -181,6 +190,11 @@
     <script src="/static/plugins/zui/js/zui.min.js"></script>
     <!-- app js -->
     <script src="/static/js/app.js"></script>
+
+    <script>
+        /* JS 代码 */
+        $('#calendar').calendar();
+    </script>
     </body>
     </html>
 </#compress>

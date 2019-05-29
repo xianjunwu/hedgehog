@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 搜索controller
- *
+ *使用solr
  * @author 邓艺
  * @version v1.0
  * @date 2019-05-25 13:47
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/search")
 public class SearchController {
 
-    @GetMapping("/doSearch")
-    public String doSearch(String key, @RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+	@GetMapping("/doSearch")
+	public String doSearch(String key, @RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
 
-        return "front/searchResult";
+		return "front/searchResult";
 
-    }
+	}
 
 }

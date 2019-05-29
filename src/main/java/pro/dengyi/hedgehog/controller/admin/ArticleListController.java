@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pro.dengyi.hedgehog.base.DataGridResult;
-import pro.dengyi.hedgehog.entity.Article;
-import pro.dengyi.hedgehog.entity.DataGridBo;
+import pro.dengyi.hedgehog.model.dto.DataGridResult;
+import pro.dengyi.hedgehog.model.entity.Article;
+import pro.dengyi.hedgehog.model.vo.DataGridBo;
 import pro.dengyi.hedgehog.service.ArticleService;
 
 /**
@@ -18,7 +18,7 @@ import pro.dengyi.hedgehog.service.ArticleService;
  * @date 2019-05-13 12:41
  */
 @Controller
-@RequestMapping("/article/list")
+@RequestMapping("/admin/article/list")
 public class ArticleListController {
     @Autowired
     private ArticleService articleService;

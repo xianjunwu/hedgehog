@@ -1,4 +1,4 @@
-package pro.dengyi.hedgehog.entity;
+package pro.dengyi.hedgehog.model.vo;
 
 import lombok.Data;
 

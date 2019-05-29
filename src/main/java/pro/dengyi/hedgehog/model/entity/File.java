@@ -1,6 +1,7 @@
-package pro.dengyi.hedgehog.entity;
+package pro.dengyi.hedgehog.model.entity;
 
 import lombok.Data;
+import pro.dengyi.hedgehog.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "t_file")
-public class File {
+public class File  extends BaseEntity {
 
     @Id
     @GeneratedValue

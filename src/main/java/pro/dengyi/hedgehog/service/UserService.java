@@ -1,6 +1,6 @@
 package pro.dengyi.hedgehog.service;
 
-import pro.dengyi.hedgehog.entity.User;
+import pro.dengyi.hedgehog.model.entity.User;
 
 /**
  * 用户service接口
@@ -11,16 +11,26 @@ import pro.dengyi.hedgehog.entity.User;
  */
 public interface UserService {
 
-    User findAdminUser();
+	User findAdminUser();
 
-    /**
-     * 用户登录方法
-     * <br/>
-     *
-     * @param user user实体
-     * @return pro.dengyi.hedgehog.entity.User
-     * @author 邓艺
-     * @date 2019/5/20 13:27
-     */
-    User doLogin(User user);
+	/**
+	 * 用户登录方法
+	 * <br/>
+	 *
+	 * @param user user实体
+	 * @return pro.dengyi.hedgehog.model.entity.User
+	 * @author 邓艺
+	 * @date 2019/5/20 13:27
+	 */
+	User doLogin(User user);
+
+	/**
+	 * 新增或者修改用户
+	 *
+	 * @param user     用户信息实体
+	 * @return pro.dengyi.hedgehog.model.entity.User
+	 * @author 邓艺
+	 * @date 2019/5/29 18:28
+	 */
+	User saveOrUpdate(User user);
 }

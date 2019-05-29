@@ -1,7 +1,7 @@
 package pro.dengyi.hedgehog.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pro.dengyi.hedgehog.entity.Category;
+import pro.dengyi.hedgehog.model.entity.Category;
 
 /**
  * @author 邓艺

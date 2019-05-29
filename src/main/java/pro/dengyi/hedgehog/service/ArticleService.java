@@ -1,7 +1,9 @@
 package pro.dengyi.hedgehog.service;
 
-import pro.dengyi.hedgehog.entity.Article;
-import pro.dengyi.hedgehog.entity.DataGridBo;
+import java.util.List;
+
+import pro.dengyi.hedgehog.model.entity.Article;
+import pro.dengyi.hedgehog.model.vo.DataGridBo;
 
 public interface ArticleService {
 
@@ -28,4 +30,8 @@ public interface ArticleService {
     Article saveOrUpdate(Article article);
 
     DataGridBo<Article> pageQuery(Integer pageNumer, Integer pageSize);
+
+	Article findOne(Long id);
+
+    List<Article> conditionPageQuery(String categoryName, Integer pageNumber, Integer pageSize);
 }

@@ -1,13 +1,14 @@
-package pro.dengyi.hedgehog.entity;
+package pro.dengyi.hedgehog.model.entity;
 
 import lombok.Data;
+import pro.dengyi.hedgehog.base.BaseEntity;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "t_site_info")
-public class SiteInfo {
+public class SiteInfo  extends BaseEntity {
 
     @Id
     @GeneratedValue

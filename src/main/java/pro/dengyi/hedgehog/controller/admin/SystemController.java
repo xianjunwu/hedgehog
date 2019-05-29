@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pro.dengyi.hedgehog.entity.User;
+import pro.dengyi.hedgehog.model.entity.User;
 import pro.dengyi.hedgehog.service.UserService;
 import pro.dengyi.hedgehog.utils.VerificationCodeUtil;
 

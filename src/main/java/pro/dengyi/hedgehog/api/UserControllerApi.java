@@ -1,10 +1,6 @@
 package pro.dengyi.hedgehog.api;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-import pro.dengyi.hedgehog.base.BaseResult;
-import pro.dengyi.hedgehog.entity.User;
 
 /**
  * 用户api

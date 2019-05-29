@@ -1,66 +1,71 @@
 <#--compress指令的作用是将页面压缩-->
 <#compress >
-    <!DOCTYPE html>
-    <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>后台管理页面</title>
-        <!-- jquery js -->
-        <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
-        <!-- zui css -->
-        <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
-        <link rel="stylesheet" href="/static/theme/blue.css">
-        <!-- app css -->
-        <link rel="stylesheet" href="/static/css/app.css">
-        <link href="/static/plugins/zui/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
-        <script src="/static/plugins/zui/lib/datagrid/zui.datagrid.min.js"></script>
+	<!DOCTYPE html>
+	<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>后台管理页面</title>
+		<!-- jquery js -->
+		<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+		<!-- zui css -->
+		<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
+		<link rel="stylesheet" href="/static/theme/blue.css">
+		<!-- app css -->
+		<link rel="stylesheet" href="/static/css/app.css">
+		<link href="/static/plugins/zui/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
+		<script src="/static/plugins/zui/lib/datagrid/zui.datagrid.min.js"></script>
 
 
-    </head>
-    <body>
-    <div class="wrapper">
-        <#--通用头部-->
-        <#include "common/header.ftl">
-        <#--通用侧边栏-->
-        <#include "common/sider.ftl">
-        <#--内容体-->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <ul class="breadcrumb">
-                    <li><a href="/admin/index"><i class="icon icon-home"></i></a></li>
-                    <li class="active">文章列表</li>
-                </ul>
-            </div>
-            <div class="content-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div id="datagridExample" class="datagrid">
-                                <div class="input-control search-box search-box-circle has-icon-left has-icon-right" id="searchboxExample2"
-                                     style="margin-bottom: 10px; max-width: 300px">
-                                    <input id="inputSearchExample2" type="search" class="form-control search-input" placeholder="搜索">
-                                    <label for="inputSearchExample2" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
-                                    <a href="#" class="input-control-icon-right search-clear-btn"><i class="icon icon-remove"></i></a>
-                                    <button class="form-inline" onclick="deleteItems()">删除</button>
-                                </div>
-                                <div class="datagrid-container"></div>
-                                <div class="pager"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
+	</head>
+	<body>
+	<div class="wrapper">
+		<#--通用头部-->
+		<#include "common/header.ftl">
+		<#--通用侧边栏-->
+		<#include "common/sider.ftl">
+		<#--内容体-->
+		<div class="content-wrapper">
+			<div class="content-header">
+				<ul class="breadcrumb">
+					<li><a href="/admin/index"><i class="icon icon-home"></i></a></li>
+					<li class="active">文章列表</li>
+				</ul>
+			</div>
+			<div class="content-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div id="datagridExample" class="datagrid">
+								<div class="input-control search-box search-box-circle has-icon-left has-icon-right"
+									 id="searchboxExample2"
+									 style="margin-bottom: 10px; max-width: 300px">
+									<input id="inputSearchExample2" type="search" class="form-control search-input"
+										   placeholder="搜索">
+									<label for="inputSearchExample2" class="input-control-icon-left search-icon"><i
+												class="icon icon-search"></i></label>
+									<a href="#" class="input-control-icon-right search-clear-btn"><i
+												class="icon icon-remove"></i></a>
+									<button class="form-inline" onclick="deleteItems()">删除</button>
+								</div>
+								<div class="datagrid-container"></div>
+								<div class="pager"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
         $(function () {
             $('#datagridExample').datagrid({
                 dataSource: {
                     cols: [
                         {name: 'id', label: '文章id', width: 80, sort: false},
                         {name: 'title', label: '标题', width: 0.7, sort: false},
+                        {name: 'category', label: '分类', width: 134},
                         {name: 'views', label: '访问数', width: 134},
                         {name: 'hearts', label: '心数', width: 109},
                         {name: 'allowComment', label: '是否允许评论', width: 109, sort: false},
@@ -71,7 +76,7 @@
                     remote: function (params) {
                         return {
                             // 原创请求地址
-                            url: '/article/list/pageQuery',
+                            url: '/admin/article/list/pageQuery',
                             // 请求类型
                             type: 'GET',
                             // 数据类型
@@ -86,16 +91,27 @@
                     pager: {page: 1, recPerPage: 10}
                 },
                 configs: {
-                    C5: {
-                        // 值转换器仅影响第 2 行第 1 列的单元格
+                    C3: {
+                        valueOperator: {
+                            getter: function (dataValue, cell, dataGrid) {
+                                return dataValue != null ? dataValue.categoryName : '';
+                            }
+                        }
+                    },
+                    C6: {
                         valueOperator: {
                             getter: function (dataValue, cell, dataGrid) {
                                 return dataValue ? '是' : '否';
                             }
                         }
+                    }, C8: {
+                        valueOperator: {
+                            getter: function (dataValue, cell, dataGrid) {
+                                return dataValue == null ? '' : dataValue;
+                            }
+                        }
                     },
-                    C8: {
-                        // 值转换器仅影响第 2 行第 1 列的单元格
+                    C9: {
                         valueOperator: {
                             getter: function (dataValue, cell, dataGrid) {
                                 return dataValue ? '已发布' : '未发布';
@@ -119,12 +135,12 @@
             console.log(selectedItems);
 
         }
-    </script>
+	</script>
 
-    <!-- zui js -->
-    <script src="/static/plugins/zui/js/zui.min.js"></script>
-    <!-- app js -->
-    <script src="/static/js/app.js"></script>
-    </body>
-    </html>
+	<!-- zui js -->
+	<script src="/static/plugins/zui/js/zui.min.js"></script>
+	<!-- app js -->
+	<script src="/static/js/app.js"></script>
+	</body>
+	</html>
 </#compress>

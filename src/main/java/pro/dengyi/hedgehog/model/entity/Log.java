@@ -1,6 +1,7 @@
-package pro.dengyi.hedgehog.entity;
+package pro.dengyi.hedgehog.model.entity;
 
 import lombok.Data;
+import pro.dengyi.hedgehog.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "t_log")
-public class Log {
+public class Log extends BaseEntity {
 
     /**
      * id

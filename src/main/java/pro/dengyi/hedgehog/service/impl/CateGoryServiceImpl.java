@@ -6,11 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
 import pro.dengyi.hedgehog.dao.CategoryDao;
-import pro.dengyi.hedgehog.entity.Category;
-import pro.dengyi.hedgehog.entity.DataGridBo;
-import pro.dengyi.hedgehog.entity.DataGridPager;
+import pro.dengyi.hedgehog.model.entity.Category;
+import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.vo.DataGridPager;
 import pro.dengyi.hedgehog.service.CateGoryService;
+import pro.dengyi.hedgehog.utils.PinYinUtil;
 
 import java.util.List;
 
@@ -23,30 +25,44 @@ import java.util.List;
  */
 @Service
 public class CateGoryServiceImpl implements CateGoryService {
-    @Autowired
-    private CategoryDao categoryDao;
+	@Autowired
+	private CategoryDao categoryDao;
 
-    @Override
-    public int findNumberOfCategorys() {
-        List<Category> all = categoryDao.findAll();
-        if (!CollectionUtils.isEmpty(all)) {
-            return all.size();
-        }
-        return 0;
-    }
+	@Override
+	public int findNumberOfCategorys() {
+		List<Category> all = categoryDao.findAll();
+		if (!CollectionUtils.isEmpty(all)) {
+			return all.size();
+		}
+		return 0;
+	}
 
-    @Override
-    public DataGridBo<Category> pageQuery(Integer page, Integer recPerPage) {
-        Pageable pageable = PageRequest.of(page - 1, recPerPage);
-        Page<Category> articles = categoryDao.findAll(pageable);
-        List<Category> content = articles.getContent();
-        long totalElements = articles.getTotalElements();
-        int number = articles.getNumber();
-        return new DataGridBo<>(content, new DataGridPager(number + 1, totalElements, recPerPage));
-    }
+	@Override
+	public DataGridBo<Category> pageQuery(Integer page, Integer recPerPage) {
+		Pageable pageable = PageRequest.of(page - 1, recPerPage);
+		Page<Category> articles = categoryDao.findAll(pageable);
+		List<Category> content = articles.getContent();
+		long totalElements = articles.getTotalElements();
+		int number = articles.getNumber();
+		return new DataGridBo<>(content, new DataGridPager(number + 1, totalElements, recPerPage));
+	}
 
-    @Override
-    public Category saveOrUpdate(Category category) {
-        return categoryDao.save(category);
-    }
+	@Override
+	public Category saveOrUpdate(Category category) {
+		if (category.getId() == null) {
+			String pinYin = PinYinUtil.getPinYin(category.getCategoryName());
+			category.setPath(pinYin);
+		}
+		return categoryDao.save(category);
+	}
+
+	@Override
+	public int findCategoryNumber() {
+		return categoryDao.findAll().size();
+	}
+
+	@Override
+	public List<Category> findAllCategory() {
+		return categoryDao.findAll();
+	}
 }
