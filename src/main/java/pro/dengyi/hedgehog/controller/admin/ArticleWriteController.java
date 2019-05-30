@@ -1,5 +1,6 @@
 package pro.dengyi.hedgehog.controller.admin;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,10 +23,10 @@ import pro.dengyi.hedgehog.service.ArticleService;
  * @version v1.0
  * @date 2019-05-13 13:52
  */
+@Slf4j
 @Controller
 @RequestMapping("/admin/article/write")
 public class ArticleWriteController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleWriteController.class);
 
 	@Autowired
 	private ArticleService articleService;
@@ -45,10 +47,7 @@ public class ArticleWriteController {
 	 */
 	@PostMapping("/saveOrUpdate")
 	@ResponseBody
-	public Article saveOrUpdate(Article article, Long categoryId) {
-		Category category = new Category();
-		category.setId(categoryId);
-		article.setCategory(category);
+	public Article saveOrUpdate(@RequestBody Article article) {
 		return articleService.saveOrUpdate(article);
 	}
 
