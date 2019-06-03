@@ -31,4 +31,9 @@ public class CommontServiceImpl implements CommontService {
 		List<Commont> all = commontDao.findAll();
 		return CollectionUtils.isEmpty(all) ? 0 : all.size();
 	}
+
+	@Override
+	public List<Commont> findAllCommontsByArticleId(Long articleId) {
+		return null;
+	}
 }

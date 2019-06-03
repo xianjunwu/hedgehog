@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import pro.dengyi.hedgehog.model.dto.DataGridResult;
 import pro.dengyi.hedgehog.model.entity.Article;
 import pro.dengyi.hedgehog.model.vo.DataGridBo;
@@ -20,20 +21,20 @@ import pro.dengyi.hedgehog.service.ArticleService;
 @Controller
 @RequestMapping("/admin/article/list")
 public class ArticleListController {
-    @Autowired
-    private ArticleService articleService;
+	@Autowired
+	private ArticleService articleService;
 
-    @GetMapping("/")
-    public String list() {
-        //@PathVariable Integer pageNumber, @PathVariable Integer pageSize, Model model
-        return "admin/articlelist";
-    }
+	@GetMapping("/")
+	public String list() {
+		//@PathVariable Integer pageNumber, @PathVariable Integer pageSize, Model model
+		return "admin/articlelist";
+	}
 
-    @GetMapping("/pageQuery")
-    @ResponseBody
-    public DataGridResult<Article> pageQuery(Integer page, Integer recPerPage,String search,String sortBy,String order) {
-        DataGridBo<Article> dataGridBo = articleService.pageQuery(page, recPerPage);
-        return new DataGridResult<>("success", "成功", dataGridBo.getData(), dataGridBo.getDataGridPager());
-    }
+	@GetMapping("/pageQuery")
+	@ResponseBody
+	public DataGridResult<Article> pageQuery(Integer page, Integer recPerPage, String search, String sortBy, String order) {
+		DataGridBo<Article> dataGridBo = articleService.pageQuery(page, recPerPage, search, sortBy, order);
+		return new DataGridResult<>("success", "成功", dataGridBo.getData(), dataGridBo.getDataGridPager());
+	}
 
 }

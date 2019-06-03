@@ -21,10 +21,12 @@
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
+<#include "common/header.ftl">
 <article class="article">
-    <#include "common/header.ftl">
     <header>
-        <h1 class="text-center">HTML5</h1>
+        <h1 class="text-center">
+           ${article.title}
+        </h1>
         <dl class="dl-inline">
             <dt>来源：</dt>
             <dd>维基百科</dd>
@@ -34,7 +36,7 @@
             <dd class="pull-right"><span class="label label-success">HTML</span> <span class="label label-warning">网页设计</span> <span class="label label-info">W3C</span> <span class="label label-danger"><i class="icon-eye-open"></i> 235</span></dd>
         </dl>
         <section class="abstract">
-            <p><strong>摘要：</strong>HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准，以期能在互联网应用迅速发展的时候，使网络标准达到匹配当代的网络需求。广义论及HTML5时，实际指的是包括HTML、CSS和JavaScript在内的一套技术组合。</p>
+            <p><strong>摘要：</strong>${article.summary}</p>
         </section>
     </header>
     <section class="content">
@@ -105,120 +107,116 @@
             <li>拖放</li>
         </ul>
     </section>
-    <footer>
-        <p class="pull-right text-muted">本文在知识共享 署名-相同方式共享 3.0协议之条款下提供。</p>
-        <p class="text-important">本文节选自 Wikipedia HTML5 词条。</p>
-        <ul class="pager pager-justify">
-            <li class="previous"><a target="_blank" href="https://zh.wikipedia.org/wiki/Category:HTML"><i class="icon-arrow-left"></i> HTML</a></li>
-            <li class="next disabled"><a target="_blank" href="https://zh.wikipedia.org/wiki/Category:W3C%E6%A0%87%E5%87%86">W3C 标准 <i class="icon-arrow-right"></i></a></li>
-        </ul>
-    </footer>
-    <div class="comments">
-        <header>
-            <div class="pull-right"><a href="#commentReplyForm2" class="btn btn-primary"><i class="icon-comment-alt"></i> 发表评论</a></div>
-            <h3>所有评论</h3>
-        </header>
-        <section class="comments-list">
-            <div class="comment">
-                <a href="###" class="avatar">
-                    <i class="icon-camera-retro icon-2x"></i>
-                </a>
-                <div class="content">
-                    <div class="pull-right text-muted">3 个小时前</div>
-                    <div><a href="###"><strong>张士超</strong></a></div>
-                    <div class="text">今天玩的真开心！~~~~~~</div>
-                    <div class="actions">
-                        <a href="##">回复</a>
-                    </div>
-                </div>
-                <div class="comments-list">
-                    <div class="comment">
-                        <a href="###" class="avatar">
-                            <i class="icon-user icon-2x"></i>
-                        </a>
-                        <div class="content">
-                            <div class="pull-right text-muted">2 个小时前</div>
-                            <div><a href="###"><strong>Catouse</strong></a> <span class="text-muted">回复</span> <a href="###">张士超</a></div>
-                            <div class="text">你到底把我家钥匙放哪里了...</div>
-                            <div class="actions">
-                                <a href="##">回复</a>
-                                <a href="##">编辑</a>
-                                <a href="##">删除</a>
-                            </div>
+
+    <#if article.allowComment ! false>
+        <div class="comments">
+            <header>
+                <div class="pull-right"><a href="#commentReplyForm2" class="btn btn-primary"><i class="icon-comment-alt"></i> 发表评论</a></div>
+                <h3>所有评论</h3>
+            </header>
+            <section class="comments-list">
+                <div class="comment">
+                    <a href="###" class="avatar">
+                        <i class="icon-camera-retro icon-2x"></i>
+                    </a>
+                    <div class="content">
+                        <div class="pull-right text-muted">3 个小时前</div>
+                        <div><a href="###"><strong>张士超</strong></a></div>
+                        <div class="text">今天玩的真开心！~~~~~~</div>
+                        <div class="actions">
+                            <a href="##">回复</a>
                         </div>
-                        <div class="comments-list">
-                            <div class="comment">
-                                <a href="###" class="avatar">
-                                    <i class="icon-yinyang icon-2x"></i>
-                                </a>
-                                <div class="content">
-                                    <div class="pull-right text-muted">1 个小时前</div>
-                                    <div><a href="###"><strong>门口大爷</strong></a> <span class="text-muted">回复</span> <a href="###">Catouse</a></div>
-                                    <div class="text">不在我这儿...</div>
-                                    <div class="actions">
-                                        <a href="##">回复</a>
-                                    </div>
+                    </div>
+                    <div class="comments-list">
+                        <div class="comment">
+                            <a href="###" class="avatar">
+                                <i class="icon-user icon-2x"></i>
+                            </a>
+                            <div class="content">
+                                <div class="pull-right text-muted">2 个小时前</div>
+                                <div><a href="###"><strong>Catouse</strong></a> <span class="text-muted">回复</span> <a href="###">张士超</a></div>
+                                <div class="text">你到底把我家钥匙放哪里了...</div>
+                                <div class="actions">
+                                    <a href="##">回复</a>
+                                    <a href="##">编辑</a>
+                                    <a href="##">删除</a>
                                 </div>
                             </div>
-                            <div class="comment">
-                                <a href="###" class="avatar">
-                                    <i class="icon-cube-alt icon-2x"></i>
-                                </a>
-                                <div class="content">
-                                    <div class="pull-right text-muted">1 个小时前</div>
-                                    <div><a href="###"><strong>队长</strong></a> <span class="text-muted">回复</span> <a href="###">Catouse</a></div>
-                                    <div class="text">也不在我这儿...</div>
-                                    <div class="actions">
-                                        <a href="##">回复</a>
+                            <div class="comments-list">
+                                <div class="comment">
+                                    <a href="###" class="avatar">
+                                        <i class="icon-yinyang icon-2x"></i>
+                                    </a>
+                                    <div class="content">
+                                        <div class="pull-right text-muted">1 个小时前</div>
+                                        <div><a href="###"><strong>门口大爷</strong></a> <span class="text-muted">回复</span> <a href="###">Catouse</a></div>
+                                        <div class="text">不在我这儿...</div>
+                                        <div class="actions">
+                                            <a href="##">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <a href="###" class="avatar">
+                                        <i class="icon-cube-alt icon-2x"></i>
+                                    </a>
+                                    <div class="content">
+                                        <div class="pull-right text-muted">1 个小时前</div>
+                                        <div><a href="###"><strong>队长</strong></a> <span class="text-muted">回复</span> <a href="###">Catouse</a></div>
+                                        <div class="text">也不在我这儿...</div>
+                                        <div class="actions">
+                                            <a href="##">回复</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="comment">
-                        <a href="###" class="avatar">
-                            <i class="icon-heart-empty icon-2x"></i>
-                        </a>
-                        <div class="content">
-                            <div class="pull-right text-muted">30 分钟前</div>
-                            <div><a href="###"><strong>华师大第一美女</strong></a> <span class="text-muted">回复</span> <a href="###">张士超</a></div>
-                            <div class="text">很开心~~~</div>
-                            <div class="actions">
-                                <a href="##">回复</a>
+                        <div class="comment">
+                            <a href="###" class="avatar">
+                                <i class="icon-heart-empty icon-2x"></i>
+                            </a>
+                            <div class="content">
+                                <div class="pull-right text-muted">30 分钟前</div>
+                                <div><a href="###"><strong>华师大第一美女</strong></a> <span class="text-muted">回复</span> <a href="###">张士超</a></div>
+                                <div class="text">很开心~~~</div>
+                                <div class="actions">
+                                    <a href="##">回复</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <footer>
-            <div class="reply-form" id="commentReplyForm2">
-                <a href="###" class="avatar"><i class="icon-user icon-2x"></i></a>
-                <form class="form">
-                    <div class="form-group">
-                        <textarea class="form-control new-comment-text" rows="2" placeholder="撰写评论..."></textarea>
-                    </div>
-                    <div class="form-group comment-user">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="pull-right">或者</span>
-                                <a href="#">登录</a> &nbsp;<a href="##">注册</a>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="nameInputEmail1" placeholder="输入评论显示名称">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮件（不会在评论显示）">
-                                </div>
-                            </div>
-                            <div class="col-md-2"><button type="submit" class="btn btn-block btn-primary"><i class="icon-ok"></i></button></div>
+            </section>
+            <footer>
+                <div class="reply-form" id="commentReplyForm2">
+                    <a href="###" class="avatar"><i class="icon-user icon-2x"></i></a>
+                    <form class="form">
+                        <div class="form-group">
+                            <textarea class="form-control new-comment-text" rows="2" placeholder="撰写评论..."></textarea>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </footer>
-    </div>
+                        <div class="form-group comment-user">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span class="pull-right">或者</span>
+                                    <a href="#">登录</a> &nbsp;<a href="##">注册</a>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="nameInputEmail1" placeholder="输入评论显示名称">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮件（不会在评论显示）">
+                                    </div>
+                                </div>
+                                <div class="col-md-2"><button type="submit" class="btn btn-block btn-primary"><i class="icon-ok"></i></button></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </footer>
+        </div>
+    </#if>
+
 </article>
 </body>
 </html>

@@ -97,6 +97,18 @@
                                 return dataValue != null ? dataValue.categoryName : '';
                             }
                         }
+                    }, C4: {
+                        valueOperator: {
+                            getter: function (dataValue, cell, dataGrid) {
+                                return dataValue != null ? dataValue : 0;
+                            }
+                        }
+                    }, C5: {
+                        valueOperator: {
+                            getter: function (dataValue, cell, dataGrid) {
+                                return dataValue != null ? dataValue : 0;
+                            }
+                        }
                     },
                     C6: {
                         valueOperator: {

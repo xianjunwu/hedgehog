@@ -39,10 +39,6 @@ public class Article extends BaseEntity implements Serializable {
 	@Column(columnDefinition = "text")
 	private String summary;
 
-
-	@ManyToOne
-	private Category category;
-
 	/**
 	 * 文章内容
 	 */
@@ -57,17 +53,23 @@ public class Article extends BaseEntity implements Serializable {
 	/**
 	 * 文章访问量
 	 */
-	private Long views = 0L;
+	private Long views;
 
 	/**
 	 * 喜欢数
 	 */
-	private Long hearts = 0L;
+	private Long hearts;
 
 	/**
 	 * 是否允许评论
 	 */
-	private Boolean allowComment = true;
+	private Boolean allowComment;
 
+	/**
+	 * 关系配置
+	 */
+
+	@ManyToOne
+	private Category category;
 
 }

@@ -1,6 +1,7 @@
 package pro.dengyi.hedgehog.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 import pro.dengyi.hedgehog.dao.SeoDao;
@@ -9,6 +10,7 @@ import pro.dengyi.hedgehog.service.SeoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 /**
  *seo service接口实现类
@@ -33,5 +35,12 @@ public class SeoServiceImpl implements SeoService {
 			seo.setUpdateTime(LocalDateTime.now());
 		}
 		return seoDao.save(seo);
+	}
+
+	@Override
+	public Seo findSeo() {
+		List<Seo> all = seoDao.findAll();
+
+		return !CollectionUtils.isEmpty(all) ? all.get(0) : null;
 	}
 }

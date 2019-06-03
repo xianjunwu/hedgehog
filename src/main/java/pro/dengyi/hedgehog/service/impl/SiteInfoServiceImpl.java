@@ -1,6 +1,7 @@
 package pro.dengyi.hedgehog.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 import pro.dengyi.hedgehog.dao.SiteInfoDao;
@@ -9,6 +10,7 @@ import pro.dengyi.hedgehog.service.SiteInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 /**
  *
@@ -33,5 +35,12 @@ public class SiteInfoServiceImpl implements SiteInfoService {
 			siteInfo.setUpdateTime(LocalDateTime.now());
 		}
 		return siteInfoDao.save(siteInfo);
+	}
+
+	@Override
+	public SiteInfo findSiteInfo() {
+		List<SiteInfo> all = siteInfoDao.findAll();
+
+		return !CollectionUtils.isEmpty(all) ? all.get(0) : null;
 	}
 }

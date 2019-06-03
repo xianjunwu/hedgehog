@@ -11,4 +11,6 @@ import pro.dengyi.hedgehog.model.entity.Seo;
  */
 public interface SeoService {
 	Seo saveOrUpdate(Seo seo);
+
+	Seo findSeo();
 }

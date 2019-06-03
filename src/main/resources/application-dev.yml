@@ -1,6 +1,7 @@
+#系统配置
 server:
   port: 8087
-#相关配置
+#springboot配置
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

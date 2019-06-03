@@ -20,4 +20,7 @@ public interface SiteInfoService {
 	 * @date 2019/5/29 18:24
 	 */
 	SiteInfo saveOrUpdate(SiteInfo siteInfo);
+
+	SiteInfo findSiteInfo();
+
 }

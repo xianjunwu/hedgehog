@@ -4,14 +4,19 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<#--<meta name="baidu-site-verification" content="${webSeo.btoken}"/>-->
-	<#--<meta name="google-site-verification" content="${webSeo.gtoken}"/>-->
-	<#--<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ &ndash;&gt;-->
-	<#--<meta name="description" content="${webSeo.description}">-->
-	<#--<meta name="author" content="${webSeo.author}">-->
-	<#--<meta name="keywords" content="${webSeo.keywords}"/>-->
-	<#--<link rel="icon" href="${commonInfo.pwebFaviconUrl}">-->
-	<title>dengyi.pro</title>
+	<#if seo??>
+		<meta name="baidu-site-verification" content="${seo.btoken}"/>
+		<meta name="google-site-verification" content="${seo.gtoken}"/>
+		<meta name="description" content="${seo.description}">
+		<meta name="author" content="${seo.author}">
+		<meta name="keywords" content="${seo.keywords}"/>
+<#--		<link rel="icon" href="${}">-->
+	<#else>
+		<meta name="author" content="邓艺">
+		<meta name="description" content="邓艺的个人网站">
+		<meta name="keywords" content="邓艺，学习，成长"/>
+	</#if>
+	<title>dengyi.pro | 首页</title>
 	<!-- jquery js -->
 	<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
 	<!-- zui css -->
@@ -26,10 +31,10 @@
 	<div class="text-center">
 		<img src="http://zui.sexy/docs/img/img2.jpg" width="200px" height="200px" class="img-circle" alt="圆形图片">
 	</div>
-	<div  class="text-center" style="margin: 20px">
+	<div class="text-center" style="margin: 20px">
 		<span class="text-info">不断学习，不断提高</span>
 	</div>
-	<form id="searchForm" action="/search/doSearch" method="get">
+	<form id="searchForm" action="/search" method="get">
 		<div class="input-group">
 			<div class="input-control search-box search-box-circle has-icon-left has-icon-right search-example"
 				 id="searchboxExample">
@@ -48,7 +53,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="text-center" style="padding-bottom: 20px">
-					<span style="color: #999">Copyright © 2019-2019 hedgehog  All Rights Reserved. 备案号：闽ICP备15012807号-1</span>
+					<span style="color: #999">Copyright © 2019-2019 hedgehog  All Rights Reserved. 备案号：浙ICP备17049324号-1</span>
 				</div>
 			</div>
 		</div>
@@ -73,8 +78,10 @@
 
     function doSearch() {
         var searchContent = $("#searchInput").val().trim();
-        $("#searchForm").submit();
-
+        //不为空时发请求
+        if (searchContent !== '') {
+            $("#searchForm").submit();
+        }
     }
 </script>
 <!-- zui js -->

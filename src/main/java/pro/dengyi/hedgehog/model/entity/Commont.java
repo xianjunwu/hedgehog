@@ -6,6 +6,7 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,12 +20,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "t_commont")
 public class Commont extends BaseEntity {
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    private Article article;
+	/**
+	 * 评论者头像
+	 */
+	private String userPic;
+
+	/**
+	 * 评论者用户名
+	 */
+	private String userName;
+
+	/**
+	 * 评论内容
+	 */
+	private String content;
 
 
+	@ManyToOne
+	private Article article;
 
 }

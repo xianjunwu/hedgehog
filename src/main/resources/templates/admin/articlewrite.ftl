@@ -49,7 +49,7 @@
 								</div>
 							</div>
 							<div class="col-md-12" style="margin-top: 20px">
-								<textarea class="form-control" name="summary" rows="3" placeholder="摘要"></textarea>
+								<textarea class="form-control" name="summary" id="summary" rows="3" placeholder="摘要"></textarea>
 							</div>
 							<div class="col-md-12" style="margin-top: 20px">
 								<textarea id="content" name="content" class="form-control kindeditor"
@@ -75,6 +75,13 @@
 					<div class="form-group">
 						<label for="category">选择分类</label>
 						<select class="form-control" id="category">
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="category">是否允许评论</label>
+						<select class="form-control" id="allowComment">
+							<option value="true">允许</option>
+							<option value="false">不允许</option>
 						</select>
 					</div>
 				</div>
@@ -161,16 +168,20 @@
                 }).show();
             } else {
                 var trueTile = tileInput.val().trim();
-                $.post("/admin/article/write/saveOrUpdate",
-                    {
-                        id: $("#id").val(),
-                        title: trueTile,
-                        summary: $("#summary").val(),
-                        content: $("#content").val(),
-                        articleStatus: true,
-                    	categoryId: $("#category").val()
+                var parms={
+                    "id": $("#id").val(),
+                    "title": trueTile,
+                    "summary": $("#summary").val(),
+                    "content": $("#content").val(),
+                    "articleStatus": true,
+                    "allowComment":$("#allowComment").val(),
+					"category":{
+                        "id":$("#category").val()
+					}
 
-                    }, function (callback) {
+				};
+                $.ajaxSettings.contentType = "application/json;charset=UTF-8";
+                $.post("/admin/article/write/saveOrUpdate", JSON.stringify(parms), function (callback) {
                         if (callback != null) {
                             $("#id").val(callback.id);
                             //浮动消息通知

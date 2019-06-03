@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 import pro.dengyi.hedgehog.model.entity.Article;
+import pro.dengyi.hedgehog.model.vo.NormalPageQueryBo;
 import pro.dengyi.hedgehog.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,23 @@ public class FrontArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("list/{categoryName}")
-	public String list(@RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize, @PathVariable String categoryName, Model model) {
-		List<Article> list = articleService.conditionPageQuery(categoryName, pageNumber, pageSize);
+	public String list(@RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "7") Integer pageSize, @PathVariable String categoryName, Model model) {
+		NormalPageQueryBo<Article> list = articleService.conditionPageQuery(categoryName, pageNumber, pageSize);
 		model.addAttribute("articles", list);
 		return "front/articlelist";
 	}
 
-	@RequestMapping("/detail")
-	public String detail(Long id, Model model) {
+	/**
+	 * 查询文章详情
+	 *
+	 * @param id    文章id
+	 * @param model
+	 * @return java.lang.String
+	 * @author 邓艺
+	 * @date 2019/6/3 20:39
+	 */
+	@RequestMapping("/detail/{id}")
+	public String detail(@PathVariable Long id, Model model) {
 		Article article = articleService.findOne(id);
 		if (article == null) {
 			//异常

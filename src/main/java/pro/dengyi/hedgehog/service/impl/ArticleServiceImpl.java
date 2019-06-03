@@ -1,16 +1,23 @@
 package pro.dengyi.hedgehog.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.apache.commons.lang3.StringUtils;
 import pro.dengyi.hedgehog.dao.ArticleDao;
 import pro.dengyi.hedgehog.model.entity.Article;
+import pro.dengyi.hedgehog.model.entity.Category;
 import pro.dengyi.hedgehog.model.vo.DataGridBo;
 import pro.dengyi.hedgehog.model.vo.DataGridPager;
+import pro.dengyi.hedgehog.model.vo.NormalPageQueryBo;
 import pro.dengyi.hedgehog.service.ArticleService;
 
 import java.time.LocalDateTime;
@@ -40,9 +47,34 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public DataGridBo<Article> pageQuery(Integer pageNumer, Integer pageSize) {
+	public DataGridBo<Article> pageQuery(Integer pageNumer, Integer pageSize, String search, String sortBy, String order) {
 		Pageable pageable = PageRequest.of(pageNumer - 1, pageSize);
-		Page<Article> articles = articleDao.findAll(pageable);
+		Example<Article> example = null;
+		//是否搜索
+		if (StringUtils.isNotBlank(search)) {
+			Article queryParams = new Article();
+			queryParams.setTitle(search);
+			ExampleMatcher matching = ExampleMatcher.matching().withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains());
+			example = Example.of(queryParams, matching);
+		}
+
+		//判断是否排序
+		Sort sort = null;
+		if (StringUtils.isNotBlank(sortBy) && StringUtils.isNotBlank(order)) {
+			if ("asc".equalsIgnoreCase(order)) {
+				sort = new Sort(Direction.ASC, sortBy);
+			} else {
+				sort = new Sort(Direction.DESC, sortBy);
+			}
+		}
+		Page<Article> articles = null;
+		//判断是否需要模糊查询
+		if (example == null) {
+			articles = articleDao.findAll(pageable);
+		} else {
+			articles = articleDao.findAll(example, pageable);
+		}
+
 		List<Article> content = articles.getContent();
 		long totalElements = articles.getTotalElements();
 		int number = articles.getNumber();
@@ -56,11 +88,25 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> conditionPageQuery(String categoryName, Integer pageNumber, Integer pageSize) {
-		Pageable pageable = PageRequest.of(pageNumber-1,pageSize);
-		// TODO: 2019/5/29 封装类型
-//		Example example = Example.of()
-		Page<Article> all = articleDao.findAll(pageable);
-		return null;
+	public NormalPageQueryBo<Article> conditionPageQuery(String categoryName, Integer pageNumber, Integer pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+
+		Category innerParams = new Category();
+		innerParams.setPath(categoryName);
+		//创建查询条件封装对象
+		Article queryParams = new Article();
+		queryParams.setCategory(innerParams);
+		//创建
+		ExampleMatcher exampleMatcher = ExampleMatcher.matching();
+		Example<Article> example = Example.of(queryParams, exampleMatcher);
+		Page<Article> all = articleDao.findAll(example, pageable);
+
+		NormalPageQueryBo<Article> articleNormalPageQueryBo = new NormalPageQueryBo<>();
+		articleNormalPageQueryBo.setData(all.getContent());
+		articleNormalPageQueryBo.setTotalElements(all.getTotalElements());
+		articleNormalPageQueryBo.setTotalPages(all.getTotalPages());
+		articleNormalPageQueryBo.setPageNumber(all.getNumber());
+		articleNormalPageQueryBo.setPageSize(all.getSize());
+		return articleNormalPageQueryBo;
 	}
 }

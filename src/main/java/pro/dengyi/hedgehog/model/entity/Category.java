@@ -1,5 +1,9 @@
 package pro.dengyi.hedgehog.model.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import pro.dengyi.hedgehog.base.BaseEntity;
@@ -7,6 +11,7 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -39,5 +44,6 @@ public class Category extends BaseEntity {
 	 * 分类路径
 	 */
 	private String path;
+
 
 }
