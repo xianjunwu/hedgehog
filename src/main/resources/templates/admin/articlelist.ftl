@@ -59,8 +59,9 @@
 		</div>
 	</div>
 	<script>
+
         $(function () {
-            $('#datagridExample').datagrid({
+           $('#datagridExample').datagrid({
                 dataSource: {
                     cols: [
                         {name: 'id', label: '文章id', width: 80, sort: false},
@@ -135,7 +136,6 @@
         });
 
         function deleteItems() {
-
             // 获取数据表格实例
             var myDataGrid = $('#datagridExample').data('zui.datagrid');
             var selectedItems = myDataGrid.getCheckItems();
@@ -152,6 +152,8 @@
                         type: 'DELETE',
                         success: function (result) {
                             //要重新刷新表格
+                            myDataGrid.dataSource.data=null;
+                            myDataGrid.render();
                             if (result.result === 'success') {
                                 new $.zui.Messager('删除成功！', {
                                     type: 'success', // 定义颜色主题，
