@@ -48,15 +48,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public DataGridBo<Article> pageQuery(Integer pageNumer, Integer pageSize, String search, String sortBy, String order) {
-		Pageable pageable = PageRequest.of(pageNumer - 1, pageSize);
-		Example<Article> example = null;
-		//是否搜索
-		if (StringUtils.isNotBlank(search)) {
-			Article queryParams = new Article();
-			queryParams.setTitle(search);
-			ExampleMatcher matching = ExampleMatcher.matching().withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains());
-			example = Example.of(queryParams, matching);
-		}
+
+		Pageable pageable = null;
 
 		//判断是否排序
 		Sort sort = null;
@@ -67,6 +60,21 @@ public class ArticleServiceImpl implements ArticleService {
 				sort = new Sort(Direction.DESC, sortBy);
 			}
 		}
+		if (sort == null) {
+			pageable = PageRequest.of(pageNumer - 1, pageSize);
+		} else {
+			pageable = PageRequest.of(pageNumer - 1, pageSize, sort);
+		}
+		//是否搜索
+		Example<Article> example = null;
+		if (StringUtils.isNotBlank(search)) {
+			Article queryParams = new Article();
+			queryParams.setTitle(search);
+			ExampleMatcher matching = ExampleMatcher.matching().withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains());
+			example = Example.of(queryParams, matching);
+		}
+
+
 		Page<Article> articles = null;
 		//判断是否需要模糊查询
 		if (example == null) {
