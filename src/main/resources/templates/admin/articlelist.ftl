@@ -135,16 +135,42 @@
         });
 
         function deleteItems() {
+
+            // 获取数据表格实例
             var myDataGrid = $('#datagridExample').data('zui.datagrid');
             var selectedItems = myDataGrid.getCheckItems();
             //判断是否选择，没有选择的话给出提示
-            if (selectedItems === '') {
+            if (selectedItems.length === 0) {
                 new $.zui.Messager('请先选择数据', {
                     icon: 'bell',// 定义消息图标
                     time: 1000
                 }).show();
+            } else {
+                selectedItems.forEach(function (value) {
+                    $.ajax({
+                        url: '/admin/article/write/deleteById/' + value.id,
+                        type: 'DELETE',
+                        success: function (result) {
+                            //要重新刷新表格
+                            if (result.result === 'success') {
+                                new $.zui.Messager('删除成功！', {
+                                    type: 'success', // 定义颜色主题，
+                                    time: 1000,
+                                    icon: 'ok'
+                                }).show();
+
+                            } else {
+                                //浮动消息通知
+                                new $.zui.Messager('删除失败！', {
+                                    icon: 'warning-sign', // 定义消息图标
+                                    time: 1000
+                                }).show();
+                            }
+                        }
+                    });
+
+                })
             }
-            console.log(selectedItems);
 
         }
 	</script>

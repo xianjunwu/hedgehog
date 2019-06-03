@@ -117,4 +117,9 @@ public class ArticleServiceImpl implements ArticleService {
 		articleNormalPageQueryBo.setPageSize(all.getSize());
 		return articleNormalPageQueryBo;
 	}
+
+	@Override
+	public void deleteById(Long id) {
+		articleDao.deleteById(id);
+	}
 }

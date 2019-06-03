@@ -34,4 +34,6 @@ public interface ArticleService {
 
 
     NormalPageQueryBo<Article> conditionPageQuery(String categoryName, Integer pageNumber, Integer pageSize);
+
+    void deleteById(Long id);
 }
