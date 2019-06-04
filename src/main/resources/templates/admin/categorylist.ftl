@@ -48,7 +48,9 @@
 												data-target="#myLgModal">新增分类
 										</button>
 										<button type="button" class="btn btn-warning" data-toggle="modal"
-												data-target="#myLgModal">编辑分类
+												data-target="#editModal" >编辑分类
+										</button>
+										<button type="button" class="btn btn-danger" onclick="deleteItems()">删除分类
 										</button>
 									</div>
 									<div class="modal fade" id="myLgModal">
@@ -86,7 +88,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="modal fade" id="myLgModal">
+									<div class="modal fade" id="editModal">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"
@@ -138,8 +140,8 @@
                     cols: [
                         {name: 'id', label: '分类id', width: 80, sort: false},
                         {name: 'categoryName', label: '分类名', width: 150, sort: false},
-                        {name: 'categoryDesc', label: '分类描述', width: 134},
-                        {name: 'path', label: '分类路径', width: 109}
+                        {name: 'categoryDesc', label: '分类描述', width: 134, sort: false},
+                        {name: 'path', label: '分类路径', width: 109, sort: false}
                     ],
                     remote: function (params) {
                         return {
@@ -180,16 +182,42 @@
         });
 
         function deleteItems() {
+            // 获取数据表格实例
             var myDataGrid = $('#datagridExample').data('zui.datagrid');
             var selectedItems = myDataGrid.getCheckItems();
             //判断是否选择，没有选择的话给出提示
-            if (selectedItems === '') {
+            if (selectedItems.length === 0) {
                 new $.zui.Messager('请先选择数据', {
                     icon: 'bell',// 定义消息图标
                     time: 1000
                 }).show();
+            } else {
+                selectedItems.forEach(function (value) {
+                    $.ajax({
+                        url: '/admin/category/deleteById/' + value.id,
+                        type: 'DELETE',
+                        success: function (result) {
+                            //要重新刷新表格
+                            reflashdatagrid();
+                            if (result.result === 'success') {
+                                new $.zui.Messager('删除成功！', {
+                                    type: 'success', // 定义颜色主题，
+                                    time: 1000,
+                                    icon: 'ok'
+                                }).show();
+
+                            } else {
+                                //浮动消息通知
+                                new $.zui.Messager('删除失败！', {
+                                    icon: 'warning-sign', // 定义消息图标
+                                    time: 1000
+                                }).show();
+                            }
+                        }
+                    });
+
+                })
             }
-            console.log(selectedItems);
 
         }
 
@@ -231,13 +259,22 @@
                                 time: 1000,
                                 icon: 'ok'
                             }).show();
+                            //刷新数据表格
+                            reflashdatagrid();
                         }
 
                     })
                 }
 
-			}
+            }
 
+        }
+
+        function reflashdatagrid() {
+            var myDataGrid = $('#datagridExample').data('zui.datagrid');
+            //要重新刷新表格
+            myDataGrid.dataSource.data = null;
+            myDataGrid.render();
         }
 
 

@@ -1,8 +1,12 @@
 package pro.dengyi.hedgehog.controller.admin;
 
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pro.dengyi.hedgehog.base.BaseResult;
+import pro.dengyi.hedgehog.model.dto.DataGridResult;
+import pro.dengyi.hedgehog.model.entity.Article;
+import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,31 +18,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pro.dengyi.hedgehog.base.BaseResult;
-import pro.dengyi.hedgehog.model.entity.Article;
-import pro.dengyi.hedgehog.model.entity.Category;
-import pro.dengyi.hedgehog.service.ArticleService;
-
 /**
- * 写文章controller
+ *文章controller
  *
  * @author 邓艺
  * @version v1.0
- * @date 2019-05-13 13:52
+ * @date 2019-06-04 20:57
  */
-@Slf4j
 @Controller
-@RequestMapping("/admin/article/write")
-public class ArticleWriteController {
-
+@RequestMapping("/admin/article")
+public class AdminArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	@GetMapping("/")
+	@GetMapping("/list")
+	public String list() {
+		//@PathVariable Integer pageNumber, @PathVariable Integer pageSize, Model model
+		return "admin/articlelist";
+	}
+	@GetMapping("/write")
 	public String write() {
 		return "admin/articlewrite";
 	}
 
+	@GetMapping("/pageQuery")
+	@ResponseBody
+	public DataGridResult<Article> pageQuery(Integer page, Integer recPerPage, String search, String sortBy, String order) {
+		DataGridBo<Article> dataGridBo = articleService.pageQuery(page, recPerPage, search, sortBy, order);
+		return new DataGridResult<>("success", "成功", dataGridBo.getData(), dataGridBo.getDataGridPager());
+	}
 	/**
 	 * 保存文章
 	 * <br/>

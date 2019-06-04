@@ -12,6 +12,7 @@ import pro.dengyi.hedgehog.api.UserControllerApi;
  */
 @RestController
 @RequestMapping("/user")
+@Deprecated
 public class UserController implements UserControllerApi {
 
 //    @Autowired

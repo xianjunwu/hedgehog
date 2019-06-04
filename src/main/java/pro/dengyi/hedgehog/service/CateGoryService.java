@@ -40,4 +40,5 @@ public interface CateGoryService {
 	 */
 	List<Category> findAllCategory();
 
+	void deleteById(Long id);
 }

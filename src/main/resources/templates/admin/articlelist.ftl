@@ -38,16 +38,19 @@
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div id="datagridExample" class="datagrid">
-								<div class="input-control search-box search-box-circle has-icon-left has-icon-right"
-									 id="searchboxExample2"
-									 style="margin-bottom: 10px; max-width: 300px">
-									<input id="inputSearchExample2" type="search" class="form-control search-input"
-										   placeholder="搜索">
-									<label for="inputSearchExample2" class="input-control-icon-left search-icon"><i
-												class="icon icon-search"></i></label>
-									<a href="#" class="input-control-icon-right search-clear-btn"><i
-												class="icon icon-remove"></i></a>
-									<button class="form-inline" onclick="deleteItems()">删除</button>
+								<div class="form-inline">
+									<div class="input-control search-box search-box-circle has-icon-left has-icon-right"
+										 id="searchboxExample2"
+										 style="margin-bottom: 10px; max-width: 300px">
+										<input id="inputSearchExample2" type="search" class="form-control search-input"
+											   placeholder="搜索">
+										<label for="inputSearchExample2" class="input-control-icon-left search-icon"><i
+													class="icon icon-search"></i></label>
+										<a href="#" class="input-control-icon-right search-clear-btn"><i
+													class="icon icon-remove"></i></a>
+											<button class="btn btn-danger" onclick="deleteItems()">删除</button>
+											<button class="btn btn-success" onclick="deleteItems()">编辑</button>
+									</div>
 								</div>
 								<div class="datagrid-container"></div>
 								<div class="pager"></div>
@@ -77,7 +80,7 @@
                     remote: function (params) {
                         return {
                             // 原创请求地址
-                            url: '/admin/article/list/pageQuery',
+                            url: '/admin/article/pageQuery',
                             // 请求类型
                             type: 'GET',
                             // 数据类型
@@ -125,9 +128,10 @@
                         }
                     },
                     C9: {
+                        html:true,
                         valueOperator: {
                             getter: function (dataValue, cell, dataGrid) {
-                                return dataValue ? '已发布' : '未发布';
+                                return dataValue ? '<span style="color: green">已发布</span>' : '<span style="color: red">未发布</span>';
                             }
                         }
                     }
@@ -148,7 +152,7 @@
             } else {
                 selectedItems.forEach(function (value) {
                     $.ajax({
-                        url: '/admin/article/write/deleteById/' + value.id,
+                        url: '/admin/article/deleteById/' + value.id,
                         type: 'DELETE',
                         success: function (result) {
                             //要重新刷新表格

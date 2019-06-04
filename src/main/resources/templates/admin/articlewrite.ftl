@@ -110,8 +110,9 @@
         });
 
         //在提交之前都去判断
-        function saveAsDraft() {
+        function saveAsDraft() { kindeditor.sync();
             var tileInput = $("#title");
+            console.log(tileInput.val());
             if (tileInput.val() === '') {
                 tileInput.parent().addClass('has-error');
                 new $.zui.Messager('请将文章填写完整', {
@@ -121,31 +122,39 @@
                 }).show();
             } else {
                 var trueTile = tileInput.val().trim();
-                $.post("/admin/article/write/saveOrUpdate",
-                    {
-                        id: $("#id").val(),
-                        title: trueTile,
-                        summary: $("#summary").val(),
-                        content: $("#content").val()
+                var parms={
+                    "id": $("#id").val(),
+                    "title": trueTile,
+                    "summary": $("#summary").val(),
+                    "content": $("#content").val(),
+                    "articleStatus": false,
+                    "allowComment":$("#allowComment").val(),
+                    "category":{
+                        "id":$("#category").val()
+                    }
 
-                    }, function (callback) {
-                        if (callback != null) {
-                            $("#id").val(callback.id);
-                            //浮动消息通知
-                            new $.zui.Messager('保存草稿成功！', {
-                                type: 'success', // 定义颜色主题，
-                                time: 1000,
-                                icon: 'ok'
-                            }).show();
-                        } else {
-                            //浮动消息通知
-                            new $.zui.Messager('保存草稿失败！', {
-                                icon: 'warning-sign', // 定义消息图标
-                                time: 1000
-                            }).show();
-                        }
+                };
+                $.ajaxSettings.contentType = "application/json;charset=UTF-8";
+                $.post("/admin/article/write/saveOrUpdate", JSON.stringify(parms), function (callback) {
+                    if (callback != null) {
+                        $("#id").val(callback.id);
+                        //浮动消息通知
+                        new $.zui.Messager('保存草稿成功！', {
+                            type: 'success', // 定义颜色主题，
+                            time: 1000,
+                            icon: 'ok'
+                        }).show();
+                        //跳转到文章列表
+                        window.location.href ='/admin/article/list/';
+                    } else {
+                        //浮动消息通知
+                        new $.zui.Messager('保存失败！', {
+                            icon: 'warning-sign', // 定义消息图标
+                            time: 1000
+                        }).show();
+                    }
 
-                    });
+                });
 
             }
         }
@@ -190,6 +199,8 @@
                                 time: 1000,
                                 icon: 'ok'
                             }).show();
+                            //跳转到文章列表
+                            window.location.href ='/admin/article/list/';
                         } else {
                             //浮动消息通知
                             new $.zui.Messager('保存失败！', {

@@ -26,7 +26,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequestMapping("/admin/system")
-public class SystemController {
+public class AdminSystemController {
     @Autowired
     private UserService userService;
 
@@ -46,7 +46,7 @@ public class SystemController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/admin/system/showLoginPage";
+        return "redirect:/admin/login";
     }
 
     /**
@@ -66,7 +66,7 @@ public class SystemController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/admin/index";
+        return "redirect:/admin/index";
     }
 
     /**

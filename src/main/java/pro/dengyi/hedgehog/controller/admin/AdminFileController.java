@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @RequestMapping("/admin/file")
-public class FileController {
+public class AdminFileController {
 
 	@RequestMapping("/uploadFile")
 	public BaseResult uploadFile(MultipartFile[] files) {

@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,7 +29,7 @@ import pro.dengyi.hedgehog.service.CateGoryService;
  */
 @Controller
 @RequestMapping("/admin/category")
-public class CategoryController {
+public class AdminCategoryController {
 	@Autowired
 	private CateGoryService cateGoryService;
 
@@ -66,5 +68,12 @@ public class CategoryController {
 	public ListResult<Category> findAllCategory() {
 		List<Category> list = cateGoryService.findAllCategory();
 		return new ListResult<>("success", "查询成功", list);
+	}
+
+	@DeleteMapping("/deleteById/{id}")
+	@ResponseBody
+	public BaseResult deleteById(@PathVariable Long id) {
+		cateGoryService.deleteById(id);
+		return new BaseResult();
 	}
 }

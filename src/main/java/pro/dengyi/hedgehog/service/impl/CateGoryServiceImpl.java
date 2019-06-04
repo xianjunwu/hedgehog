@@ -67,4 +67,9 @@ public class CateGoryServiceImpl implements CateGoryService {
 	public List<Category> findAllCategory() {
 		return categoryDao.findAll();
 	}
+
+	@Override
+	public void deleteById(Long id) {
+		categoryDao.deleteById(id);
+	}
 }
