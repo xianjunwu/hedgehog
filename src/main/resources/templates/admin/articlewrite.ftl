@@ -135,7 +135,7 @@
 
                 };
                 $.ajaxSettings.contentType = "application/json;charset=UTF-8";
-                $.post("/admin/article/write/saveOrUpdate", JSON.stringify(parms), function (callback) {
+                $.post("/admin/article/saveOrUpdate", JSON.stringify(parms), function (callback) {
                     if (callback != null) {
                         $("#id").val(callback.id);
                         //浮动消息通知
@@ -190,7 +190,7 @@
 
 				};
                 $.ajaxSettings.contentType = "application/json;charset=UTF-8";
-                $.post("/admin/article/write/saveOrUpdate", JSON.stringify(parms), function (callback) {
+                $.post("/admin/article/saveOrUpdate", JSON.stringify(parms), function (callback) {
                         if (callback != null) {
                             $("#id").val(callback.id);
                             //浮动消息通知
