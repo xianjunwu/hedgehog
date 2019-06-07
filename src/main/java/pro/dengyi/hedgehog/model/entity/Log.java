@@ -42,10 +42,4 @@ public class Log extends BaseEntity {
      */
     private String logIp;
 
-
-    public Log(String logTitle, String logContent, String logIp) {
-        this.logTitle = logTitle;
-        this.logContent = logContent;
-        this.logIp = logIp;
-    }
 }

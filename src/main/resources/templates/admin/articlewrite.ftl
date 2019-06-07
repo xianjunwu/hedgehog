@@ -40,7 +40,7 @@
 			<div class="content-body">
 				<div class="container-fluid">
 					<div class="row">
-						<form method="post" action="/admin/article/write/saveOrUpdate">
+						<form method="post" action="/admin/article/saveOrUpdate">
 							<input type="hidden" id="id" name="id">
 							<div class="col-md-12" style="margin-top: 20px">
 								<div class="input-control">
@@ -49,40 +49,39 @@
 								</div>
 							</div>
 							<div class="col-md-12" style="margin-top: 20px">
-								<textarea class="form-control" name="summary" id="summary" rows="3" placeholder="摘要"></textarea>
+								<textarea class="form-control" name="summary" id="summary" rows="3"
+										  placeholder="摘要"></textarea>
 							</div>
 							<div class="col-md-12" style="margin-top: 20px">
 								<textarea id="content" name="content" class="form-control kindeditor"
-										  style="height:550px;" placeholder="尽情创作"></textarea>
+										  style="height:550px;"></textarea>
 							</div>
-							<footer class="navbar-fixed-bottom">
-								<div class="col-md-12 ">
-									<div class="btn-group pull-right inline-block">
-										<button class="btn btn-block" type="button" onclick="saveAsDraft()">保存为草稿
-										</button>
-										<button class="btn btn-block btn-success" type="button"
-												onclick="saveAndPublish()">保存并发布
-										</button>
-									</div>
+							<div class="col-md-12 form-inline" style="margin-top: 20px">
+								<div class="form-group">
+									<label for="category">选择分类</label>
+									<select class="form-control" id="category">
+									</select>
 								</div>
-							</footer>
+								<div class="form-group">
+									<label for="category">是否允许评论</label>
+									<select class="form-control" id="allowComment">
+										<option value="true">允许</option>
+										<option value="false">不允许</option>
+									</select>
+								</div>
+							</div>
+							<div  class="col-md-12" style="margin-top: 20px">
+								<div class="col-md-6">
+									<button class="btn btn-block" type="button" onclick="saveAsDraft()">保存为草稿</button>
+								</div>
+								<div class="col-md-6">
+									<button class="btn btn-block btn-success" type="button" onclick="saveAndPublish()">
+										保存并发布
+									</button>
+								</div>
+							</div>
 
 						</form>
-					</div>
-				</div>
-				<#--选择文章分类-->
-				<div class="form-inline" style="margin-top: 20px">
-					<div class="form-group">
-						<label for="category">选择分类</label>
-						<select class="form-control" id="category">
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="category">是否允许评论</label>
-						<select class="form-control" id="allowComment">
-							<option value="true">允许</option>
-							<option value="false">不允许</option>
-						</select>
 					</div>
 				</div>
 			</div>
@@ -96,12 +95,12 @@
                 basePath: '/static/plugins/zui/lib/kindeditor/',
                 allowFileManager: true,
                 bodyClass: 'article-content'
-        });
+            });
             //查询所有的分类
             $.get("/admin/category/findAllCategory", function (data) {
                 if (data.result === 'success') {
-                    data.data.forEach(function (value,i) {
-                        $("#category").append("<option value='"+value.id+"'>"+value.categoryName+"</option>");
+                    data.data.forEach(function (value, i) {
+                        $("#category").append("<option value='" + value.id + "'>" + value.categoryName + "</option>");
                     });
                 } else {
                     console.log('分类加载失败');
@@ -110,7 +109,8 @@
         });
 
         //在提交之前都去判断
-        function saveAsDraft() { kindeditor.sync();
+        function saveAsDraft() {
+            kindeditor.sync();
             var tileInput = $("#title");
             console.log(tileInput.val());
             if (tileInput.val() === '') {
@@ -122,15 +122,15 @@
                 }).show();
             } else {
                 var trueTile = tileInput.val().trim();
-                var parms={
+                var parms = {
                     "id": $("#id").val(),
                     "title": trueTile,
                     "summary": $("#summary").val(),
                     "content": $("#content").val(),
                     "articleStatus": false,
-                    "allowComment":$("#allowComment").val(),
-                    "category":{
-                        "id":$("#category").val()
+                    "allowComment": $("#allowComment").val(),
+                    "category": {
+                        "id": $("#category").val()
                     }
 
                 };
@@ -145,7 +145,7 @@
                             icon: 'ok'
                         }).show();
                         //跳转到文章列表
-                        window.location.href ='/admin/article/list/';
+                        window.location.href = '/admin/article/list/';
                     } else {
                         //浮动消息通知
                         new $.zui.Messager('保存失败！', {
@@ -177,39 +177,39 @@
                 }).show();
             } else {
                 var trueTile = tileInput.val().trim();
-                var parms={
+                var parms = {
                     "id": $("#id").val(),
                     "title": trueTile,
                     "summary": $("#summary").val(),
                     "content": $("#content").val(),
                     "articleStatus": true,
-                    "allowComment":$("#allowComment").val(),
-					"category":{
-                        "id":$("#category").val()
-					}
+                    "allowComment": $("#allowComment").val(),
+                    "category": {
+                        "id": $("#category").val()
+                    }
 
-				};
+                };
                 $.ajaxSettings.contentType = "application/json;charset=UTF-8";
                 $.post("/admin/article/saveOrUpdate", JSON.stringify(parms), function (callback) {
-                        if (callback != null) {
-                            $("#id").val(callback.id);
-                            //浮动消息通知
-                            new $.zui.Messager('保存草稿成功！', {
-                                type: 'success', // 定义颜色主题，
-                                time: 1000,
-                                icon: 'ok'
-                            }).show();
-                            //跳转到文章列表
-                            window.location.href ='/admin/article/list/';
-                        } else {
-                            //浮动消息通知
-                            new $.zui.Messager('保存失败！', {
-                                icon: 'warning-sign', // 定义消息图标
-                                time: 1000
-                            }).show();
-                        }
+                    if (callback != null) {
+                        $("#id").val(callback.id);
+                        //浮动消息通知
+                        new $.zui.Messager('保存草稿成功！', {
+                            type: 'success', // 定义颜色主题，
+                            time: 1000,
+                            icon: 'ok'
+                        }).show();
+                        //跳转到文章列表
+                        window.location.href = '/admin/article/list/';
+                    } else {
+                        //浮动消息通知
+                        new $.zui.Messager('保存失败！', {
+                            icon: 'warning-sign', // 定义消息图标
+                            time: 1000
+                        }).show();
+                    }
 
-                    });
+                });
 
             }
         }

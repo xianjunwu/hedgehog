@@ -1,6 +1,8 @@
 package pro.dengyi.hedgehog.service.impl;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +44,17 @@ public class SiteInfoServiceImpl implements SiteInfoService {
 		List<SiteInfo> all = siteInfoDao.findAll();
 
 		return !CollectionUtils.isEmpty(all) ? all.get(0) : null;
+	}
+
+	@Override
+	public int findInstallDays() {
+		List<SiteInfo> all = siteInfoDao.findAll();
+		if (!CollectionUtils.isEmpty(all)) {
+			SiteInfo siteInfo = all.get(0);
+			LocalDateTime createTime = siteInfo.getCreateTime();
+			Period between = Period.between(createTime.toLocalDate(), LocalDate.now());
+			return between.getDays();
+		}
+		return 0;
 	}
 }

@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.solr.core.SolrTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +45,23 @@ public class ArticleServiceImpl implements ArticleService {
 		} else {
 			article.setUpdateTime(LocalDateTime.now());
 		}
+
+		Article articleSaved = articleDao.save(article);
+		//开启线程同步数据到搜索引擎,只有发布了的才同步
+		if (articleSaved.getArticleStatus()) {
+			addToSearchSystem(articleSaved);
+		}
+
 		return articleDao.save(article);
+	}
+
+	/**
+	 * 搜索引擎同步线程
+	 * @param article
+	 */
+	@Async
+	public void addToSearchSystem(Article article) {
+
 	}
 
 	@Override

@@ -1,12 +1,15 @@
 package pro.dengyi.hedgehog.model.entity;
 
 import lombok.Data;
+import org.apache.solr.client.solrj.beans.Field;
 import pro.dengyi.hedgehog.base.BaseEntity;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import org.springframework.data.solr.core.mapping.SolrDocument;
 
 /**
  * 文章实体类
@@ -17,9 +20,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "t_article")
-public class Article extends BaseEntity implements Serializable {
-
-	private static final long serialVersionUID = -6019684584665869629L;
+public class Article extends BaseEntity {
 
 	/**
 	 * 文章编号

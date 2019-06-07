@@ -19,7 +19,7 @@ public class SystemConfigController {
 
     @GetMapping("/")
     public String showPage() {
-        return "admin/config";
+        return "admin/systemconfig";
     }
 
 }

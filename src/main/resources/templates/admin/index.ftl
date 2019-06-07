@@ -95,7 +95,7 @@
 								</div>
 								<div class="info-box-content">
 									<span class="info-box-text">异常日志数</span>
-									<span class="info-box-number">88
+									<span class="info-box-number">${logNum}
                                         <small>条</small>
                                     </span>
 								</div>
@@ -108,7 +108,7 @@
 								</div>
 								<div class="info-box-content">
 									<span class="info-box-text">系统运行天数</span>
-									<span class="info-box-number">8
+									<span class="info-box-number">${days}
                                         <small>天</small>
                                     </span>
 								</div>

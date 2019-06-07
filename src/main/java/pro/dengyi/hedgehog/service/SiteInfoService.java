@@ -23,4 +23,6 @@ public interface SiteInfoService {
 
 	SiteInfo findSiteInfo();
 
+	int findInstallDays();
+
 }
