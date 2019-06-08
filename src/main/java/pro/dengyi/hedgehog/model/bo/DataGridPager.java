@@ -1,8 +1,6 @@
-package pro.dengyi.hedgehog.model.vo;
+package pro.dengyi.hedgehog.model.bo;
 
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * 数据表格pagger对象

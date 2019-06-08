@@ -17,7 +17,7 @@ import pro.dengyi.hedgehog.base.BaseResult;
 import pro.dengyi.hedgehog.model.dto.DataGridResult;
 import pro.dengyi.hedgehog.model.dto.ListResult;
 import pro.dengyi.hedgehog.model.entity.Category;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
 import pro.dengyi.hedgehog.service.CateGoryService;
 
 /**

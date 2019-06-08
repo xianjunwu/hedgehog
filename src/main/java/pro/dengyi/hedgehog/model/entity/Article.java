@@ -38,6 +38,7 @@ public class Article extends BaseEntity {
 	 * 文章摘要
 	 */
 	@Column(columnDefinition = "text")
+	@Field
 	private String summary;
 
 	/**

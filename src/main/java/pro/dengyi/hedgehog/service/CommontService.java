@@ -3,7 +3,7 @@ package pro.dengyi.hedgehog.service;
 import java.util.List;
 
 import pro.dengyi.hedgehog.model.entity.Commont;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
 
 /**
  *评论service接口

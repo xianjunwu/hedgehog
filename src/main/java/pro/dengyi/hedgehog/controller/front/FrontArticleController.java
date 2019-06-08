@@ -1,10 +1,8 @@
 package pro.dengyi.hedgehog.controller.front;
 
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
 import pro.dengyi.hedgehog.model.entity.Article;
-import pro.dengyi.hedgehog.model.vo.NormalPageQueryBo;
+import pro.dengyi.hedgehog.model.bo.NormalPageQueryBo;
 import pro.dengyi.hedgehog.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;

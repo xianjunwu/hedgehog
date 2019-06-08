@@ -3,7 +3,7 @@ package pro.dengyi.hedgehog.controller.admin;
 import pro.dengyi.hedgehog.base.BaseResult;
 import pro.dengyi.hedgehog.model.dto.DataGridResult;
 import pro.dengyi.hedgehog.model.entity.Notice;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
 import pro.dengyi.hedgehog.service.NoticeService;
 
 import org.springframework.beans.factory.annotation.Autowired;

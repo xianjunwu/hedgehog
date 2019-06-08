@@ -1,8 +1,8 @@
 package pro.dengyi.hedgehog.service;
 
 import pro.dengyi.hedgehog.model.entity.Article;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
-import pro.dengyi.hedgehog.model.vo.NormalPageQueryBo;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.NormalPageQueryBo;
 
 public interface ArticleService {
 

@@ -3,7 +3,7 @@ package pro.dengyi.hedgehog.service;
 import java.util.List;
 
 import pro.dengyi.hedgehog.model.entity.Category;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
 
 /**
  * 类别service接口

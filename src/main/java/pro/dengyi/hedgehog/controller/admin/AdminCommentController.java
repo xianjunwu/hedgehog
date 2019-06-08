@@ -1,12 +1,9 @@
 package pro.dengyi.hedgehog.controller.admin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pro.dengyi.hedgehog.base.BaseResult;
 import pro.dengyi.hedgehog.model.dto.DataGridResult;
 import pro.dengyi.hedgehog.model.entity.Commont;
-import pro.dengyi.hedgehog.model.entity.Notice;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
 import pro.dengyi.hedgehog.service.CommontService;
 
 import org.springframework.beans.factory.annotation.Autowired;

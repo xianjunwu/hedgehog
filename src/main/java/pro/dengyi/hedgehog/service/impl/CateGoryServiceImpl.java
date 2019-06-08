@@ -10,8 +10,8 @@ import org.springframework.util.CollectionUtils;
 
 import pro.dengyi.hedgehog.dao.CategoryDao;
 import pro.dengyi.hedgehog.model.entity.Category;
-import pro.dengyi.hedgehog.model.vo.DataGridBo;
-import pro.dengyi.hedgehog.model.vo.DataGridPager;
+import pro.dengyi.hedgehog.model.bo.DataGridBo;
+import pro.dengyi.hedgehog.model.bo.DataGridPager;
 import pro.dengyi.hedgehog.service.CateGoryService;
 import pro.dengyi.hedgehog.utils.PinYinUtil;
 

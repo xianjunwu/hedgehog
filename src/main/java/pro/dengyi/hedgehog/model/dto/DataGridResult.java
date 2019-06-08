@@ -2,7 +2,7 @@ package pro.dengyi.hedgehog.model.dto;
 
 import lombok.Data;
 import pro.dengyi.hedgehog.base.BaseResult;
-import pro.dengyi.hedgehog.model.vo.DataGridPager;
+import pro.dengyi.hedgehog.model.bo.DataGridPager;
 
 import java.util.List;
 

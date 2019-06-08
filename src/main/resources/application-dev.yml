@@ -14,3 +14,7 @@ spring:
       ddl-auto: update
   freemarker:
     cache: false
+  data:
+    solr:
+      host: http://localhost:8983/solr
+
