@@ -12,6 +12,7 @@ import pro.dengyi.hedgehog.model.dto.ArticleSearchDto;
 import pro.dengyi.hedgehog.model.entity.Article;
 import pro.dengyi.hedgehog.service.ArticleSearchService;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.solr.core.SolrTemplate;
@@ -86,7 +87,19 @@ public class HedgehogApplicationTests {
 		 for (ArticleSearchDto articleSearchDto : all) {
 			 System.err.println(articleSearchDto);
 		 }
+
 	 }
+
+	  @Test
+	  public void demo5(){
+		  Article article = new Article();
+		  article.setId(33L);
+		  article.setTitle("测试的文章");
+		  article.setSummary("测试文章的摘要");
+		  ArticleSearchDto articleSearchDto = new ArticleSearchDto();
+		  BeanUtils.copyProperties(article,articleSearchDto);
+		  System.out.println(articleSearchDto);
+	  }
 
 }
 

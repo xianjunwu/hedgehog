@@ -1,5 +1,6 @@
 package pro.dengyi.hedgehog.service.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import pro.dengyi.hedgehog.dao.ArticleDao;
+import pro.dengyi.hedgehog.dao.ArticleSearchDao;
+import pro.dengyi.hedgehog.model.dto.ArticleSearchDto;
 import pro.dengyi.hedgehog.model.entity.Article;
 import pro.dengyi.hedgehog.model.entity.Category;
 import pro.dengyi.hedgehog.model.bo.DataGridBo;
@@ -29,6 +32,9 @@ import java.util.Optional;
 public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
+
+	@Autowired
+	private ArticleSearchDao articleSearchDao;
 
 	@Override
 	public Integer findTheNumberOfArticle() {
@@ -60,6 +66,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Async
 	public void addToSearchSystem(Article article) {
+		ArticleSearchDto articleSearchDto = new ArticleSearchDto();
+		BeanUtils.copyProperties(article, articleSearchDto);
+		articleSearchDao.save(articleSearchDto);
 
 	}
 
@@ -138,5 +147,11 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public void deleteById(Long id) {
 		articleDao.deleteById(id);
+		deleteFromSearchSystem(id);
+	}
+
+	@Async
+	public void deleteFromSearchSystem(Long id) {
+		articleSearchDao.deleteById(id);
 	}
 }

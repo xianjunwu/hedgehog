@@ -3,9 +3,11 @@ package pro.dengyi.hedgehog.model.dto;
 import java.time.LocalDateTime;
 
 import lombok.Data;
+import lombok.ToString;
 import org.apache.solr.client.solrj.beans.Field;
 
 import org.springframework.data.solr.core.mapping.SolrDocument;
+import org.springframework.data.solr.repository.Highlight;
 
 /**
  *文章搜索dto数据传输实体
@@ -15,6 +17,7 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
  * @date 2019-06-08 21:57
  */
 @Data
+@ToString
 @SolrDocument(collection = "hedgehog")
 public class ArticleSearchDto {
 	@Field
@@ -24,6 +27,7 @@ public class ArticleSearchDto {
 	 * 文章标题
 	 */
 	@Field("text_ik")
+
 	private String title;
 
 	/**
