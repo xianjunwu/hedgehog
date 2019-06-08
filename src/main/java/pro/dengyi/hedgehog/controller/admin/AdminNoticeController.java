@@ -27,7 +27,7 @@ public class AdminNoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	@GetMapping("/noticeList")
+	@GetMapping("/list")
 	public String noticeList() {
 		return "admin/noticelist";
 	}

@@ -50,7 +50,7 @@
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<div class="info-box bg-primary" onclick="location.href='/admin/article/list/' ">
+							<div class="info-box bg-primary" onclick="location.href='/admin/comment/list/' ">
 								<div class="info-box-icon">
 									<i class="icon icon-user"></i>
 								</div>

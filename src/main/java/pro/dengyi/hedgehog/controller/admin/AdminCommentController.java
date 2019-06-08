@@ -30,7 +30,7 @@ public class AdminCommentController {
 	@Autowired
 	private CommontService commontService;
 
-	@GetMapping("/commentList")
+	@GetMapping("/list")
 	public String commentList() {
 		return "admin/commentlist";
 	}

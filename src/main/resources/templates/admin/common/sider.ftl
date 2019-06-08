@@ -34,8 +34,8 @@
                             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/admin/comment/commentList"><i class="icon icon-circle-blank"></i>评论列表</a></li>
-                        <li><a href="/admin/notice/noticeList"><i class="icon icon-circle-blank"></i>通知列表</a></li>
+                        <li><a href="/admin/comment/list"><i class="icon icon-circle-blank"></i>评论列表</a></li>
+                        <li><a href="/admin/notice/list"><i class="icon icon-circle-blank"></i>通知列表</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
