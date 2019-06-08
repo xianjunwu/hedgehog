@@ -35,9 +35,19 @@ public class Commont extends BaseEntity {
 	private String userName;
 
 	/**
+	 * 评论用户email
+	 */
+	private String userEmail;
+
+	/**
 	 * 评论内容
 	 */
 	private String content;
+
+	/**
+	 * 是否允许显示，用户提交以后，默认不允许显示，需管理员同意以后才能显示
+	 */
+	private Boolean allowDisplay = false;
 
 
 	@ManyToOne

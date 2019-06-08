@@ -27,6 +27,19 @@
                 </li>
                 <li class="treeview">
                     <a href="javascript:;">
+                        <i class="icon icon-th-list"></i>
+                        <span>评论/通知管理</span>
+                        <span class="pull-right-container">
+                                <i class="icon icon-angle-left"></i>
+                            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/comment/commentList"><i class="icon icon-circle-blank"></i>评论列表</a></li>
+                        <li><a href="/admin/notice/noticeList"><i class="icon icon-circle-blank"></i>通知列表</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="javascript:;">
                         <i class="icon icon-edit"></i>
                         <span>创作</span>
                         <span class="pull-right-container">

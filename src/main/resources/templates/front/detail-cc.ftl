@@ -14,7 +14,7 @@
 	<title>dengyi.pro</title>
 	<!-- jquery js -->
 	<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
-	<script src="/static/plugins/zui/js/zui.min.js"></script>
+	<script src="/static/plugins/zui/js/zui.js"></script>
 	<!-- zui css -->
 	<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
 	<link rel="stylesheet" href="/static/theme/blue.css">
@@ -32,13 +32,10 @@
 			${article.title}
 		</h1>
 		<dl class="dl-inline">
-			<div class="hidden-sm hidden-xs">
-				<dt>来源：</dt>
-				<dd>dengyi.pro</dd>
-				<dt>最后修订：</dt>
-				<dd>2016年8月12日 (星期五) 12:53</dd>
-			</div>
-
+			<dt>来源：</dt>
+			<dd>dengyi.pro</dd>
+			<dt>最后修订：</dt>
+			<dd>2016年8月12日 (星期五) 12:53</dd>
 			<dt></dt>
 			<dd class="pull-right">
 				<a class="label label-danger" onclick="ilike()"><i class="icon-heart"></i>11</a>
@@ -48,12 +45,22 @@
 		<section class="abstract">
 			<p><strong>摘要：</strong>${article.summary}</p>
 		</section>
-		<input type="hidden" id="articleId" value="${article.id}">
 	</header>
 	<#--文章内容-->
+	<#--	<div class="container-fluid">-->
+	<#--		<div class="row">-->
+	<#--附加导航存在问题-->
+	<#--			<div class="col-md-2  visible-lg visible-md" data-spy="affix">-->
+	<#--				<ul class="nav nav-tabs nav-stacked menu" id="myScrollspy"></ul>-->
+	<#--			</div>-->
+	<#--			<div class="col-md-10 col-xs-12 col-sm-12">-->
 	<section class="content">
 		${article.content}
 	</section>
+	<#--			</div>-->
+	<#--		</div>-->
+	<#--	</div>-->
+
 
 	<#--评论-->
 	<#if article.allowComment ! false>
@@ -144,21 +151,31 @@
 				<div class="reply-form" id="commentReplyForm2">
 					<a href="###" class="avatar"><i class="icon-user icon-2x"></i></a>
 					<form class="form">
-						<div class="form-group comment-user">
-
-							<div class="input-group">
-								<span class="input-group-addon"><i class="icon-user"></i></span>
-								<input type="text" id="userName" class="form-control" placeholder="评论用户名">
-								<span class="input-group-addon fix-border"><i class="icon-envelope"></i></span>
-								<input type="text" id="userEmail" class="form-control" placeholder="邮箱(做通知用，不会在评论中显示)">
-							</div>
-
-						</div>
 						<div class="form-group">
-							<textarea class="form-control new-comment-text" rows="2" id="content"
-									  placeholder="撰写评论..."></textarea>
+							<textarea class="form-control new-comment-text" rows="2" placeholder="撰写评论..."></textarea>
 						</div>
-						<button type="button" class="btn btn-block btn-primary" onclick="submitComment()">提交评论</button>
+						<div class="form-group comment-user">
+							<div class="row">
+								<div class="col-md-3">
+									<span class="pull-right">或者</span>
+									<a href="#">登录</a> &nbsp;<a href="##">注册</a>
+								</div>
+								<div class="col-md-7">
+									<div class="form-group">
+										<input type="text" class="form-control" id="nameInputEmail1"
+											   placeholder="输入评论显示名称">
+									</div>
+									<div class="form-group">
+										<input type="email" class="form-control" id="exampleInputEmail1"
+											   placeholder="输入电子邮件（不会在评论显示）">
+									</div>
+								</div>
+								<div class="col-md-2">
+									<button type="submit" class="btn btn-block btn-primary"><i class="icon-ok"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</form>
 				</div>
 			</footer>
@@ -201,34 +218,6 @@
 
     function ilike() {
         alert('我喜欢')
-    }
-
-    function submitComment() {
-        var param = {
-            userName: $("#userName").val().trim(),
-            userEmail: $("#userEmail").val().trim(),
-            content: $("#content").val().trim(),
-            article: {
-                id: $("#articleId").val()
-            }
-        };
-        $.ajaxSettings.contentType = "application/json;charset=UTF-8";
-        $.post("/commont/save", JSON.stringify(param), function (data) {
-            if (data.result === 'success') {
-                new $.zui.Messager('发布评论成功，等待同意后即可显示！', {
-                    type: 'success', // 定义颜色主题，
-                    time: 2000,
-                    icon: 'ok'
-                }).show();
-            } else {
-                //浮动消息通知
-                new $.zui.Messager('发表评论失败！', {
-                    icon: 'warning-sign', // 定义消息图标
-                    time: 1000
-                }).show();
-            }
-
-        });
     }
 </script>
 </body>

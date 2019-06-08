@@ -4,9 +4,14 @@ import java.util.List;
 
 import pro.dengyi.hedgehog.dao.NoticeDao;
 import pro.dengyi.hedgehog.model.entity.Notice;
+import pro.dengyi.hedgehog.model.vo.DataGridBo;
+import pro.dengyi.hedgehog.model.vo.DataGridPager;
 import pro.dengyi.hedgehog.service.NoticeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,5 +30,20 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<Notice> findAllNoticeNeedToDo() {
 		List<Notice> all = noticeDao.findAll();
 		return all;
+	}
+
+	@Override
+	public DataGridBo<Notice> pageQuery(Integer pageNumber, Integer pageSize, String search, String sortBy, String order) {
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+		Page<Notice> all = noticeDao.findAll(pageable);
+		List<Notice> content = all.getContent();
+		long totalElements = all.getTotalElements();
+		int number = all.getNumber();
+		return new DataGridBo<>(content, new DataGridPager(number + 1, totalElements, pageSize));
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		noticeDao.deleteById(id);
 	}
 }

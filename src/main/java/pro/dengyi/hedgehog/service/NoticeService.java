@@ -3,6 +3,7 @@ package pro.dengyi.hedgehog.service;
 import java.util.List;
 
 import pro.dengyi.hedgehog.model.entity.Notice;
+import pro.dengyi.hedgehog.model.vo.DataGridBo;
 
 /**
  *通知service接口
@@ -22,4 +23,7 @@ public interface NoticeService {
 	 */
 	List<Notice> findAllNoticeNeedToDo();
 
+	DataGridBo<Notice> pageQuery(Integer pageNumber, Integer pageSize, String search, String sortBy, String order);
+
+	void deleteById(Long id);
 }
