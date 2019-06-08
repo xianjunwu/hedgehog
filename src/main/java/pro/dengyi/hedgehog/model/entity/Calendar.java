@@ -1,7 +1,7 @@
 package pro.dengyi.hedgehog.model.entity;
 
 /**
- *日历实体类
+ * 日历实体类
  *
  * @author 邓艺
  * @version v1.0

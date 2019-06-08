@@ -11,10 +11,11 @@ import org.slf4j.LoggerFactory;
  * @date 2019-05-19 16:15
  */
 public class VerificationCodeUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(VerificationCodeUtil.class);
 
-    public static String getVerificationCode() {
-        return "123456";
-    }
+  private static final Logger LOGGER = LoggerFactory.getLogger(VerificationCodeUtil.class);
+
+  public static String getVerificationCode() {
+    return "123456";
+  }
 
 }

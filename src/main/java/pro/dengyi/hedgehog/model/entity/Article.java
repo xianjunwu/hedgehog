@@ -1,15 +1,14 @@
 package pro.dengyi.hedgehog.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.Data;
 import org.apache.solr.client.solrj.beans.Field;
 import pro.dengyi.hedgehog.base.BaseEntity;
-
-import javax.persistence.*;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-import org.springframework.data.solr.core.mapping.SolrDocument;
 
 /**
  * 文章实体类
@@ -22,56 +21,56 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 @Table(name = "t_article")
 public class Article extends BaseEntity {
 
-	/**
-	 * 文章编号
-	 */
-	@Id
-	@GeneratedValue
-	private Long id;
+  /**
+   * 文章编号
+   */
+  @Id
+  @GeneratedValue
+  private Long id;
 
-	/**
-	 * 文章标题
-	 */
-	private String title;
+  /**
+   * 文章标题
+   */
+  private String title;
 
-	/**
-	 * 文章摘要
-	 */
-	@Column(columnDefinition = "text")
-	@Field
-	private String summary;
+  /**
+   * 文章摘要
+   */
+  @Column(columnDefinition = "text")
+  @Field
+  private String summary;
 
-	/**
-	 * 文章内容
-	 */
-	@Column(columnDefinition = "text")
-	private String content;
+  /**
+   * 文章内容
+   */
+  @Column(columnDefinition = "text")
+  private String content;
 
-	/**
-	 * true 发布 false 不发布
-	 */
-	private Boolean articleStatus;
+  /**
+   * true 发布 false 不发布
+   */
+  private Boolean articleStatus;
 
-	/**
-	 * 文章访问量
-	 */
-	private Long views;
+  /**
+   * 文章访问量
+   */
+  private Long views;
 
-	/**
-	 * 喜欢数
-	 */
-	private Long hearts;
+  /**
+   * 喜欢数
+   */
+  private Long hearts;
 
-	/**
-	 * 是否允许评论
-	 */
-	private Boolean allowComment;
+  /**
+   * 是否允许评论
+   */
+  private Boolean allowComment;
 
-	/**
-	 * 关系配置
-	 */
+  /**
+   * 关系配置
+   */
 
-	@ManyToOne
-	private Category category;
+  @ManyToOne
+  private Category category;
 
 }

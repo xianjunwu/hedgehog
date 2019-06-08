@@ -1,7 +1,7 @@
 package pro.dengyi.hedgehog.service;
 
 /**
- *网站日志service接口
+ * 网站日志service接口
  *
  * @author 邓艺
  * @version v1.0
@@ -9,14 +9,13 @@ package pro.dengyi.hedgehog.service;
  */
 public interface LogService {
 
-	/**
-	 * 查询日志的总数量
-	 *
-	 * @param
-	 * @return int
-	 * @author 邓艺
-	 * @date 2019/6/7 21:12
-	 */
-	int findLogNumber();
+  /**
+   * 查询日志的总数量
+   *
+   * @return int
+   * @author 邓艺
+   * @date 2019/6/7 21:12
+   */
+  int findLogNumber();
 
 }

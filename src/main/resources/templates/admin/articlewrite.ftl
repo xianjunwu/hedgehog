@@ -70,7 +70,7 @@
 									</select>
 								</div>
 							</div>
-							<div  class="col-md-12" style="margin-top: 20px">
+							<div class="col-md-12" style="margin-top: 20px">
 								<div class="col-md-6">
 									<button class="btn btn-block" type="button" onclick="saveAsDraft()">保存为草稿</button>
 								</div>

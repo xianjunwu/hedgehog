@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/login")
 public class LoginController {
-    @GetMapping
-    public String showLoginPage() {
-        return "admin/login";
-    }
+
+  @GetMapping
+  public String showLoginPage() {
+    return "admin/login";
+  }
 
 //    @PostMapping(value = "/doLogin")
 //    @ResponseBody

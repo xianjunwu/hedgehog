@@ -1,7 +1,5 @@
 package pro.dengyi.hedgehog.controller.admin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/sys")
 public class SystemConfigController {
 
-    @GetMapping("/")
-    public String showPage() {
-        return "admin/systemconfig";
-    }
+  @GetMapping("/")
+  public String showPage() {
+    return "admin/systemconfig";
+  }
 
 }

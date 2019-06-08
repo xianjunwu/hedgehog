@@ -1,10 +1,7 @@
 package pro.dengyi.hedgehog.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- *业务异常
+ * 业务异常
  *
  * @author 邓艺
  * @version v1.0
@@ -12,7 +9,7 @@ import org.slf4j.LoggerFactory;
  */
 public class BusinessException extends RuntimeException {
 
-	public BusinessException(String message) {
-		super(message);
-	}
+  public BusinessException(String message) {
+    super(message);
+  }
 }

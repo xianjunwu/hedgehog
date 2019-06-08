@@ -29,7 +29,7 @@
 				<#if (articles.data?size>0)>
 					<div class="items items-hover">
 						<#list  articles.data as article>
-							<div class="item" >
+							<div class="item">
 								<div class="item-heading">
 									<h4>
 										<span class="label label-success">维基</span>

@@ -11,4 +11,5 @@ import pro.dengyi.hedgehog.model.entity.User;
  * @date 2019-05-04 21:49
  */
 public interface UserDao extends JpaRepository<User, Long> {
+
 }

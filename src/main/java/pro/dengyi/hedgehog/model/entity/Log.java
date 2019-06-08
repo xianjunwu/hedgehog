@@ -1,13 +1,11 @@
 package pro.dengyi.hedgehog.model.entity;
 
-import lombok.Data;
-import pro.dengyi.hedgehog.base.BaseEntity;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
+import lombok.Data;
+import pro.dengyi.hedgehog.base.BaseEntity;
 
 /**
  * 操作日志实体类
@@ -20,26 +18,26 @@ import java.time.LocalDateTime;
 @Table(name = "t_log")
 public class Log extends BaseEntity {
 
-    /**
-     * id
-     */
-    @Id
-    @GeneratedValue
-    private Long id;
+  /**
+   * id
+   */
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    /**
-     * 标题
-     */
-    private String logTitle;
+  /**
+   * 标题
+   */
+  private String logTitle;
 
-    /**
-     * 内容
-     */
-    private String logContent;
+  /**
+   * 内容
+   */
+  private String logContent;
 
-    /**
-     * 产生日志的ip
-     */
-    private String logIp;
+  /**
+   * 产生日志的ip
+   */
+  private String logIp;
 
 }

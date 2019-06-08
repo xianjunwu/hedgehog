@@ -1,8 +1,7 @@
 package pro.dengyi.hedgehog.model.bo;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 /**
  * datagrid数据业务数据传输实体
@@ -14,17 +13,18 @@ import java.util.List;
 @Data
 public class DataGridBo<T> {
 
-    /**
-     * 数据内容
-     */
-    private List<T> data;
-    /**
-     * datagrid的pager内容封装对象
-     */
-    private DataGridPager dataGridPager;
+  /**
+   * 数据内容
+   */
+  private List<T> data;
 
-    public DataGridBo(List<T> data, DataGridPager dataGridPager) {
-        this.data = data;
-        this.dataGridPager = dataGridPager;
-    }
+  /**
+   * datagrid的pager内容封装对象
+   */
+  private DataGridPager dataGridPager;
+
+  public DataGridBo(List<T> data, DataGridPager dataGridPager) {
+    this.data = data;
+    this.dataGridPager = dataGridPager;
+  }
 }

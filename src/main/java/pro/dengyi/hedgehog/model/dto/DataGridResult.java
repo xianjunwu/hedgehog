@@ -1,10 +1,9 @@
 package pro.dengyi.hedgehog.model.dto;
 
+import java.util.List;
 import lombok.Data;
 import pro.dengyi.hedgehog.base.BaseResult;
 import pro.dengyi.hedgehog.model.bo.DataGridPager;
-
-import java.util.List;
 
 /**
  * 数据表格返回实体
@@ -15,17 +14,18 @@ import java.util.List;
  */
 @Data
 public class DataGridResult<T> extends BaseResult {
-    /**
-     * 数据集合
-     */
-    private List<T> data;
 
-    private DataGridPager pager;
+  /**
+   * 数据集合
+   */
+  private List<T> data;
 
-    public DataGridResult(String result, String message, List<T> data, DataGridPager dataGridPager) {
-        super.result = result;
-        super.message = message;
-        this.data = data;
-        this.pager = dataGridPager;
-    }
+  private DataGridPager pager;
+
+  public DataGridResult(String result, String message, List<T> data, DataGridPager dataGridPager) {
+    super.result = result;
+    super.message = message;
+    this.data = data;
+    this.pager = dataGridPager;
+  }
 }

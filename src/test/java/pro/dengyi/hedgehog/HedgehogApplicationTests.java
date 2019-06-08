@@ -1,7 +1,6 @@
 package pro.dengyi.hedgehog;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 
 import org.apache.solr.client.solrj.response.UpdateResponse;
@@ -81,25 +80,25 @@ public class HedgehogApplicationTests {
 		System.out.println(aBoolean);
 	}
 
-	 @Test
-	 public void demo4(){
-		 Iterable<ArticleSearchDto> all = articleSearchDao.findAll();
-		 for (ArticleSearchDto articleSearchDto : all) {
-			 System.err.println(articleSearchDto);
-		 }
+	@Test
+	public void demo4() {
+		Iterable<ArticleSearchDto> all = articleSearchDao.findAll();
+		for (ArticleSearchDto articleSearchDto : all) {
+			System.err.println(articleSearchDto);
+		}
 
-	 }
+	}
 
-	  @Test
-	  public void demo5(){
-		  Article article = new Article();
-		  article.setId(33L);
-		  article.setTitle("测试的文章");
-		  article.setSummary("测试文章的摘要");
-		  ArticleSearchDto articleSearchDto = new ArticleSearchDto();
-		  BeanUtils.copyProperties(article,articleSearchDto);
-		  System.out.println(articleSearchDto);
-	  }
+	@Test
+	public void demo5() {
+		Article article = new Article();
+		article.setId(33L);
+		article.setTitle("测试的文章");
+		article.setSummary("测试文章的摘要");
+		ArticleSearchDto articleSearchDto = new ArticleSearchDto();
+		BeanUtils.copyProperties(article, articleSearchDto);
+		System.out.println(articleSearchDto);
+	}
 
 }
 

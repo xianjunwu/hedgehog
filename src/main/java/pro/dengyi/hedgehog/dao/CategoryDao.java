@@ -9,4 +9,5 @@ import pro.dengyi.hedgehog.model.entity.Category;
  * @date 2019-05-20 13:58
  */
 public interface CategoryDao extends JpaRepository<Category, Long> {
+
 }

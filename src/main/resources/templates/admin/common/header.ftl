@@ -25,14 +25,14 @@
 													11
 												</span>
 <#--											<#if noticeList??>-->
-<#--												<span class="label label-danger label-pill up">-->
-<#--													11-->
-<#--												</span>-->
-<#--											<#else>-->
-<#--												<span class="label label-danger label-pill up">-->
-<#--													${noticeList?size}-->
-<#--												</span>-->
-<#--											</#if>-->
+										<#--												<span class="label label-danger label-pill up">-->
+										<#--													11-->
+										<#--												</span>-->
+										<#--											<#else>-->
+										<#--												<span class="label label-danger label-pill up">-->
+										<#--													${noticeList?size}-->
+										<#--												</span>-->
+										<#--											</#if>-->
                                     </span>
 							</a>
 						</li>

@@ -10,24 +10,27 @@ import lombok.Data;
  * @date 2019-05-25 15:00
  */
 @Data
-public class DataGridPager{
-    /**
-     * 当前数据对应的页码
-     */
-    private Integer page;
-    /**
-     * 总的数据数目
-     */
-    private Long recTotal;
-    /**
-     * 每页数据数目
-     */
-    private Integer recPerPage;
+public class DataGridPager {
+
+  /**
+   * 当前数据对应的页码
+   */
+  private Integer page;
+
+  /**
+   * 总的数据数目
+   */
+  private Long recTotal;
+
+  /**
+   * 每页数据数目
+   */
+  private Integer recPerPage;
 
 
-    public DataGridPager(Integer page, Long recTotal, Integer recPerPage) {
-        this.page = page;
-        this.recTotal = recTotal;
-        this.recPerPage = recPerPage;
-    }
+  public DataGridPager(Integer page, Long recTotal, Integer recPerPage) {
+    this.page = page;
+    this.recTotal = recTotal;
+    this.recPerPage = recPerPage;
+  }
 }

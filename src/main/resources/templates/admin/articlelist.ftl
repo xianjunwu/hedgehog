@@ -48,8 +48,8 @@
 													class="icon icon-search"></i></label>
 										<a href="#" class="input-control-icon-right search-clear-btn"><i
 													class="icon icon-remove"></i></a>
-											<button class="btn btn-danger" onclick="deleteItems()">删除</button>
-											<button class="btn btn-success" onclick="deleteItems()">编辑</button>
+										<button class="btn btn-danger" onclick="deleteItems()">删除</button>
+										<button class="btn btn-success" onclick="deleteItems()">编辑</button>
 									</div>
 								</div>
 								<div class="datagrid-container"></div>
@@ -64,7 +64,7 @@
 	<script>
 
         $(function () {
-           $('#datagridExample').datagrid({
+            $('#datagridExample').datagrid({
                 dataSource: {
                     cols: [
                         {name: 'id', label: '文章id', width: 80, sort: false},
@@ -128,7 +128,7 @@
                         }
                     },
                     C9: {
-                        html:true,
+                        html: true,
                         valueOperator: {
                             getter: function (dataValue, cell, dataGrid) {
                                 return dataValue ? '<span style="color: green">已发布</span>' : '<span style="color: red">未发布</span>';
@@ -156,7 +156,7 @@
                         type: 'DELETE',
                         success: function (result) {
                             //要重新刷新表格
-                            myDataGrid.dataSource.data=null;
+                            myDataGrid.dataSource.data = null;
                             myDataGrid.render();
                             if (result.result === 'success') {
                                 new $.zui.Messager('删除成功！', {

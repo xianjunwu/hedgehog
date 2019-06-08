@@ -48,7 +48,7 @@
 												data-target="#myLgModal">新增分类
 										</button>
 										<button type="button" class="btn btn-warning" data-toggle="modal"
-												data-target="#editModal" >编辑分类
+												data-target="#editModal">编辑分类
 										</button>
 										<button type="button" class="btn btn-danger" onclick="deleteItems()">删除分类
 										</button>

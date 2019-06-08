@@ -91,14 +91,14 @@
                 },
                 configs: {
                     C3: {
-                        html:true,
+                        html: true,
                         valueOperator: {
                             getter: function (dataValue, cell, dataGrid) {
                                 return dataValue ? '<span style="color: green">已浏览</span>' : '<span style="color: red">未浏览</span>';
                             }
                         }
                     }, C4: {
-                        html:true,
+                        html: true,
                         valueOperator: {
                             getter: function (dataValue, cell, dataGrid) {
                                 return dataValue ? '<span style="color: green">已解决</span>' : '<span style="color: red">未解决</span>';
