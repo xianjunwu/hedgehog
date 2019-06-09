@@ -1,7 +1,13 @@
 package pro.dengyi.hedgehog.controller.admin;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -85,13 +91,14 @@ public class AdminSystemController {
    * @date 2019/5/19 13:44
    */
   @GetMapping("/getVerificationCode")
-  @ResponseBody
-  public Map<String, String> getVerificationCode(HttpSession session) {
-    Map<String, String> map = new HashMap<>(1);
-    String verificationCode = VerificationCodeUtil.getVerificationCode();
-    map.put("verificationCode", verificationCode);
-    session.setAttribute("verificationCode", verificationCode);
-    return map;
+  public void getVerificationCode(HttpSession session, HttpServletResponse response)
+      throws IOException {
+    Map<String, Object> stringObjectMap = VerificationCodeUtil.generateCodeAndPic();
+    session.setAttribute("verificationCode", stringObjectMap.get("codeNumber"));
+    BufferedImage bufferedImage = (BufferedImage) stringObjectMap.get("codePic");
+    response.setContentType("image/png");
+    OutputStream os = response.getOutputStream();
+    ImageIO.write(bufferedImage, "png", os);
   }
 
   /**
@@ -106,7 +113,6 @@ public class AdminSystemController {
   @ResponseBody
   public Map<String, Boolean> checkVerificationCode(String code, HttpSession session) {
     String verificationCode = (String) session.getAttribute("verificationCode");
-    verificationCode = "123456";
     boolean status = false;
     Map<String, Boolean> map = new HashMap<>(1);
     if (StringUtils.isNotBlank(verificationCode)) {

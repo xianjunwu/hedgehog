@@ -1,8 +1,15 @@
 package pro.dengyi.hedgehog;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 
+import java.util.Map;
+import javax.imageio.ImageIO;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -99,6 +106,15 @@ public class HedgehogApplicationTests {
 		BeanUtils.copyProperties(article, articleSearchDto);
 		System.out.println(articleSearchDto);
 	}
+	 @Test
+	 public void demo6() throws IOException {
+		 Map<String, Object> stringObjectMap = null;
+		 FileOutputStream fileOutputStream = new FileOutputStream(new File("D:\\aa\\a.jpg"));
+		 BufferedImage codePic = (BufferedImage) stringObjectMap.get("codePic");
+		 ImageIO.write(codePic, "jpg", fileOutputStream);
+//    fileOutputStream.write(stringObjectMap.get("codePic"));
+		 System.out.println(stringObjectMap);
+	 }
 
 }
 
