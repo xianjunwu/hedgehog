@@ -62,10 +62,6 @@ public class VerificationCodeUtil {
       "5", "6", "7", "8", "9"};
 
 
-  public static String getVerificationCode() {
-    return "123456";
-  }
-
   public static Map<String, Object> generateCodeAndPic() {
     Map<String, Object> map = new HashMap<>(2);
     // 定义图像buffer
