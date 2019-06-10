@@ -9,6 +9,7 @@
 		<title>后台管理页面</title>
 		<!-- jquery js -->
 		<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+		<script src="/static/js/hedgehog-admin.js"></script>
 		<link rel="stylesheet" href="/static/plugins/zui/lib/calendar/zui.calendar.min.css">
 		<script src="/static/plugins/zui/lib/calendar/zui.calendar.min.js"></script>
 		<!-- zui css -->
@@ -37,7 +38,7 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<div class="info-box bg-info" onclick="location.href='/admin/article/list/' ">
+							<div class="info-box bg-info" onclick="location.href='/admin/article/list' ">
 								<div class="info-box-icon">
 									<i class="icon icon-file-text"></i>
 								</div>
@@ -50,7 +51,7 @@
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<div class="info-box bg-primary" onclick="location.href='/admin/comment/list/' ">
+							<div class="info-box bg-primary" onclick="location.href='/admin/comment' ">
 								<div class="info-box-icon">
 									<i class="icon icon-user"></i>
 								</div>
@@ -63,7 +64,7 @@
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<div class="info-box bg-warning" onclick="location.href='/admin/category/' ">
+							<div class="info-box bg-warning" onclick="location.href='/admin/category' ">
 								<div class="info-box-icon">
 									<i class="icon icon-bars"></i>
 								</div>
@@ -206,6 +207,10 @@
 	<script src="/static/js/app.js"></script>
 
 	<script>
+		$(function () {
+			activeSider();
+			queryAllNotice()
+		});
         /* JS 代码 */
         $('#calendar').calendar();
 	</script>

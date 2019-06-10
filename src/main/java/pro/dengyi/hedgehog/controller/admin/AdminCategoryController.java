@@ -31,7 +31,7 @@ public class AdminCategoryController {
   @Autowired
   private CateGoryService cateGoryService;
 
-  @GetMapping("/")
+  @GetMapping
   public String showPage() {
     return "admin/categorylist";
 

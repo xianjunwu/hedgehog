@@ -1,5 +1,6 @@
 package pro.dengyi.hedgehog.controller.admin;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pro.dengyi.hedgehog.base.BaseResult;
 import pro.dengyi.hedgehog.model.bo.DataGridBo;
 import pro.dengyi.hedgehog.model.dto.DataGridResult;
+import pro.dengyi.hedgehog.model.dto.ListResult;
 import pro.dengyi.hedgehog.model.entity.Notice;
 import pro.dengyi.hedgehog.service.NoticeService;
 
@@ -25,7 +27,7 @@ public class AdminNoticeController {
   @Autowired
   private NoticeService noticeService;
 
-  @GetMapping("/list")
+  @GetMapping
   public String noticeList() {
     return "admin/noticelist";
   }
@@ -47,5 +49,14 @@ public class AdminNoticeController {
     return new BaseResult();
 
   }
+
+  @GetMapping("/findAllNoticeNeedToDo")
+  @ResponseBody
+  public ListResult<Notice> findAllNoticeNeedToDo() {
+    //查询所有需要处理的通知
+    List<Notice> noticeList = noticeService.findAllNoticeNeedToDo();
+    return new ListResult<>("success", "查询成功", noticeList);
+  }
+
 
 }

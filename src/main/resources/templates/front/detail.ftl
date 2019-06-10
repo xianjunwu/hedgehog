@@ -14,6 +14,7 @@
 	<title>dengyi.pro</title>
 	<!-- jquery js -->
 	<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+	<script src="/static/js/hedgehog.js"></script>
 	<script src="/static/plugins/zui/js/zui.min.js"></script>
 	<!-- zui css -->
 	<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
@@ -169,6 +170,8 @@
 <script>
     //页面加载生成目录
     $(function () {
+    	addCategory();
+			headerSearchFormCanshow();
         var i = 0;
         $(".content").children().each(function (index, element) {
             var tagName = $(this).get(0).tagName;

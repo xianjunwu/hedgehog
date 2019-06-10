@@ -27,7 +27,7 @@ public class AdminCommentController {
   @Autowired
   private CommontService commontService;
 
-  @GetMapping("/list")
+  @GetMapping
   public String commentList() {
     return "admin/commentlist";
   }

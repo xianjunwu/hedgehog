@@ -9,6 +9,7 @@
 		<title>后台管理页面</title>
 		<!-- jquery js -->
 		<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+		<script src="/static/js/hedgehog-admin.js"></script>
 		<!-- zui css -->
 		<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
 		<link rel="stylesheet" href="/static/theme/blue.css">
@@ -91,6 +92,7 @@
 	<script>
         var kindeditor;
         $(function () {
+        	activeSider();
             kindeditor = KindEditor.create('textarea.kindeditor', {
                 basePath: '/static/plugins/zui/lib/kindeditor/',
                 allowFileManager: true,

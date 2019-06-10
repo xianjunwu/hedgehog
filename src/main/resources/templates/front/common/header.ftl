@@ -15,6 +15,12 @@
 			<div class="collapse navbar-collapse" id="example-navbar-collapse">
 				<!-- 一般导航项目 -->
 				<ul class="nav navbar-nav" id="category"></ul>
+				<form class="navbar-form navbar-right" role="search" id="headerSearchForm">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="搜索">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
 			</div>
 		</div>
 	</nav>

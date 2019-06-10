@@ -8,6 +8,7 @@
 		<title>系统设置</title>
 		<!-- jquery js -->
 		<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+		<script src="/static/js/hedgehog-admin.js"></script>
 		<!-- zui css -->
 		<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
 		<link rel="stylesheet" href="/static/theme/blue.css">
@@ -17,7 +18,9 @@
 	</head>
 	<body>
 	<div class="wrapper">
+		<#--通用头部-->
 		<#include "common/header.ftl">
+		<#--通用侧边栏-->
 		<#include "common/sider.ftl">
 
 		<div class="content-wrapper">
@@ -89,6 +92,11 @@
 	<script src="/static/plugins/zui/js/zui.min.js"></script>
 	<!-- app js -->
 	<script src="/static/js/app.js"></script>
+	<script>
+		$(function () {
+			activeSider();
+		});
+	</script>
 	</body>
 	</html>
 </#compress>

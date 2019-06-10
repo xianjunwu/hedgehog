@@ -14,6 +14,7 @@
 	<title>dengyi.pro</title>
 	<!-- jquery js -->
 	<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+	<script src="/static/js/hedgehog.js"></script>
 	<!-- zui css -->
 	<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
 	<link rel="stylesheet" href="/static/theme/blue.css">
@@ -173,6 +174,10 @@
 	</div>
 </footer>
 <script>
+	$(function () {
+		addCategory();
+		headerSearchFormCanshow();
+	});
     function doSearch() {
         var searchContent = $("#searchInput").val().trim();
         alert(searchContent);

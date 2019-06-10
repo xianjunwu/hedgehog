@@ -26,7 +26,7 @@ import pro.dengyi.hedgehog.service.SiteInfoService;
  * @date 2019-05-12 14:31
  */
 @Controller
-@RequestMapping("/admin/index")
+@RequestMapping("/admin")
 public class AdminIndexController {
 
   @Autowired
@@ -60,14 +60,12 @@ public class AdminIndexController {
     int days = siteInfoService.findInstallDays();
     //日志总数
     int logNum = logService.findLogNumber();
-    //查询所有需要处理的通知
-    List<Notice> noticeList = noticeService.findAllNoticeNeedToDo();
+
 
     model.addAttribute("categoryNumber", categoryNumber);
     model.addAttribute("commontNumber", commontNumber);
     model.addAttribute("days", days);
     model.addAttribute("logNum", logNum);
-    model.addAttribute("noticeList", noticeList);
     //创建服务器信息信息map，将信息封装成map并返回给前端
     Map<String, String> systemInfo = new HashMap<>(5);
     systemInfo.put("systemType", System.getProperty("os.name"));

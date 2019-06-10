@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2019-05-13 11:47
  */
 @Controller
-@RequestMapping("/admin/sys")
+@RequestMapping("/admin/systemConfig")
 public class SystemConfigController {
 
-  @GetMapping("/")
+  @GetMapping
   public String showPage() {
     return "admin/systemconfig";
   }

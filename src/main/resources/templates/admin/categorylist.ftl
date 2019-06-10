@@ -9,6 +9,7 @@
 		<title>后台管理页面</title>
 		<!-- jquery js -->
 		<script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+		<script src="/static/js/hedgehog-admin.js"></script>
 		<!-- zui css -->
 		<link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
 		<link rel="stylesheet" href="/static/theme/blue.css">
@@ -29,7 +30,7 @@
 		<div class="content-wrapper">
 			<div class="content-header">
 				<ul class="breadcrumb">
-					<li><a href="/admin/index"><i class="icon icon-home"></i></a></li>
+					<li><a href="/admin"><i class="icon icon-home"></i></a></li>
 					<li class="active">文章分类列表</li>
 				</ul>
 			</div>
@@ -135,6 +136,7 @@
 	</div>
 	<script>
         $(function () {
+        	activeSider();
             $('#datagridExample').datagrid({
                 dataSource: {
                     cols: [

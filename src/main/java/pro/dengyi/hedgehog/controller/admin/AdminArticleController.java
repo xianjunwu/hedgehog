@@ -31,7 +31,6 @@ public class AdminArticleController {
 
   @GetMapping("/list")
   public String list() {
-    //@PathVariable Integer pageNumber, @PathVariable Integer pageSize, Model model
     return "admin/articlelist";
   }
 
