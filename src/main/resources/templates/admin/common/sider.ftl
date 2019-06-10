@@ -92,9 +92,9 @@
                             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="/admin/systemConfig"><i class="icon icon-circle-blank"></i>基础设置</a></li>
-						<li><a href="/admin/systemConfig"><i class="icon icon-circle-blank"></i>系统备份</a></li>
-						<li><a href="/admin/systemConfig"><i class="icon icon-circle-blank"></i>系统恢复</a></li>
+						<li><a href="/admin/systemConfig/basis"><i class="icon icon-circle-blank"></i>基础设置</a></li>
+						<li><a href="/admin/systemConfig/backup"><i class="icon icon-circle-blank"></i>系统备份</a></li>
+						<li><a href="/admin/systemConfig/restore"><i class="icon icon-circle-blank"></i>系统恢复</a></li>
 					</ul>
 				</li>
 

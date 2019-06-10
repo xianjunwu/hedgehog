@@ -1,6 +1,8 @@
 package pro.dengyi.hedgehog.controller.admin;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import pro.dengyi.hedgehog.base.BaseResult;
@@ -19,5 +21,12 @@ public class AdminFileController {
   public BaseResult uploadFile(MultipartFile[] files) {
 
     return null;
+  }
+
+  @PostMapping("/uploadRestorePackage")
+  @ResponseBody
+  public BaseResult uploadRestorePackage(MultipartFile file) {
+    System.err.println(file.getSize());
+    return new BaseResult();
   }
 }
