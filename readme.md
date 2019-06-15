@@ -4,6 +4,13 @@
 《刺猬》作为个人的网站产生的原因：其实作为程序员，有一个自己的个人网站，在我看来是最基本的要求。在“刺猬”之前自己的网站基本上是没怎么去打理，导致效果很差。突然有一天意识到，我对自己是很不负责的，所以决定重构。“刺猬”由此诞生。
 > “刺猬”的来历是，在我家附近经常出没着一直小刺猬，经常夜间出现。个人喜欢在夜间工作，所以将项目起名为“刺猬”
 
+## 页面展示
+### 安装页面
+![安装页面](https://github.com/BruceAKABear/hedgehog/blob/master/doc/img/installpage.jpg)
+
+### 登录页面
+![登录页面](https://github.com/BruceAKABear/hedgehog/blob/master/doc/img/loginpage.jpg)
+
 ## 所使用技术列表
 + 前端
     - jquery
