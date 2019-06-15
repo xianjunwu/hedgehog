@@ -30,11 +30,11 @@
 <#include "common/header.ftl">
 <div class="indexCenter">
   <div class="text-center">
-    <img src="http://zui.sexy/docs/img/img2.jpg" width="200px" height="200px" class="img-circle"
+    <img src="/static/images/img2.jpg" width="200px" height="200px" class="img-circle"
          alt="圆形图片">
   </div>
   <div class="text-center" style="margin: 20px">
-    <span class="text-info">不断学习，不断提高</span>
+    <span class="text-info">${(siteInfo.slogen)!'好好学习，天天向上'}</span>
   </div>
   <form id="searchForm" action="/search" method="get">
     <div class="input-group">
@@ -52,18 +52,19 @@
     </div>
   </form>
 </div>
-<footer class="navbar-fixed-bottom">
-  <div class="container-fluid">
+
+<div style="bottom: 0">
+  <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="text-center" style="padding-bottom: 20px">
-          <span style="color: #999">Copyright © 2019-2019 hedgehog  All Rights Reserved. 备案号：浙ICP备17049324号-1</span>
+        <div class="text-center" style="padding-bottom: 10px">
+          <span style="color: #999">${(siteInfo.copyright)!'Copyright © 2019-2019 hedgehog  All Rights Reserved. 备案号：浙ICP备17049324号-1'}</span>
         </div>
       </div>
     </div>
 
   </div>
-</footer>
+</div>
 <script>
   $(function () {
     addCategory();

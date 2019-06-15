@@ -161,7 +161,7 @@
 	</div>
 
 </div>
-<footer class="navbar-fixed-bottom">
+<div style="bottom: 0">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -172,7 +172,7 @@
 		</div>
 
 	</div>
-</footer>
+</div>
 <script>
 	$(function () {
 		addCategory();
