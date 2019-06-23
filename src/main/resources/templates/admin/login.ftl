@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/static/css/app.css">
   <!-- jquery js -->
   <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
-  <#--添加formvalid-->
+    <#--添加formvalid-->
   <link rel="stylesheet" href="/static/plugins/formvalidator/css/bootstrapValidator.css">
   <script src="/static/plugins/formvalidator/js/bootstrapValidator.js"></script>
   <script src="/static/plugins/formvalidator/js/language/zh_CN.js"></script>
@@ -69,10 +69,10 @@
     </div>
   </div>
 
-  <#--    <footer class="page-copyright page-copyright-inverse">-->
-  <#--        <p>WEBSITE BY 大熊</p>-->
-  <#--        <p>© 2019. All RIGHT RESERVED.</p>-->
-  <#--    </footer>-->
+    <#--    <footer class="page-copyright page-copyright-inverse">-->
+    <#--        <p>WEBSITE BY 大熊</p>-->
+    <#--        <p>© 2019. All RIGHT RESERVED.</p>-->
+    <#--    </footer>-->
 </div>
 
 

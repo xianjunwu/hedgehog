@@ -28,7 +28,7 @@ public class FrontArticleController {
 
   @RequestMapping("list/{categoryName}")
   public String list(@RequestParam(defaultValue = "1") Integer pageNumber,
-      @RequestParam(defaultValue = "7") Integer pageSize, @PathVariable String categoryName,
+      @RequestParam(defaultValue = "10") Integer pageSize, @PathVariable String categoryName,
       Model model) {
     NormalPageQueryBo<Article> list = articleService
         .conditionPageQuery(categoryName, pageNumber, pageSize);

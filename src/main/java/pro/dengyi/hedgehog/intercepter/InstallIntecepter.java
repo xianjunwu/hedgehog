@@ -9,7 +9,7 @@ import pro.dengyi.hedgehog.model.entity.User;
 import pro.dengyi.hedgehog.service.UserService;
 
 /**
- * 安装拦截器，用于判断网站是否安装
+ * 安装拦截器，用于判断网站是否安装，如果没有安装就重定向到安装页面
  *
  * @author 邓艺
  * @version v1.0

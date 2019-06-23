@@ -37,7 +37,7 @@ public class VerificationCodeUtil {
   private static final int FONT_HEIGHT = 18;
 
   /**
-   * 干扰线条数
+   * 干扰线条数,太多图片看不清
    */
   private static final int INTERFERENCE_LINE_NUMBER = 13;
 

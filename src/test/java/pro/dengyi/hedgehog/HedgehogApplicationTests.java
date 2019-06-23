@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.imageio.ImageIO;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.junit.Test;
@@ -137,8 +138,10 @@ public class HedgehogApplicationTests {
     String mySqlPath = s3
         .substring(0, s3.indexOf("bin") + 3);//截取字符串S3 从索引”0“ 到”bin“的字符串。获取完整的mysql安装路径
 
-    Process process = Runtime.getRuntime().exec(" C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump -h" + "localhost" +
-        " -p" + 3306 + " -u" + userName + " -p" + password + " --set-charset=UTF8 " + "hedgehog");
+    Process process = Runtime.getRuntime()
+        .exec(" C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump -h" + "localhost" +
+            " -p" + 3306 + " -u" + userName + " -p" + password + " --set-charset=UTF8 "
+            + "hedgehog");
     InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), "utf8");
     FileOutputStream fileOutputStream = new FileOutputStream(new File("D:\\aa\\d.sql"));
     fileOutputStream.write(inputStreamReader.read());
@@ -146,43 +149,44 @@ public class HedgehogApplicationTests {
     System.out.println(11);
   }
 
-   @Test
-   public void demo8() throws IOException {
-     Runtime rt = Runtime.getRuntime();
+  @Test
+  public void demo8() throws IOException {
+    Runtime rt = Runtime.getRuntime();
 
-     // 调用 调用mysql的安装目录的命令
-     Process child = rt
-         .exec("C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump -h localhost -uroot -p123456 hedgehog");
-     // 设置导出编码为utf-8。这里必须是utf-8
-     // 把进程执行中的控制台输出信息写入.sql文件，即生成了备份文件。注：如果不对控制台信息进行读出，则会导致进程堵塞无法运行
-     InputStream in = child.getInputStream();// 控制台的输出信息作为输入流
+    // 调用 调用mysql的安装目录的命令
+    Process child = rt
+        .exec(
+            "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump -h localhost -uroot -p123456 hedgehog");
+    // 设置导出编码为utf-8。这里必须是utf-8
+    // 把进程执行中的控制台输出信息写入.sql文件，即生成了备份文件。注：如果不对控制台信息进行读出，则会导致进程堵塞无法运行
+    InputStream in = child.getInputStream();// 控制台的输出信息作为输入流
 
-     InputStreamReader xx = new InputStreamReader(in, "utf-8");
-     // 设置输出流编码为utf-8。这里必须是utf-8，否则从流中读入的是乱码
+    InputStreamReader xx = new InputStreamReader(in, "utf-8");
+    // 设置输出流编码为utf-8。这里必须是utf-8，否则从流中读入的是乱码
 
-     String inStr;
-     StringBuffer sb = new StringBuffer("");
-     String outStr;
-     // 组合控制台输出信息字符串
-     BufferedReader br = new BufferedReader(xx);
-     while ((inStr = br.readLine()) != null) {
-       sb.append(inStr + "\r\n");
-     }
-     outStr = sb.toString();
+    String inStr;
+    StringBuffer sb = new StringBuffer("");
+    String outStr;
+    // 组合控制台输出信息字符串
+    BufferedReader br = new BufferedReader(xx);
+    while ((inStr = br.readLine()) != null) {
+      sb.append(inStr + "\r\n");
+    }
+    outStr = sb.toString();
 
-     // 要用来做导入用的sql目标文件：
-     FileOutputStream fout = new FileOutputStream("D:\\aa\\d.sql");
-     OutputStreamWriter writer = new OutputStreamWriter(fout, "utf-8");
-     writer.write(outStr);
-     writer.flush();
-     in.close();
-     xx.close();
-     br.close();
-     writer.close();
-     fout.close();
+    // 要用来做导入用的sql目标文件：
+    FileOutputStream fout = new FileOutputStream("D:\\aa\\d.sql");
+    OutputStreamWriter writer = new OutputStreamWriter(fout, "utf-8");
+    writer.write(outStr);
+    writer.flush();
+    in.close();
+    xx.close();
+    br.close();
+    writer.close();
+    fout.close();
 
-     System.out.println("");
-   }
+    System.out.println("");
+  }
 
 
 }

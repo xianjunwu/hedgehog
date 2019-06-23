@@ -1,12 +1,19 @@
 /**
  * 加载分类
  */
-function addCategory() {
+function addCategoryAndActiveOne() {
   $.get("/category/findAllCategory", function (data) {
     if (data.result === 'success') {
+      var pathname = location.pathname;
+      var categoryPathName = pathname.split("/")[3];
       data.data.forEach(function (value, i) {
-        $("#category").append("<li><a href='/article/list/" + value.path + "'>"
-            + value.categoryName + "</a></li>");
+        if (categoryPathName === value.path) {
+          $("#category").append("<li class='active'><a  href='/article/list/" + value.path + "'>"
+              + value.categoryName + "</a></li>");
+        }else{
+          $("#category").append("<li><a  href='/article/list/" + value.path + "'>"
+              + value.categoryName + "</a></li>");
+        }
       });
     } else {
       console.log("查询分类失败");

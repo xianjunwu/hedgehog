@@ -139,7 +139,7 @@ public class ArticleServiceImpl implements ArticleService {
     articleNormalPageQueryBo.setData(all.getContent());
     articleNormalPageQueryBo.setTotalElements(all.getTotalElements());
     articleNormalPageQueryBo.setTotalPages(all.getTotalPages());
-    articleNormalPageQueryBo.setPageNumber(all.getNumber());
+    articleNormalPageQueryBo.setPageNumber(pageNumber);
     articleNormalPageQueryBo.setPageSize(all.getSize());
     return articleNormalPageQueryBo;
   }

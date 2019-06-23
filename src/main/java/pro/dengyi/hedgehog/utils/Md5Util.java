@@ -3,6 +3,7 @@ package pro.dengyi.hedgehog.utils;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,9 +14,8 @@ import org.slf4j.LoggerFactory;
  * @version v1.0
  * @date 2019-05-20 13:27
  */
+@Slf4j
 public class Md5Util {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Md5Util.class);
 
   public static String encodePassword(String originalPassword) {
     try {

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import org.apache.solr.client.solrj.beans.Field;
 import pro.dengyi.hedgehog.base.BaseEntity;
@@ -64,7 +65,14 @@ public class Article extends BaseEntity {
   /**
    * 是否允许评论
    */
+  @NotNull
   private Boolean allowComment;
+
+  /**
+   * 是否推荐
+   */
+  @NotNull
+  private Boolean isRecommend;
 
   /**
    * 关系配置

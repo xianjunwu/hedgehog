@@ -18,10 +18,10 @@
   </head>
   <body>
   <div class="wrapper">
-    <#--通用头部-->
-    <#include "common/header.ftl">
-    <#--通用侧边栏-->
-    <#include "common/sider.ftl">
+      <#--通用头部-->
+      <#include "common/header.ftl">
+      <#--通用侧边栏-->
+      <#include "common/sider.ftl">
 
     <div class="content-wrapper">
       <div class="content-header">
