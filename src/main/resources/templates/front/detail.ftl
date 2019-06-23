@@ -56,65 +56,86 @@
       <div class="comments">
         <header>
           <div class="pull-right"><a href="#commentReplyForm2" class="btn btn-primary"><i
-                  class="icon-comment-alt" ></i> 发表评论</a></div>
+                  class="icon-comment-alt"></i> 发表评论</a></div>
           <h3>所有评论</h3>
         </header>
         <section class="comments-list">
-          <div class="comment">
-            <a href="###" class="avatar">
-              <i class="icon-camera-retro icon-2x"></i>
-            </a>
-            <div class="content">
-              <div class="pull-right text-muted">3 个小时前</div>
-              <div><a href="###"><strong>张士超</strong></a></div>
-              <div class="text">今天玩的真开心！~~~~~~</div>
-              <div class="actions">
-                <a href="##">回复</a>
-              </div>
-            </div>
-            <div class="comments-list">
+            <#if (article.commonts? size>0  )>
               <div class="comment">
                 <a href="###" class="avatar">
-                  <i class="icon-user icon-2x"></i>
+                  <i class="icon-camera-retro icon-2x"></i>
                 </a>
                 <div class="content">
-                  <div class="pull-right text-muted">2 个小时前</div>
-                  <div><a href="###"><strong>Catouse</strong></a> <span class="text-muted">回复</span>
-                    <a
-                        href="###">张士超</a></div>
-                  <div class="text">你到底把我家钥匙放哪里了...</div>
+                  <div class="pull-right text-muted">3 个小时前</div>
+                  <div><a href="###"><strong>张士超</strong></a></div>
+                  <div class="text">今天玩的真开心！~~~~~~</div>
                   <div class="actions">
                     <a href="##">回复</a>
-                    <a href="##">编辑</a>
-                    <a href="##">删除</a>
                   </div>
                 </div>
                 <div class="comments-list">
                   <div class="comment">
                     <a href="###" class="avatar">
-                      <i class="icon-yinyang icon-2x"></i>
+                      <i class="icon-user icon-2x"></i>
                     </a>
                     <div class="content">
-                      <div class="pull-right text-muted">1 个小时前</div>
-                      <div><a href="###"><strong>门口大爷</strong></a> <span
+                      <div class="pull-right text-muted">2 个小时前</div>
+                      <div><a href="###"><strong>Catouse</strong></a> <span
                             class="text-muted">回复</span>
-                        <a href="###">Catouse</a></div>
-                      <div class="text">不在我这儿...</div>
+                        <a
+                            href="###">张士超</a></div>
+                      <div class="text">你到底把我家钥匙放哪里了...</div>
                       <div class="actions">
                         <a href="##">回复</a>
+                        <a href="##">编辑</a>
+                        <a href="##">删除</a>
+                      </div>
+                    </div>
+                    <div class="comments-list">
+                      <div class="comment">
+                        <a href="###" class="avatar">
+                          <i class="icon-yinyang icon-2x"></i>
+                        </a>
+                        <div class="content">
+                          <div class="pull-right text-muted">1 个小时前</div>
+                          <div><a href="###"><strong>门口大爷</strong></a> <span
+                                class="text-muted">回复</span>
+                            <a href="###">Catouse</a></div>
+                          <div class="text">不在我这儿...</div>
+                          <div class="actions">
+                            <a href="##">回复</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="comment">
+                        <a href="###" class="avatar">
+                          <i class="icon-cube-alt icon-2x"></i>
+                        </a>
+                        <div class="content">
+                          <div class="pull-right text-muted">1 个小时前</div>
+                          <div><a href="###"><strong>队长</strong></a> <span
+                                class="text-muted">回复</span>
+                            <a
+                                href="###">Catouse</a></div>
+                          <div class="text">也不在我这儿...</div>
+                          <div class="actions">
+                            <a href="##">回复</a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="comment">
                     <a href="###" class="avatar">
-                      <i class="icon-cube-alt icon-2x"></i>
+                      <i class="icon-heart-empty icon-2x"></i>
                     </a>
                     <div class="content">
-                      <div class="pull-right text-muted">1 个小时前</div>
-                      <div><a href="###"><strong>队长</strong></a> <span class="text-muted">回复</span>
+                      <div class="pull-right text-muted">30 分钟前</div>
+                      <div><a href="###"><strong>华师大第一美女</strong></a> <span
+                            class="text-muted">回复</span>
                         <a
-                            href="###">Catouse</a></div>
-                      <div class="text">也不在我这儿...</div>
+                            href="###">张士超</a></div>
+                      <div class="text">很开心~~~</div>
                       <div class="actions">
                         <a href="##">回复</a>
                       </div>
@@ -122,23 +143,7 @@
                   </div>
                 </div>
               </div>
-              <div class="comment">
-                <a href="###" class="avatar">
-                  <i class="icon-heart-empty icon-2x"></i>
-                </a>
-                <div class="content">
-                  <div class="pull-right text-muted">30 分钟前</div>
-                  <div><a href="###"><strong>华师大第一美女</strong></a> <span class="text-muted">回复</span>
-                    <a
-                        href="###">张士超</a></div>
-                  <div class="text">很开心~~~</div>
-                  <div class="actions">
-                    <a href="##">回复</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </#if>
         </section>
         <footer>
           <div class="reply-form" id="commentReplyForm2">
@@ -220,7 +225,7 @@
     $.ajaxSettings.contentType = "application/json;charset=UTF-8";
     $.post("/commont/save", JSON.stringify(param), function (data) {
       if (data.result === 'success') {
-        new $.zui.Messager('发布评论成功，等待同意后即可显示！', {
+        new $.zui.Messager('发布评论成功，等待审核后即可显示！', {
           type: 'success', // 定义颜色主题，
           time: 2000,
           icon: 'ok'

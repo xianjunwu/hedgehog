@@ -1,10 +1,12 @@
 package pro.dengyi.hedgehog.model.entity;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
@@ -80,5 +82,12 @@ public class Article extends BaseEntity {
 
   @ManyToOne
   private Category category;
+
+  /**
+   * 评论关系配置
+   */
+
+  @OneToMany
+  private List<Commont> commonts;
 
 }
