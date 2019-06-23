@@ -70,6 +70,13 @@
                     <option value="false">不允许</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label for="category">是否推荐</label>
+                  <select class="form-control" id="isRecommend">
+                    <option value="true">推荐</option>
+                    <option value="false">不推荐</option>
+                  </select>
+                </div>
               </div>
               <div class="col-md-12" style="margin-top: 20px">
                 <div class="col-md-6">
@@ -97,7 +104,9 @@
       kindeditor = KindEditor.create('textarea.kindeditor', {
         basePath: '/static/plugins/zui/lib/kindeditor/',
         allowFileManager: true,
-        bodyClass: 'article-content'
+        bodyClass: 'article-content',
+        filePostName:"files",
+        uploadJson:"/admin/file/uploadFile"
       });
       //查询所有的分类
       $.get("/admin/category/findAllCategory", function (data) {
@@ -133,6 +142,7 @@
           "content": $("#content").val(),
           "articleStatus": false,
           "allowComment": $("#allowComment").val(),
+          "isRecommend": $("#isRecommend").val(),
           "category": {
             "id": $("#category").val()
           }

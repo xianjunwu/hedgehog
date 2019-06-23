@@ -18,3 +18,7 @@ spring:
     solr:
       host: http://localhost:8983/solr
 
+com:
+  qiniu:
+    accessKey: G3wrnnkbDiMDYZLovFQF6DmaV1BLikj_NsIUAzul
+    secretKey: Pk5cGZ5KQsv72cpFOCtSsRDUlDziHFmIoBp4OjaF
