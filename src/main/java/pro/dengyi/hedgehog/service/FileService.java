@@ -12,5 +12,5 @@ public interface FileService {
    * @author 邓艺
    * @date 2019/6/23 23:29
    */
-  void uploadFileToQiNiu(MultipartFile multipartFile) throws IOException;
+  String uploadFileToQiNiu(MultipartFile multipartFile) throws IOException;
 }

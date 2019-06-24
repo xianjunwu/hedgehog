@@ -4,10 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import pro.dengyi.hedgehog.base.BaseEntity;
 
 @Data
+@AllArgsConstructor
 @Entity
 @Table(name = "t_file")
 public class File extends BaseEntity {

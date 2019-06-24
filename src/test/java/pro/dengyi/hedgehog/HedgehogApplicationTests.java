@@ -27,6 +27,7 @@ import pro.dengyi.hedgehog.dao.ArticleSearchDao;
 import pro.dengyi.hedgehog.model.dto.ArticleSearchDto;
 import pro.dengyi.hedgehog.model.entity.Article;
 import pro.dengyi.hedgehog.service.ArticleSearchService;
+import sun.misc.BASE64Encoder;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -187,6 +188,8 @@ public class HedgehogApplicationTests {
 
     System.out.println("");
   }
+
+
 
 
 }

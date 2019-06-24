@@ -1,6 +1,7 @@
 package pro.dengyi.hedgehog.controller.admin;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -28,14 +29,20 @@ public class AdminFileController {
   private FileService fileService;
 
   @RequestMapping("/uploadFile")
-  public BaseResult uploadFile(HttpServletRequest request) {
+  @ResponseBody
+  public Map<String, Object> uploadFile(HttpServletRequest request) {
+    //超级文件上传
     MultipartRequest multipartRequest = (MultipartRequest) request;
     Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
     Set<String> fileNames = fileMap.keySet();
+    HashMap<String, Object> objectObjectHashMap = new HashMap<>();
     for (String fileName : fileNames) {
       MultipartFile multipartFile = fileMap.get(fileName);
       try {
-        fileService.uploadFileToQiNiu(multipartFile);
+        String fileUrl = fileService.uploadFileToQiNiu(multipartFile);
+        objectObjectHashMap.put("error", 0);
+        objectObjectHashMap.put("url", fileUrl);
+        return objectObjectHashMap;
       } catch (IOException e) {
         e.printStackTrace();
       }
