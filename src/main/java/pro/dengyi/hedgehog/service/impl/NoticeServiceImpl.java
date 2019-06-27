@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pro.dengyi.hedgehog.dao.NoticeDao;
 import pro.dengyi.hedgehog.model.bo.DataGridBo;
 import pro.dengyi.hedgehog.model.bo.DataGridPager;
@@ -43,6 +44,7 @@ public class NoticeServiceImpl implements NoticeService {
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     noticeDao.deleteById(id);
   }

@@ -1,7 +1,9 @@
 package pro.dengyi.hedgehog.base;
 
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 基础响应类
@@ -10,6 +12,8 @@ import lombok.Data;
  * @date 2018/9/23 20:18
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BaseResult implements Serializable {
 
   private static final long serialVersionUID = -5003879251992191601L;

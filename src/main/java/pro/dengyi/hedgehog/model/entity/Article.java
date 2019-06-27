@@ -24,12 +24,15 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_article")
 public class Article extends BaseEntity {
 
-  /**
-   * 文章编号
-   */
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 文章标题

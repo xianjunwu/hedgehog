@@ -3,6 +3,7 @@ package pro.dengyi.hedgehog.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pro.dengyi.hedgehog.dao.ArticleSearchDao;
 import pro.dengyi.hedgehog.model.dto.ArticleSearchDto;
 import pro.dengyi.hedgehog.service.ArticleSearchService;
@@ -22,6 +23,7 @@ public class ArticleSearchServiceImpl implements ArticleSearchService {
   private ArticleSearchDao articleSearchDao;
 
   @Override
+  @Transactional
   public Boolean saveOrUpdate(ArticleSearchDto articleSearchDto) {
     ArticleSearchDto save = articleSearchDao.save(articleSearchDto);
     return save != null;

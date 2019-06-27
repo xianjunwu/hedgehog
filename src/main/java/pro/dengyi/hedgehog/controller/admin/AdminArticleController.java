@@ -66,8 +66,14 @@ public class AdminArticleController {
   @DeleteMapping("/deleteById/{id}")
   @ResponseBody
   public BaseResult deleteById(@PathVariable Long id) {
-    articleService.deleteById(id);
-    return new BaseResult();
+    try {
+      articleService.deleteById(id);
+      return new BaseResult();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new BaseResult("fail", "删除失败");
+    }
+
   }
 
 }

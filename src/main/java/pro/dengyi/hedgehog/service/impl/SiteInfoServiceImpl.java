@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import pro.dengyi.hedgehog.dao.SiteInfoDao;
 import pro.dengyi.hedgehog.model.entity.SiteInfo;
@@ -27,6 +28,7 @@ public class SiteInfoServiceImpl implements SiteInfoService {
   protected SiteInfoDao siteInfoDao;
 
   @Override
+  @Transactional
   public SiteInfo saveOrUpdate(SiteInfo siteInfo) {
     if (siteInfo.getId() == null) {
       //新增

@@ -13,9 +13,15 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_site_info")
 public class SiteInfo extends BaseEntity {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 网站名

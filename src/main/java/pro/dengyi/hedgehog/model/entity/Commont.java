@@ -20,9 +20,15 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_commont")
 public class Commont extends BaseEntity {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 评论者头像

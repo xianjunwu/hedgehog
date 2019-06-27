@@ -1,5 +1,6 @@
 package pro.dengyi.hedgehog.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,9 +52,12 @@ public class CateGoryServiceImpl implements CateGoryService {
   @Transactional
   public Category saveOrUpdate(Category category) {
     if (category.getId() == null) {
-      String pinYin = PinYinUtil.getPinYin(category.getCategoryName());
-      category.setPath(pinYin);
+      category.setCreateTime(LocalDateTime.now());
+    } else {
+      category.setUpdateTime(LocalDateTime.now());
     }
+    String pinYin = PinYinUtil.getPinYin(category.getCategoryName());
+    category.setPath(pinYin);
     return categoryDao.save(category);
   }
 
@@ -68,6 +72,7 @@ public class CateGoryServiceImpl implements CateGoryService {
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     categoryDao.deleteById(id);
   }

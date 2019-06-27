@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
+import pro.dengyi.hedgehog.base.BaseEntity;
 
 /**
  * 通知表
@@ -16,11 +17,17 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "t_notice")
-public class Notice {
+public class Notice extends BaseEntity {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 通知名

@@ -1,8 +1,6 @@
 package pro.dengyi.hedgehog.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import pro.dengyi.hedgehog.base.BaseEntity;
@@ -18,12 +16,15 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_log")
 public class Log extends BaseEntity {
 
-  /**
-   * id
-   */
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 标题

@@ -71,6 +71,7 @@ public class CommontServiceImpl implements CommontService {
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     commontDao.deleteById(id);
 

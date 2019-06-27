@@ -48,8 +48,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#addcategoryModal">新增分类
                     </button>
-                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                            data-target="#editModal">编辑分类
+                    <button type="button" class="btn btn-warning" onclick="activeEditModel()">编辑分类
                     </button>
                     <button type="button" class="btn btn-danger" onclick="deleteItems()">删除分类
                     </button>
@@ -58,7 +57,7 @@
                     <div class="modal-dialog modal-lg">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"
-                                onclick="clearText()"><span
+                                onclick="clearModel('addcategoryModal')"><span
                               aria-hidden="true">×</span><span class="sr-only">关闭</span>
                         </button>
                         <h4 class="modal-title">新增分类</h4>
@@ -80,7 +79,8 @@
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="clearText()"
+                        <button type="button" class="btn btn-default"
+                                onclick="clearModel('addcategoryModal')"
                                 data-dismiss="modal">关闭
                         </button>
                         <button type="button" class="btn btn-primary" onclick="saveCategory()">
@@ -93,32 +93,32 @@
                     <div class="modal-dialog modal-lg">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"
-                                onclick="clearText()"><span
+                                onclick="clearModel('editModal')"><span
                               aria-hidden="true">×</span><span class="sr-only">关闭</span>
                         </button>
                         <h4 class="modal-title">编辑分类</h4>
                       </div>
                       <div class="modal-body">
-                        <input type="hidden" id="id">
+                        <input type="hidden" id="idEdit">
                         <form>
                           <div class="form-group">
                             <label for="categoryName" class="required">分类名</label>
                             <input type="text" class="form-control"
-                                   id="categoryName"
+                                   id="categoryNameEdit"
                                    placeholder="分类名" onfocus="removeError()">
                           </div>
                           <div class="form-group">
                             <label for="categoryDesc" class="required">分类描述</label>
                             <input type="text" class="form-control"
-                                   id="categoryDesc" placeholder="分类描述">
+                                   id="categoryDescEdit" placeholder="分类描述">
                           </div>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="clearText()"
+                        <button type="button" class="btn btn-default" onclick="clearModel('addcategoryModal')"
                                 data-dismiss="modal">关闭
                         </button>
-                        <button type="button" class="btn btn-primary" onclick="saveCategory()">
+                        <button type="button" class="btn btn-primary" onclick="saveEditCategory()">
                           保存
                         </button>
                       </div>
@@ -184,6 +184,7 @@
         }
       });
     });
+
     //3. 保存分类
     function saveCategory() {
       var name = $("#categoryName");
@@ -215,6 +216,8 @@
                 time: 1000,
                 icon: 'ok'
               }).show();
+              $('#addcategoryModal').modal('hide');
+              clearModel('addcategoryModal');
               //刷新数据表格
               reflashdatagrid();
             }
@@ -225,6 +228,7 @@
       }
 
     }
+
     function deleteItems() {
       // 获取数据表格实例
       var myDataGrid = $('#datagridExample').data('zui.datagrid');
@@ -265,6 +269,67 @@
 
     }
 
+    function activeEditModel() {
+      var myDataGrid = $('#datagridExample').data('zui.datagrid');
+      var selectedItems = myDataGrid.getCheckItems();
+      if (selectedItems.length !== 1) {
+        new $.zui.Messager('数据选择错误', {
+          icon: 'bell',// 定义消息图标
+          time: 1000
+        }).show()
+      } else {
+        console.log(selectedItems);
+        var categorySelected = selectedItems[0];
+        $("#categoryNameEdit").val(categorySelected.categoryName);
+        $("#idEdit").val(categorySelected.id);
+        $("#categoryDescEdit").val(categorySelected.categoryDesc);
+        $("#editModal").modal('show')
+      }
+
+    }
+    function saveEditCategory() {
+      var name = $("#categoryNameEdit");
+      if (name.val() === '') {
+        name.parent().addClass('has-error');
+        new $.zui.Messager('必须填写分类名', {
+          type: 'warning', // 定义颜色主题，
+          time: 1000,
+          icon: 'warning-sign'
+        }).show();
+      } else {
+        var truename = name.val().trim();
+        if (truename.length > 5) {
+          new $.zui.Messager('分类名最大5位', {
+            type: 'warning', // 定义颜色主题，
+            time: 1000,
+            icon: 'warning-sign'
+          }).show();
+        } else {
+          $.post("/admin/category/saveOrUpdate", {
+            id: $("#idEdit").val(),
+            categoryName: truename,
+            categoryDesc: $("#categoryDescEdit").val()
+          }, function (data) {
+            if (data.result === 'success') {
+              //浮动消息通知
+              new $.zui.Messager('保存成功！', {
+                type: 'success', // 定义颜色主题，
+                time: 1000,
+                icon: 'ok'
+              }).show();
+              $('#editModal').modal('hide');
+              clearModel('editModal');
+              //刷新数据表格
+              reflashdatagrid();
+            }
+
+          })
+        }
+
+      }
+    }
+
+
     /**
      * 保存之前进行校验
      */
@@ -273,8 +338,6 @@
       $("#categoryName").parent().removeClass('has-error');
     }
 
-
-
     function reflashdatagrid() {
       var myDataGrid = $('#datagridExample').data('zui.datagrid');
       //要重新刷新表格
@@ -282,12 +345,6 @@
       myDataGrid.render();
     }
 
-    //清空输入框js方法
-    function clearText() {
-      $("#categoryName").val('');
-      $("#id").val('');
-      $("#categoryDesc").val('');
-    }
   </script>
 
   <!-- zui js -->

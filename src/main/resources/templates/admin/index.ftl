@@ -398,13 +398,6 @@
       })
     }
 
-    function clearModel(modelName) {
-      var inputs = $("#" + modelName + " input");
-      for (var i = 0; i < inputs.length; i++) {
-        $("#" + inputs[i].id).val("");
-      }
-    }
-
 
   </script>
   </body>

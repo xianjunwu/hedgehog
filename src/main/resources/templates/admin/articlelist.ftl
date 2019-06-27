@@ -48,16 +48,11 @@
                            placeholder="搜索">
                     <label for="inputSearchExample2" class="input-control-icon-left search-icon"><i
                           class="icon icon-search"></i></label>
-
-
-
                   </div>
-
-
                 </div>
                 <div class="form-inline">
+                  <button class="btn btn-success" onclick="judgeCanEdit()">编辑</button>
                   <button class="btn btn-danger" onclick="deleteItems()">删除</button>
-                  <button class="btn btn-success" onclick="deleteItems()">编辑</button>
                 </div>
                 <div class="datagrid-container" style="margin-top: 10px"></div>
                 <div class="pager"></div>
@@ -185,6 +180,20 @@
           });
 
         })
+      }
+
+    }
+
+    function judgeCanEdit() {
+      var myDataGrid = $('#datagridExample').data('zui.datagrid');
+      var selectedItems = myDataGrid.getCheckItems();
+      if (selectedItems.length !== 1) {
+        new $.zui.Messager('数据选择错误', {
+          icon: 'bell',// 定义消息图标
+          time: 1000
+        }).show()
+      } else {
+
       }
 
     }

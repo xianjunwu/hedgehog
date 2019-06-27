@@ -145,6 +145,7 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
+  @Transactional
   public void deleteById(Long id) {
     articleDao.deleteById(id);
     deleteFromSearchSystem(id);

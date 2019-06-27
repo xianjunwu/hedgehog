@@ -24,3 +24,14 @@ function queryAllNotice() {
   })
 
 }
+
+/**
+ * 清除model的方法
+ * @param modelName
+ */
+function clearModel(modelName) {
+  var inputs = $("#" + modelName + " input");
+  for (var i = 0; i < inputs.length; i++) {
+    $("#" + inputs[i].id).val("");
+  }
+}

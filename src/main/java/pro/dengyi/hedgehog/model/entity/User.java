@@ -1,10 +1,7 @@
 package pro.dengyi.hedgehog.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,16 +19,17 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Entity
 @Table(name = "t_user")
 @EqualsAndHashCode
-public class User extends BaseEntity implements Serializable {
+public class User extends BaseEntity {
 
-  private static final long serialVersionUID = -5144055068797033748L;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
 
-  /**
-   * 用户id
-   */
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 用户名

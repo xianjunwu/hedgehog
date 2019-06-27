@@ -1,6 +1,8 @@
 package pro.dengyi.hedgehog.base;
 
 import java.time.LocalDateTime;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +19,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Data
 @MappedSuperclass
 public class BaseEntity {
+
+  @Id
+  @GeneratedValue
+  public Long id;
 
   /**
    * 创建时间

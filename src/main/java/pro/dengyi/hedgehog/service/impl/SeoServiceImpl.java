@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import pro.dengyi.hedgehog.dao.SeoDao;
 import pro.dengyi.hedgehog.model.entity.Seo;
@@ -25,6 +26,7 @@ public class SeoServiceImpl implements SeoService {
   private SeoDao seoDao;
 
   @Override
+  @Transactional
   public Seo saveOrUpdate(Seo seo) {
     if (seo.getId() == null) {
       //新增

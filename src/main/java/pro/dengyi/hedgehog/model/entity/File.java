@@ -1,22 +1,24 @@
 package pro.dengyi.hedgehog.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import pro.dengyi.hedgehog.base.BaseEntity;
 
 @Data
-@AllArgsConstructor
 @Entity
 @Table(name = "t_file")
 public class File extends BaseEntity {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
+  }
 
   /**
    * 文件名
@@ -43,4 +45,13 @@ public class File extends BaseEntity {
    */
   private Long fileSize;
 
+  public File(Long id, String fileName, String suffix, String fileUrl, String fileType,
+      Long fileSize) {
+    super.id = id;
+    this.fileName = fileName;
+    this.suffix = suffix;
+    this.fileUrl = fileUrl;
+    this.fileType = fileType;
+    this.fileSize = fileSize;
+  }
 }

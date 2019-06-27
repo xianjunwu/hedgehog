@@ -21,7 +21,6 @@ public class HedgehogApplication {
     ConfigurableApplicationContext run = SpringApplication.run(HedgehogApplication.class, args);
     String property = run.getEnvironment().getProperty("server.port");
     log.info("项目启动成功，访问地址为：http://localhost:" + property);
-
   }
 
   /**
@@ -37,6 +36,7 @@ public class HedgehogApplication {
   @EnableAsync
   @Configuration
   class TaskPoolConfig {
+
     @Bean("taskExecutor")
     public Executor taskExecutor() {
       ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
