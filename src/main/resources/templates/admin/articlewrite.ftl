@@ -46,12 +46,12 @@
               <div class="col-md-12" style="margin-top: 20px">
                 <div class="input-control">
                   <input id="title" name="title" type="text" class="form-control input-lg"
-                         onfocus="removeError()" placeholder="文章标题">
+                         onfocus="removeError()" placeholder="文章标题" autocomplete="off">
                 </div>
               </div>
               <div class="col-md-12" style="margin-top: 20px">
 								<textarea class="form-control" name="summary" id="summary" rows="3"
-                          placeholder="摘要"></textarea>
+                          placeholder="摘要" autocomplete="off"></textarea>
               </div>
               <div class="col-md-12" style="margin-top: 20px">
 								<textarea id="content" name="content" class="form-control kindeditor"
