@@ -17,6 +17,7 @@ import pro.dengyi.hedgehog.service.CommontService;
 import pro.dengyi.hedgehog.service.LogService;
 import pro.dengyi.hedgehog.service.NoticeService;
 import pro.dengyi.hedgehog.service.SiteInfoService;
+import pro.dengyi.hedgehog.service.SystemConfigService;
 
 /**
  * 管理页面主页controller

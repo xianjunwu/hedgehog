@@ -48,13 +48,18 @@
                            placeholder="搜索">
                     <label for="inputSearchExample2" class="input-control-icon-left search-icon"><i
                           class="icon icon-search"></i></label>
-                    <a href="#" class="input-control-icon-right search-clear-btn"><i
-                          class="icon icon-remove"></i></a>
-                    <button class="btn btn-danger" onclick="deleteItems()">删除</button>
-                    <button class="btn btn-success" onclick="deleteItems()">编辑</button>
+
+
+
                   </div>
+
+
                 </div>
-                <div class="datagrid-container"></div>
+                <div class="form-inline">
+                  <button class="btn btn-danger" onclick="deleteItems()">删除</button>
+                  <button class="btn btn-success" onclick="deleteItems()">编辑</button>
+                </div>
+                <div class="datagrid-container" style="margin-top: 10px"></div>
                 <div class="pager"></div>
               </div>
             </div>

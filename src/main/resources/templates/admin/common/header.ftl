@@ -19,22 +19,28 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+
+            <li>
+              <a href="" data-toggle="tooltip" data-placement="bottom" title="前台">
+                <i class="icon-lg icon-location-arrow"></i>
+              </a>
+            </li>
               <#--新通知-->
             <li>
-              <a href="/admin/notice">
+              <a href="/admin/notice" data-toggle="tooltip" data-placement="bottom" title="通知">
                 <span>
                     <i class="icon icon-bell-alt"></i>
 										<span class="label label-danger label-pill up" id="noticeNumber"></span>
                 </span>
               </a>
             </li>
-              <#--新评论-->
+              <#--新邮件-->
             <li>
-              <a href="javascript:">
-                                    <span>
-                                        <i class="icon icon-envelope-alt"></i>
-                                        <span class="label label-success label-pill up">2</span>
-                                    </span>
+              <a href="javascript:" data-toggle="tooltip" data-placement="bottom" title="邮件">
+                 <span>
+                     <i class="icon icon-envelope-alt"></i>
+                     <span class="label label-success label-pill up">2</span>
+                  </span>
               </a>
             </li>
             <li class="dropdown">
@@ -52,4 +58,8 @@
       </div>
     </nav>
   </header>
+
+  <script>
+    $('[data-toggle="tooltip"]').tooltip();
+  </script>
 </#compress>

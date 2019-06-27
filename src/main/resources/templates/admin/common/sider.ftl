@@ -53,35 +53,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="/admin/article/write"><i class="icon icon-circle-blank"></i>写博客</a></li>
-            <li><a href="layout.html"><i class="icon icon-circle-blank"></i>写日记</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="javascript:">
-            <i class="icon icon-columns"></i>
-            <span>基础组件</span>
-            <span class="pull-right-container">
-                                <i class="icon icon-angle-left"></i>
-                            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="component-checkbox-radio.html"><i class="icon icon-circle-blank"></i>
-                多选和单选框</a>
-            </li>
-            <li><a href="component-step.html"><i class="icon icon-circle-blank"></i> 步骤条</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="javascript:">
-            <i class="icon icon-sign-blank"></i>
-            <span>扩展插件</span>
-            <span class="pull-right-container">
-                                <i class="icon icon-angle-left"></i>
-                            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="plugin-toastr.html"><i class="icon icon-circle-blank"></i> Toastr</a></li>
-            <li><a href="plugin-notify.html"><i class="icon icon-circle-blank"></i> Notify</a></li>
+           <#-- <li><a href="layout.html"><i class="icon icon-circle-blank"></i>写日记</a></li>-->
           </ul>
         </li>
         <li class="treeview">

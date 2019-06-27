@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 import pro.dengyi.hedgehog.base.BaseResult;
 import pro.dengyi.hedgehog.service.FileService;
+import pro.dengyi.hedgehog.service.SystemConfigService;
 
 /**
  * 文件上传controller 本项目使用七牛，自己搭建fs比较麻烦
@@ -27,6 +28,8 @@ public class AdminFileController {
 
   @Autowired
   private FileService fileService;
+  @Autowired
+  private SystemConfigService systemConfigService;
 
   @RequestMapping("/uploadFile")
   @ResponseBody
@@ -54,6 +57,12 @@ public class AdminFileController {
   @PostMapping("/uploadRestorePackage")
   @ResponseBody
   public BaseResult uploadRestorePackage(MultipartFile file) {
+    try {
+      systemConfigService.restoreSystem(file);
+      //恢复成功重定向到管理首页
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     System.err.println(file.getSize());
     return new BaseResult();
   }
