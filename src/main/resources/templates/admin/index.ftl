@@ -301,10 +301,15 @@
         changedEventInCalendar.end = formatedChangedEndTime;
         $.post("/admin/calendar/saveOrUpdateEvent", changedEventInCalendar, function (data) {
           if (data.result === 'success') {
-            console.log("修改成功");
+            //防止出现异常重新加载日历
+            var calendar = $('#calendar').data('zui.calendar');
+            calendar.resetData({
+              events: []
+            });
+            //重新查询数据进行新增
+            addAllEvents();
           }
         });
-
       },
       //点击事件添加
       clickCell: function (event) {
@@ -394,7 +399,7 @@
     }
 
     function clearModel(modelName) {
-      var inputs = $("#" + modelName+" input");
+      var inputs = $("#" + modelName + " input");
       for (var i = 0; i < inputs.length; i++) {
         $("#" + inputs[i].id).val("");
       }
