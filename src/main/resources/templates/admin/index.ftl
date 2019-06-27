@@ -9,9 +9,19 @@
     <title>后台管理页面</title>
     <!-- jquery js -->
     <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+    <!-- zui js -->
+    <script src="/static/plugins/zui/js/zui.min.js"></script>
+    <script src="/static/plugins/zui/lib/calendar/zui.calendar.min.js"></script>
+    <!-- app js -->
+    <script src="/static/js/app.js"></script>
     <script src="/static/js/hedgehog-admin.js"></script>
     <link rel="stylesheet" href="/static/plugins/zui/lib/calendar/zui.calendar.min.css">
-    <script src="/static/plugins/zui/lib/calendar/zui.calendar.min.js"></script>
+      <#--时间选择器-->
+    <link rel="stylesheet" href="/static/plugins/zui/lib/datetimepicker/datetimepicker.min.css">
+    <script src="/static/plugins/zui/lib/datetimepicker/datetimepicker.min.js"></script>
+      <#--颜色选择器-->
+    <link rel="stylesheet" href="/static/plugins/zui/lib/colorpicker/zui.colorpicker.min.css">
+    <script src="/static/plugins/zui/lib/colorpicker/zui.colorpicker.js"></script>
     <!-- zui css -->
     <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
     <link rel="stylesheet" href="/static/theme/blue.css">
@@ -120,6 +130,74 @@
           <div class="row">
             <div class="col-md-12">
               <!-- HTML 代码 -->
+              <div class="btn-group pull-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">添加事件
+                </button>
+                <button class="btn btn-danger ">删除事件</button>
+              </div>
+              <div class="modal fade" id="addModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">添加事件</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-horizontal">
+                        <div class="form-group">
+                          <label for="title" class="col-sm-2">事件标题</label>
+                          <div class="col-md-6 col-sm-10">
+                            <input type="text" name="title" autocomplete="off" class="form-control"
+                                   required
+                                   id="title">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="calendarDesc" class="col-sm-2">事件描述</label>
+                          <div class="col-md-6 col-sm-10">
+                            <input type="text" name="calendarDesc" autocomplete="off"
+                                   class="form-control" required
+                                   id="calendarDesc">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="start" class="col-sm-2">开始日期</label>
+                          <div class="col-sm-3">
+                            <input type="text" id="start" name="start" required
+                                   class="form-control form-date"
+                                   placeholder="请选择开始时间">
+                          </div>
+                          <label for="endTime" class="col-sm-2">结束日期</label>
+                          <div class="col-sm-3">
+                            <input type="text" id="end" name="end" required
+                                   class="form-control form-date"
+                                   placeholder="请选择结束时间">
+                          </div>
+                        </div>
+                          <#--  <div class="form-group">
+                              <label for="myColor3" class="col-sm-2">事件颜色</label>
+                              <div class="col-sm-3">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" id="myColor3" name="myColor3"
+                                         data-provide="colorpicker" data-wrapper="input-group-btn"
+                                         data-pull-menu-right="true" value="#3280fC"
+                                         placeholder="请输入16进制颜色值，例如 #FF00DD">
+                                </div>
+                              </div>
+                            </div>-->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal"
+                                  onclick="clearModel('addModal')">关闭
+                          </button>
+                          <button type="button" class="btn btn-primary"
+                                  onclick="saveCalendarEvent()">保存
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div id="calendar" class="calendar"></div>
             </div>
           </div>
@@ -200,19 +278,129 @@
     </div>
   </div>
 
-
-  <!-- zui js -->
-  <script src="/static/plugins/zui/js/zui.min.js"></script>
-  <!-- app js -->
-  <script src="/static/js/app.js"></script>
-
   <script>
     $(function () {
       activeSider();
-      queryAllNotice()
+      queryAllNotice();
+      addAllEvents();
+
     });
-    /* JS 代码 */
-    $('#calendar').calendar();
+    //初始化日历
+    $('#calendar').calendar({
+      clickEvent: function (event) {
+        // console.log(event);
+      }, change: function (event) {
+        var change = event.changes[0];
+        var changedEventInCalendar = change.event;
+        var changedStartTime = changedEventInCalendar.start;
+        var formatedChangedStartTime = myFormatTime(changedStartTime);
+        //日期计算问题
+        var changedEndTime = new Date(changedStartTime).addDays(changedEventInCalendar.days - 1);
+        var formatedChangedEndTime = myFormatTime(changedEndTime);
+        changedEventInCalendar.start = formatedChangedStartTime;
+        changedEventInCalendar.end = formatedChangedEndTime;
+        $.post("/admin/calendar/saveOrUpdateEvent", changedEventInCalendar, function (data) {
+          if (data.result === 'success') {
+            console.log("修改成功");
+          }
+        });
+
+      },
+      //点击事件添加
+      clickCell: function (event) {
+        var calendarStartDate = myFormatTime(event.date);
+        $("#start").val(calendarStartDate);
+        $('#addModal').modal()
+      }
+    });
+
+    //格式化时间
+    function myFormatTime(time) {
+      if (time !== undefined) {
+        var fullYear = time.getFullYear();
+        var month = time.getMonth() + 1;
+        if (month < 10) {
+          month = "0" + month
+        }
+        var date = time.getDate();
+        if (date < 10) {
+          date = "0" + date
+        }
+        return fullYear + "-" + month + "-" + date;
+      }
+
+    }
+
+    //更新所有日历上的事件
+    function addAllEvents() {
+      $.get("/admin/calendar/getAllEvents", function (data) {
+        if (data.result === "success") {
+          //更新日历事件
+          var calendar = $('#calendar').data('zui.calendar');
+          var newEvents = data.data;
+          calendar.addEvents(newEvents);
+        }
+      })
+    }
+
+    //新增一个事件到日历
+    function addOneEventToCalendar(cevent) {
+      var calendar = $('#calendar').data('zui.calendar');
+      calendar.addEvents(cevent);
+    }
+
+    //初始化时间选择器
+    // 仅选择日期
+    $("#start").datetimepicker(
+        {
+          language: "zh-CN",
+          weekStart: 1,
+          todayBtn: 1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0,
+          format: "yyyy-mm-dd"
+        });
+    $("#end").datetimepicker(
+        {
+          language: "zh-CN",
+          weekStart: 1,
+          todayBtn: 1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0,
+          format: "yyyy-mm-dd"
+        });
+
+    function saveCalendarEvent() {
+      $.post("/admin/calendar/saveOrUpdateEvent", {
+        title: $("#title").val(),
+        calendarDesc: $("#calendarDesc").val(),
+        allDay: true,
+        start: $("#start").val(),
+        end: $("#end").val()
+      }, function (data) {
+        if (data.result === 'success') {
+          addOneEventToCalendar(data.data);
+          $('#addModal').modal('hide');
+          clearModel("addModel");
+
+        }
+      })
+    }
+
+    function clearModel(modelName) {
+      var inputs = $("#" + modelName+" input");
+      for (var i = 0; i < inputs.length; i++) {
+        $("#" + inputs[i].id).val("");
+      }
+    }
+
+
   </script>
   </body>
   </html>

@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 文件工具类
+ * <br/>
+ * 提供对文件名及文件的各种操作，比如对判断文件是否是图片或者截取文件的后缀名
  *
  * @author 邓艺
  * @version v1.0
@@ -14,6 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class FileUtil {
 
+  /**
+   * 获取文件的的扩展名
+   *
+   * @param multipartFile multipartFile
+   * @return java.lang.String
+   * @author 邓艺
+   * @date 2019/6/24 15:30
+   */
   public static String getExtendName(MultipartFile multipartFile) {
 
     return Objects.requireNonNull(multipartFile.getOriginalFilename()).split("\\.")[1];
@@ -22,6 +32,7 @@ public class FileUtil {
   /**
    * 判断文件是否是图片方法
    *
+   * @param multipartFile multipartFile
    * @return java.lang.Boolean true代表为图片
    * @author 邓艺
    * @date 2019/6/24 14:04

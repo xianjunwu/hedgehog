@@ -20,12 +20,10 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
-
-
 com:
   qiniu:
-    accessKey: G3wrnnkbDiMDYZL
-    secretKey: Pk5cGZ5KQsv72cpFO
+    accessKey: G3wrnnkbDiMDYZLovFQF6DmaV1BLikj_NsIUAzul
+    secretKey: Pk5cGZ5KQsv72cpFOCtSsRDUlDziHFmIoBp4OjaF
     region: z0
-    outLink: http://ptlbt231
+    outLink: http://ptlbt2312.bkt.clouddn.com/
 

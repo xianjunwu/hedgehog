@@ -16,7 +16,6 @@ function activeSider() {
 function queryAllNotice() {
   $.get("/admin/notice/findAllNoticeNeedToDo", function (data) {
     if (data.result === 'success') {
-      console.log(data.data.length);
       $("#noticeNumber").text(data.data.length)
     } else {
       console.log("查询消息错误");

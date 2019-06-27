@@ -47,4 +47,13 @@ public class SiteInfo extends BaseEntity {
   @Column(length = 150)
   private String faviconUrl;
 
+  /**
+   * pv
+   */
+  private Long pv;
+  /**
+   * uv
+   */
+  private Long uv;
+
 }
