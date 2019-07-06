@@ -48,7 +48,12 @@
                           <a href="#" class="text-muted">
                             <i class="icon-comments"></i> 243</a>
                         </#if>
-                      <span class="text-muted">${article.createTime}</span>
+                        <#if article.updateTime??>
+                          <span class="text-muted">${article.updateTime}</span>
+                        <#else >
+                          <span class="text-muted">${article.createTime}</span>
+                        </#if>
+
                     </div>
                   </div>
                 </#list>

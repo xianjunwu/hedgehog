@@ -12,9 +12,7 @@ public interface SearchService {
   /**
    * 搜索接口
    *
-   * @param pageNumber
-   * @param pageSize
-   * @param key  return void
+   * @param key return void
    * @author 邓艺
    * @date 2019/6/23 21:26
    */

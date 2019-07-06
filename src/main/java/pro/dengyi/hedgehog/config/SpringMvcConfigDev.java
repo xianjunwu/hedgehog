@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import pro.dengyi.hedgehog.intercepter.InstallIntecepter;
+import pro.dengyi.hedgehog.intercepter.PvIntercepter;
 
 /**
  * springmvc 开发环境配置类，去掉一切校验
@@ -21,6 +22,8 @@ public class SpringMvcConfigDev implements WebMvcConfigurer {
 
   @Autowired
   private InstallIntecepter installIntecepter;
+  @Autowired
+  private PvIntercepter pvIntercepter;
 
   /**
    * 注册拦截器
@@ -31,6 +34,7 @@ public class SpringMvcConfigDev implements WebMvcConfigurer {
    */
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(pvIntercepter).addPathPatterns("/**").excludePathPatterns("/admin/**","/static/**","/category/findAllCategory");
 //		registry.addInterceptor(installIntecepter).addPathPatterns("/admin/**");
 
   }

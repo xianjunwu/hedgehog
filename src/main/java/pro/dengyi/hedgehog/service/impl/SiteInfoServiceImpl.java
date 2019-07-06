@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,8 @@ public class SiteInfoServiceImpl implements SiteInfoService {
       siteInfo.setCreateTime(LocalDateTime.now());
     } else {
       //更新
+      Optional<SiteInfo> byId = siteInfoDao.findById(siteInfo.getId());
+      siteInfo.setCreateTime(byId.get().getCreateTime());
       siteInfo.setUpdateTime(LocalDateTime.now());
     }
     return siteInfoDao.save(siteInfo);
@@ -57,5 +60,24 @@ public class SiteInfoServiceImpl implements SiteInfoService {
       return between.getDays();
     }
     return 0;
+  }
+
+  @Override
+  @Transactional
+  public void addPv() {
+    List<SiteInfo> all = siteInfoDao.findAll();
+    if (all != null) {
+      SiteInfo siteInfo = all.get(0);
+      long pvNum = siteInfo.getPv() + 1;
+      siteInfo.setPv(pvNum);
+      siteInfoDao.save(siteInfo);
+
+    }
+  }
+
+  @Override
+  public Long findPvNumber() {
+    List<SiteInfo> all = siteInfoDao.findAll();
+    return all.get(0).getPv();
   }
 }

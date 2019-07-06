@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 文件工具类
- * <br/>
- * 提供对文件名及文件的各种操作，比如对判断文件是否是图片或者截取文件的后缀名
+ * 文件工具类 <br/> 提供对文件名及文件的各种操作，比如对判断文件是否是图片或者截取文件的后缀名
  *
  * @author 邓艺
  * @version v1.0

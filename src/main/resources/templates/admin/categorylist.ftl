@@ -115,7 +115,8 @@
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="clearModel('addcategoryModal')"
+                        <button type="button" class="btn btn-default"
+                                onclick="clearModel('addcategoryModal')"
                                 data-dismiss="modal">关闭
                         </button>
                         <button type="button" class="btn btn-primary" onclick="saveEditCategory()">
@@ -287,6 +288,7 @@
       }
 
     }
+
     function saveEditCategory() {
       var name = $("#categoryNameEdit");
       if (name.val() === '') {
@@ -328,7 +330,6 @@
 
       }
     }
-
 
     /**
      * 保存之前进行校验

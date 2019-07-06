@@ -1,8 +1,6 @@
 package pro.dengyi.hedgehog.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -20,6 +18,20 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_category")
 public class Category extends BaseEntity {
 
+  /**
+   * 分类名称
+   */
+  @Length(max = 5)
+  private String categoryName;
+  /**
+   * 分类描述
+   */
+  private String categoryDesc;
+  /**
+   * 分类路径
+   */
+  private String path;
+
   @Override
   public Long getId() {
     return super.getId();
@@ -29,21 +41,5 @@ public class Category extends BaseEntity {
   public void setId(Long id) {
     super.setId(id);
   }
-
-  /**
-   * 分类名称
-   */
-  @Length(max = 5)
-  private String categoryName;
-
-  /**
-   * 分类描述
-   */
-  private String categoryDesc;
-
-  /**
-   * 分类路径
-   */
-  private String path;
 
 }

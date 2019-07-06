@@ -8,10 +8,12 @@ function addCategoryAndActiveOne() {
       var categoryPathName = pathname.split("/")[3];
       data.data.forEach(function (value, i) {
         if (categoryPathName === value.path) {
-          $("#category").append("<li class='active'><a  href='/article/list/" + value.path + "'>"
+          $("#category").append(
+              "<li class='active'><a  href='/article/list/" + value.path + "'>"
               + value.categoryName + "</a></li>");
-        }else{
-          $("#category").append("<li><a  href='/article/list/" + value.path + "'>"
+        } else {
+          $("#category").append(
+              "<li><a  href='/article/list/" + value.path + "'>"
               + value.categoryName + "</a></li>");
         }
       });

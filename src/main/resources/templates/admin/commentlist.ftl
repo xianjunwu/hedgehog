@@ -53,8 +53,8 @@
 
                 </div>
                 <div class="form-inline">
-                    <button class="btn btn-danger" onclick="deleteItems()">删除</button>
-                    <button class="btn btn-success" onclick="deleteItems()">编辑</button>
+                  <button class="btn btn-danger" onclick="deleteItems()">删除</button>
+                  <button class="btn btn-success" onclick="deleteItems()">编辑</button>
                 </div>
                 <div class="datagrid-container" style="margin-top: 10px"></div>
                 <div class="pager"></div>

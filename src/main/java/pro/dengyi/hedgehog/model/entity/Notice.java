@@ -1,8 +1,6 @@
 package pro.dengyi.hedgehog.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import pro.dengyi.hedgehog.base.BaseEntity;
@@ -19,6 +17,19 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_notice")
 public class Notice extends BaseEntity {
 
+  /**
+   * 通知名
+   */
+  private String noticeName;
+  /**
+   * 是否被解决
+   */
+  private Boolean solved;
+  /**
+   * 是否被浏览过
+   */
+  private Boolean viewed;
+
   @Override
   public Long getId() {
     return super.getId();
@@ -28,20 +39,5 @@ public class Notice extends BaseEntity {
   public void setId(Long id) {
     super.setId(id);
   }
-
-  /**
-   * 通知名
-   */
-  private String noticeName;
-
-  /**
-   * 是否被解决
-   */
-  private Boolean solved;
-
-  /**
-   * 是否被浏览过
-   */
-  private Boolean viewed;
 
 }

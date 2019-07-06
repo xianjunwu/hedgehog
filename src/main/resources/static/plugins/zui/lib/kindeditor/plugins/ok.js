@@ -1,1 +1,3 @@
-if(typeof KindEditor !== 'undefined') KindEditor.pluginOk = true;
+if (typeof KindEditor !== 'undefined') {
+  KindEditor.pluginOk = true;
+}

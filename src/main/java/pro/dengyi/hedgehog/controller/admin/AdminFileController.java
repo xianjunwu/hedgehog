@@ -58,7 +58,7 @@ public class AdminFileController {
   @ResponseBody
   public BaseResult uploadRestorePackage(MultipartFile file) {
     try {
-      systemConfigService.restoreSystem(file);
+      systemConfigService.restoreSystem(file.getInputStream());
       //恢复成功重定向到管理首页
     } catch (IOException e) {
       e.printStackTrace();

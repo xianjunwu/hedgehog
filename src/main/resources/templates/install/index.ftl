@@ -75,7 +75,7 @@
   </div>
   <div class="wizard" id="installstep">
     <ul class="wizard-steps" role="tablist">
-      <li  class="active" role="tab">
+      <li class="active" role="tab">
         <h4>
           第一步:管理员信息
         </h4>

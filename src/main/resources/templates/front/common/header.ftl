@@ -17,7 +17,8 @@
         <ul class="nav navbar-nav" id="category">
           <li></li>
         </ul>
-        <form action="/search"  method="get" autocomplete="off" class="navbar-form navbar-right" role="search" id="headerSearchForm">
+        <form action="/search" method="get" autocomplete="off" class="navbar-form navbar-right"
+              role="search" id="headerSearchForm">
           <div class="form-group">
             <input name="key" type="text" class="form-control" placeholder="搜索">
           </div>

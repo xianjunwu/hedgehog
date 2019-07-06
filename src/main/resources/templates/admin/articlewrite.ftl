@@ -64,14 +64,14 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="category">是否允许评论</label>
+                  <label for="allowComment">是否允许评论</label>
                   <select class="form-control" id="allowComment">
                     <option value="true">允许</option>
                     <option value="false">不允许</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="category">是否推荐</label>
+                  <label for="isRecommend">是否推荐</label>
                   <select class="form-control" id="isRecommend">
                     <option value="true">推荐</option>
                     <option value="false">不推荐</option>
@@ -105,8 +105,8 @@
         basePath: '/static/plugins/zui/lib/kindeditor/',
         allowFileManager: true,
         bodyClass: 'article-content',
-        filePostName:"files",
-        uploadJson:"/admin/file/uploadFile"
+        filePostName: "files",
+        uploadJson: "/admin/file/uploadFile"
       });
       //查询所有的分类
       $.get("/admin/category/findAllCategory", function (data) {
@@ -198,6 +198,7 @@
           "content": $("#content").val(),
           "articleStatus": true,
           "allowComment": $("#allowComment").val(),
+          "isRecommend": $("#isRecommend").val(),
           "category": {
             "id": $("#category").val()
           }

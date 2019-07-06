@@ -15,6 +15,6 @@ public enum ResultEnum {
   /**
    * 失败result值
    */
-  ,fail
+  , fail
 
 }

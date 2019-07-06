@@ -3,7 +3,6 @@ package pro.dengyi.hedgehog.controller.admin;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;

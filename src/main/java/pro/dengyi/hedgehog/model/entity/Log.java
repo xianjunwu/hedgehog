@@ -16,6 +16,19 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_log")
 public class Log extends BaseEntity {
 
+  /**
+   * 标题
+   */
+  private String logTitle;
+  /**
+   * 内容
+   */
+  private String logContent;
+  /**
+   * 产生日志的ip
+   */
+  private String logIp;
+
   @Override
   public Long getId() {
     return super.getId();
@@ -25,20 +38,5 @@ public class Log extends BaseEntity {
   public void setId(Long id) {
     super.setId(id);
   }
-
-  /**
-   * 标题
-   */
-  private String logTitle;
-
-  /**
-   * 内容
-   */
-  private String logContent;
-
-  /**
-   * 产生日志的ip
-   */
-  private String logIp;
 
 }

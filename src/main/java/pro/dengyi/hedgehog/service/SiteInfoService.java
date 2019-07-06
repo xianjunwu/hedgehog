@@ -25,4 +25,8 @@ public interface SiteInfoService {
 
   int findInstallDays();
 
+  void addPv();
+
+  Long findPvNumber();
+
 }

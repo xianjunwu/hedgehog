@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pro.dengyi.hedgehog.model.dto.SingleResult;
@@ -83,7 +84,7 @@ public class SystemConfigController {
    */
   @PostMapping("/saveSiteInfo")
   @ResponseBody
-  public SingleResult<SiteInfo> saveWebInfo(SiteInfo siteInfo) {
+  public SingleResult<SiteInfo> saveWebInfo(@RequestBody SiteInfo siteInfo) {
     SiteInfo info = siteInfoService.saveOrUpdate(siteInfo);
     return new SingleResult<>("success", "新增成功", info);
   }
@@ -111,7 +112,7 @@ public class SystemConfigController {
   @GetMapping("/doBackup")
   public void doBackup(HttpServletResponse response) throws IOException {
     byte[] bytes = systemConfigService.doBackup();
-    response.setHeader("Content-Disposition", "attachment;filename=" + "backup.sql");
+    response.setHeader("Content-Disposition", "attachment;filename=" + "hedgehogbackup.sql");
     response.getOutputStream().write(bytes);
   }
 

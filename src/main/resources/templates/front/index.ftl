@@ -35,7 +35,8 @@
          alt="圆形图片">
   </div>
   <div class="text-center" style="margin: 20px">
-    <span class="text-muted text-ellipsis" style="font-size: 20px">${(siteInfo.slogen)!'好好学习，天天向上'}</span>
+    <span class="text-muted text-ellipsis"
+          style="font-size: 20px">${(siteInfo.slogen)!'好好学习，天天向上'}</span>
   </div>
   <div style="margin: 20px" class="hidden-xs">
     <form action="/search" method="get">
@@ -43,7 +44,8 @@
         <div
             class="input-control search-box search-box-circle has-icon-left has-icon-right search-example"
             id="searchboxExample">
-          <input id="searchInput" type="search" name="key" class="form-control search-input input-lg">
+          <input id="searchInput" type="search" name="key"
+                 class="form-control search-input input-lg">
           <label for="searchInput" class="input-control-icon-left search-icon "></label>
         </div>
         <span class="input-group-btn">

@@ -1,7 +1,7 @@
 package pro.dengyi.hedgehog.service;
 
 import java.io.IOException;
-import org.springframework.web.multipart.MultipartFile;
+import java.io.InputStream;
 
 /**
  * @author 邓艺
@@ -20,5 +20,5 @@ public interface SystemConfigService {
    * @author 邓艺
    * @date 2019/6/27 13:04
    */
-  void restoreSystem(MultipartFile file) throws IOException;
+  void restoreSystem(InputStream file) throws IOException;
 }

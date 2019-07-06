@@ -11,9 +11,10 @@ public enum MessageEnum {
   /**
    * 操作成功
    */
-  oprationSucess,
+  oprationsucess,
   /**
    * 操作失败
    */
   getOprationFail
+
 }

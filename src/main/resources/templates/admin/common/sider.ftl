@@ -53,7 +53,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="/admin/article/write"><i class="icon icon-circle-blank"></i>写博客</a></li>
-           <#-- <li><a href="layout.html"><i class="icon icon-circle-blank"></i>写日记</a></li>-->
+              <#-- <li><a href="layout.html"><i class="icon icon-circle-blank"></i>写日记</a></li>-->
           </ul>
         </li>
         <li class="treeview">

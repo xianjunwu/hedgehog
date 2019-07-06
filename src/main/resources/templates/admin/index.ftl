@@ -93,7 +93,7 @@
                 </div>
                 <div class="info-box-content">
                   <span class="info-box-text">PV总量</span>
-                  <span class="info-box-number">18953
+                  <span class="info-box-number">${pvNum}
                                         <small>次</small>
                                     </span>
                 </div>

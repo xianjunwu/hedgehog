@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import pro.dengyi.hedgehog.dao.SiteInfoDao;
 import pro.dengyi.hedgehog.service.SystemConfigService;
 
@@ -62,16 +61,17 @@ public class SystemConfigServiceImpl implements SystemConfigService {
 
   @Override
   @Async
-  public void restoreSystem(MultipartFile file) throws IOException {
+  public void restoreSystem(InputStream inputStream) throws IOException {
     //查询数据库的安装路径
     Runtime runtime = Runtime.getRuntime();
+    //查询数据库的安装位置
     String basedir = siteInfoDao.queryBaseDir();
     Process process = runtime.exec(
         basedir + "bin\\mysql -hlocalhost -u" + userName
             + " -p" + password + " --default-character-set=utf8 hedgehog");
     OutputStream outputStream = process.getOutputStream();
     BufferedReader br = new BufferedReader(new InputStreamReader(
-        file.getInputStream(), StandardCharsets.UTF_8));
+        inputStream, StandardCharsets.UTF_8));
     String str = null;
     StringBuilder sb = new StringBuilder();
     while ((str = br.readLine()) != null) {

@@ -15,30 +15,34 @@
  * Copyright (c) 2014 cnezsoft.com; Licensed MIT
  * ======================================================================== */
 
-
 (function ($, window) {
-    var zui = $.zui;
-    if (zui) {
-        function extendTo(name, target) {
-            if ($.isArray(name)) {
-                $.each(name, function (i, n) {
-                    extendTo(n, target);
-                });
-                return;
-            }
+  var zui = $.zui;
+  if (zui) {
+    function extendTo(name, target) {
+      if ($.isArray(name)) {
+        $.each(name, function (i, n) {
+          extendTo(n, target);
+        });
+        return;
+      }
 
-            var config = {};
-            config[name] = zui[name];
+      var config = {};
+      config[name] = zui[name];
 
-            if (target) {
-                $.extend(target, config);
-            } else {
-                $.extend(config);
-            }
-        }
-
-        extendTo(['uuid', 'callEvent', 'clientLang', 'browser', 'messager', 'Messager', 'showMessager', 'closeModal', 'ajustModalPosition', 'ModalTrigger', 'modalTrigger', 'store']);
-        extendTo(['Color', 'imgReady', 'messager', 'Messager', 'showMessager', 'closeModal', 'ajustModalPosition', 'ModalTrigger', 'modalTrigger', 'store'], window);
+      if (target) {
+        $.extend(target, config);
+      } else {
+        $.extend(config);
+      }
     }
+
+    extendTo(
+        ['uuid', 'callEvent', 'clientLang', 'browser', 'messager', 'Messager',
+          'showMessager', 'closeModal', 'ajustModalPosition', 'ModalTrigger',
+          'modalTrigger', 'store']);
+    extendTo(['Color', 'imgReady', 'messager', 'Messager', 'showMessager',
+      'closeModal', 'ajustModalPosition', 'ModalTrigger', 'modalTrigger',
+      'store'], window);
+  }
 }(jQuery, window));
 

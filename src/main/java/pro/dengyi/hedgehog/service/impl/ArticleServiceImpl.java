@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -17,11 +16,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pro.dengyi.hedgehog.dao.ArticleDao;
-import pro.dengyi.hedgehog.dao.ArticleSearchDao;
 import pro.dengyi.hedgehog.model.bo.DataGridBo;
 import pro.dengyi.hedgehog.model.bo.DataGridPager;
 import pro.dengyi.hedgehog.model.bo.NormalPageQueryBo;
-import pro.dengyi.hedgehog.model.dto.ArticleSearchDto;
 import pro.dengyi.hedgehog.model.entity.Article;
 import pro.dengyi.hedgehog.model.entity.Category;
 import pro.dengyi.hedgehog.service.ArticleService;
@@ -32,8 +29,6 @@ public class ArticleServiceImpl implements ArticleService {
   @Autowired
   private ArticleDao articleDao;
 
-  @Autowired
-  private ArticleSearchDao articleSearchDao;
 
   @Override
   public Integer findTheNumberOfArticle() {
@@ -64,9 +59,6 @@ public class ArticleServiceImpl implements ArticleService {
    */
   @Async
   public void addToSearchSystem(Article article) {
-    ArticleSearchDto articleSearchDto = new ArticleSearchDto();
-    BeanUtils.copyProperties(article, articleSearchDto);
-    articleSearchDao.save(articleSearchDto);
 
   }
 
@@ -153,6 +145,6 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Async
   public void deleteFromSearchSystem(Long id) {
-    articleSearchDao.deleteById(id);
+//    articleSearchDao.deleteById(id);
   }
 }

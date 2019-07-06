@@ -7,8 +7,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,6 +24,34 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_calendar_event")
 public class CalendarEvent extends BaseEntity {
 
+  /**
+   * 标题
+   */
+  private String title;
+  /**
+   * 描述
+   */
+  @JsonProperty("desc")
+  private String calendarDesc;
+  /**
+   * 是否是全天事件
+   */
+  private Boolean allDay = true;
+  /**
+   * 开始时间
+   */
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+  @Column(columnDefinition = "date")
+  private Date start;
+  /**
+   * 截止时间
+   */
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+  @Column(columnDefinition = "date")
+  private Date end;
+
   @Override
   public Long getId() {
     return super.getId();
@@ -35,40 +61,6 @@ public class CalendarEvent extends BaseEntity {
   public void setId(Long id) {
     super.setId(id);
   }
-
-  /**
-   * 标题
-   */
-  private String title;
-
-  /**
-   * 描述
-   */
-  @JsonProperty("desc")
-  private String calendarDesc;
-
-
-  /**
-   * 是否是全天事件
-   */
-  private Boolean allDay = true;
-
-  /**
-   * 开始时间
-   */
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
-  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-  @Column(columnDefinition = "date")
-  private Date start;
-
-  /**
-   * 截止时间
-   */
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
-  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-  @Column(columnDefinition = "date")
-  private Date end;
-
 
   @Override
   @JsonIgnore

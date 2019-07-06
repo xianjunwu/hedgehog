@@ -20,7 +20,7 @@
     - kindeditor 富文本编辑器
 + 后端
     - springboot
-    - spring data jpa
+    - spring data jpa(由于个人服务器性能太垃圾，搜索引擎替换为hibernate search)
     - spring data solr 简化搜索
     - redis 对高频查询进行缓存
     - freemarker 页面静态化处理，后端渲染，方便蜘蛛抓取，利于seo

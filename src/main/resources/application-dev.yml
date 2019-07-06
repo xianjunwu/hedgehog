@@ -1,29 +1,31 @@
-#系统配置
+#系统访问端口
 server:
   port: 80
 #springboot配置
 spring:
+  #数据库连接及端口配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3306/hedgehog?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+  #jpa相关配置，是否显示sql及是否自动生成sql
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+    database: mysql
+  # freemarker配置
   freemarker:
     cache: false
-  data:
-    solr:
-      host: http://localhost:8983/solr
+  #文件上传配置
   servlet:
     multipart:
       max-file-size: 10MB
+#七牛云配置
 com:
   qiniu:
     accessKey: G3wrnnkbDiMDYZLovFQF6DmaV1BLikj_NsIUAzul
     secretKey: Pk5cGZ5KQsv72cpFOCtSsRDUlDziHFmIoBp4OjaF
     region: z0
     outLink: http://ptlbt2312.bkt.clouddn.com/
-

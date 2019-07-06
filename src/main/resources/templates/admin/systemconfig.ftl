@@ -88,7 +88,7 @@
                 </div>
                 <div class="tab-pane" id="siteInfoSet">
                   <form action="/admin/systemConfig/saveSiteInfo" class="form-horizontal">
-                    <input type="hidden" name="id" value="${siteInfo.id}">
+                    <input type="hidden" id="siteInfoId" value="${siteInfo.id}">
                     <div class="form-group">
                       <label for="siteName" class="col-sm-4 required">网站名</label>
                       <div class="col-md-6 col-sm-10">
@@ -124,9 +124,12 @@
                                placeholder="网页图标" value="${siteInfo.faviconUrl}">
                       </div>
                     </div>
+                    <input type="hidden" id="siteInfoSetCreateTime" value="${siteInfo.createTime}">
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-success">保存设置</button>
+                        <button type="button" class="btn btn-success" onclick="saveSiteInfoSet()">
+                          保存设置
+                        </button>
                       </div>
                     </div>
                   </form>
@@ -184,7 +187,42 @@
       </div>
     </div>
   </div>
+  <script>
+    $.ajaxSettings.contentType = "application/json;charset=UTF-8";
 
+    //更新网站信息
+    function saveSiteInfoSet() {
+
+      var params = {
+        id: $('#siteInfoId').val(),
+        siteName: $('#siteName').val(),
+        slogen: $('#slogen').val(),
+        copyright: $('#copyright').val(),
+        logoUrl: $('#logoUrl').val(),
+        faviconUrl: $('#faviconUrl').val()
+
+
+      };
+      $.post("/admin/systemConfig/saveSiteInfo", JSON.stringify(params), function (callback) {
+        if (callback.result === 'success') {
+          //浮动消息通知
+          new $.zui.Messager('更新成功', {
+            type: 'success', // 定义颜色主题，
+            time: 1000,
+            icon: 'ok'
+          }).show();
+
+        } else {
+          //浮动消息通知
+          new $.zui.Messager('更新失败！', {
+            icon: 'warning-sign', // 定义消息图标
+            time: 1000
+          }).show();
+        }
+      })
+
+    }
+  </script>
 
   <!-- zui js -->
   <script src="/static/plugins/zui/js/zui.min.js"></script>

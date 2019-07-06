@@ -10,36 +10,22 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_file")
 public class File extends BaseEntity {
 
-  @Override
-  public Long getId() {
-    return super.getId();
-  }
-
-  @Override
-  public void setId(Long id) {
-    super.setId(id);
-  }
-
   /**
    * 文件名
    */
   private String fileName;
-
   /**
    * 后缀名
    */
   private String suffix;
-
   /**
    * 文件实际地址
    */
   private String fileUrl;
-
   /**
    * 文件类型
    */
   private String fileType;
-
   /**
    * 文件大小
    */
@@ -53,5 +39,15 @@ public class File extends BaseEntity {
     this.fileUrl = fileUrl;
     this.fileType = fileType;
     this.fileSize = fileSize;
+  }
+
+  @Override
+  public Long getId() {
+    return super.getId();
+  }
+
+  @Override
+  public void setId(Long id) {
+    super.setId(id);
   }
 }
