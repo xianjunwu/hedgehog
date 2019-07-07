@@ -24,7 +24,7 @@ public class VerifyServlet extends HttpServlet {
   /**
    * codeSequence 表示字符允许出现的序列值
    */
-  char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+  private char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
       'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
       '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
@@ -51,7 +51,7 @@ public class VerifyServlet extends HttpServlet {
   /**
    * 干扰线数量
    */
-  private int interLine = 16;
+  private int interLine = 10;
 
   /**
    * 第一个字符的x轴值，因为后面的字符坐标依次递增，所以它们的x轴值是codeX的倍数
@@ -128,7 +128,7 @@ public class VerifyServlet extends HttpServlet {
       gd.drawLine(x, y, x + xl, y + yl);
     }
     // randomCode用于保存随机产生的验证码，以便用户登录后进行验证。
-    StringBuffer randomCode = new StringBuffer();
+    StringBuilder randomCode = new StringBuilder();
     int red = 0, green = 0, blue = 0;
     // 随机产生codeCount数字的验证码。
     for (int i = 0; i < codeCount; i++) {
