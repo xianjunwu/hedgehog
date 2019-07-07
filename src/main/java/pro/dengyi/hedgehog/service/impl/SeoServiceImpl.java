@@ -1,6 +1,6 @@
 package pro.dengyi.hedgehog.service.impl;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +30,10 @@ public class SeoServiceImpl implements SeoService {
   public Seo saveOrUpdate(Seo seo) {
     if (seo.getId() == null) {
       //新增
-      seo.setCreateTime(LocalDateTime.now());
+      seo.setCreateTime(new Date());
     } else {
       //更新
-      seo.setUpdateTime(LocalDateTime.now());
+      seo.setUpdateTime(new Date());
     }
     return seoDao.save(seo);
   }

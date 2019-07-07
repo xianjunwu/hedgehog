@@ -64,6 +64,7 @@ public class InstallController {
   public SingleResult<User> saveUser(@Validated User user, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       //字段检验没有通过
+      System.out.println(bindingResult.getAllErrors());
 
     } else {
 

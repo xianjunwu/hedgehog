@@ -2,6 +2,7 @@ package pro.dengyi.hedgehog.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -30,13 +31,13 @@ public class BaseEntity {
    */
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
   @JsonFormat(pattern = "yyyy-MM-dd hh:mm")
-  public LocalDateTime createTime;
+  public Date createTime;
 
   /**
    * 更新时间
    */
   @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
   @JsonFormat(pattern = "yyyy-MM-dd hh:mm")
-  public LocalDateTime updateTime;
+  public Date updateTime;
 
 }

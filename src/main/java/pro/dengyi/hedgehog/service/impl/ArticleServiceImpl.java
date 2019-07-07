@@ -1,6 +1,6 @@
 package pro.dengyi.hedgehog.service.impl;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
@@ -40,9 +40,9 @@ public class ArticleServiceImpl implements ArticleService {
   public Article saveOrUpdate(Article article) {
     //新增
     if (article.getId() == null) {
-      article.setCreateTime(LocalDateTime.now());
+      article.setCreateTime(new Date());
     } else {
-      article.setUpdateTime(LocalDateTime.now());
+      article.setUpdateTime(new Date());
     }
 
     Article articleSaved = articleDao.save(article);

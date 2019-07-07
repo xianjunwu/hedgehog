@@ -18,7 +18,6 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Data
 @Entity
 @Table(name = "t_user")
-@EqualsAndHashCode
 public class User extends BaseEntity {
 
   /**
@@ -26,6 +25,7 @@ public class User extends BaseEntity {
    */
   @NotBlank(message = "手机号不能为空")
   private String phoneNumber;
+
   @NotBlank(message = "昵称不能为空")
   private String nickName;
   /**
@@ -40,14 +40,5 @@ public class User extends BaseEntity {
   @Email(message = "邮箱格式不正确")
   private String userEmail;
 
-  @Override
-  public Long getId() {
-    return super.getId();
-  }
-
-  @Override
-  public void setId(Long id) {
-    super.setId(id);
-  }
 
 }

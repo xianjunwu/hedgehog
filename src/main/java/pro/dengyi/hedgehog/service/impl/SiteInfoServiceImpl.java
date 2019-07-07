@@ -1,8 +1,10 @@
 package pro.dengyi.hedgehog.service.impl;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -33,12 +35,12 @@ public class SiteInfoServiceImpl implements SiteInfoService {
   public SiteInfo saveOrUpdate(SiteInfo siteInfo) {
     if (siteInfo.getId() == null) {
       //新增
-      siteInfo.setCreateTime(LocalDateTime.now());
+      siteInfo.setCreateTime(new Date());
     } else {
       //更新
       Optional<SiteInfo> byId = siteInfoDao.findById(siteInfo.getId());
       siteInfo.setCreateTime(byId.get().getCreateTime());
-      siteInfo.setUpdateTime(LocalDateTime.now());
+      siteInfo.setUpdateTime(new Date());
     }
     return siteInfoDao.save(siteInfo);
   }
@@ -55,8 +57,11 @@ public class SiteInfoServiceImpl implements SiteInfoService {
     List<SiteInfo> all = siteInfoDao.findAll();
     if (!CollectionUtils.isEmpty(all)) {
       SiteInfo siteInfo = all.get(0);
-      LocalDateTime createTime = siteInfo.getCreateTime();
-      Period between = Period.between(createTime.toLocalDate(), LocalDate.now());
+      Date createTime = siteInfo.getCreateTime();
+      Instant instant = createTime.toInstant();
+      ZoneId zoneId = ZoneId.systemDefault();
+      LocalDate localDate = instant.atZone(zoneId).toLocalDate();
+      Period between = Period.between(localDate, LocalDate.now());
       return between.getDays();
     }
     return 0;

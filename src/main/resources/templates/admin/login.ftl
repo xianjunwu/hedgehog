@@ -31,13 +31,13 @@
         <label for="phoneNumber" class="col-sm-3">手机号</label>
         <div class="col-md-7">
           <input name="phoneNumber" id="phoneNumber" type="text" class="form-control"
-                 placeholder="手机号">
+              required   placeholder="手机号">
         </div>
       </div>
       <div class="form-group">
         <label for="password" class="col-sm-3">密码</label>
         <div class="col-md-7">
-          <input name="passWord" type="password" id="passWord" class="form-control"
+          <input autocomplete="off" required  name="password" type="password" id="passWord" class="form-control"
                  placeholder="密码">
         </div>
       </div>
@@ -46,7 +46,7 @@
         <div class="col-sm-7">
           <div class="input-group">
             <input type="text" id="verificationCode" name="verificationCode" class="form-control"
-                   placeholder="输入图片中验证码">
+                required autocomplete="off"  placeholder="输入图片中验证码">
             <img src="/admin/system/getVerificationCode" id="imgObj" alt="验证码">
             <a href="#" onclick="changeImg()">看不清，换一张</a></span>
           </div>

@@ -66,4 +66,26 @@ public class AdminFileController {
     System.err.println(file.getSize());
     return new BaseResult();
   }
+
+  @PostMapping("/uploadLogo")
+  public void uploadLogo(HttpServletRequest request) {
+    MultipartRequest multipartRequest = (MultipartRequest) request;
+    Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+    Set<String> fileNames = fileMap.keySet();
+    for (String fileName : fileNames) {
+      MultipartFile multipartFile = fileMap.get(fileName);
+      fileService.uploadImageToProject(multipartFile, "logo");
+    }
+  }
+
+  @PostMapping("/uploadFavicon")
+  public void uploadFavicon(HttpServletRequest request) {
+    MultipartRequest multipartRequest = (MultipartRequest) request;
+    Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+    Set<String> fileNames = fileMap.keySet();
+    for (String fileName : fileNames) {
+      MultipartFile multipartFile = fileMap.get(fileName);
+      fileService.uploadImageToProject(multipartFile, "ico");
+    }
+  }
 }

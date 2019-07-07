@@ -13,4 +13,7 @@ public interface FileService {
    * @date 2019/6/23 23:29
    */
   String uploadFileToQiNiu(MultipartFile multipartFile) throws IOException;
+
+  void uploadImageToProject(MultipartFile multipartFile, String type);
+
 }

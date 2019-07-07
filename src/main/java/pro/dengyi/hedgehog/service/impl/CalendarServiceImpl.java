@@ -1,6 +1,6 @@
 package pro.dengyi.hedgehog.service.impl;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +34,9 @@ public class CalendarServiceImpl implements CalendarService {
   @Transactional
   public CalendarEvent saveOrUpdateEvent(CalendarEvent calendarEvent) {
     if (calendarEvent.getId() == null) {
-      calendarEvent.setCreateTime(LocalDateTime.now());
+      calendarEvent.setCreateTime(new Date());
     } else {
-      calendarEvent.setUpdateTime(LocalDateTime.now());
+      calendarEvent.setUpdateTime(new Date());
     }
     CalendarEvent save = calendarDao.save(calendarEvent);
     return save;

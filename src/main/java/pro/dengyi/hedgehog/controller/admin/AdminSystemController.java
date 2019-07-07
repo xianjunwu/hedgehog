@@ -61,13 +61,13 @@ public class AdminSystemController {
    */
   @PostMapping("/doLogin")
   public String doLogin(HttpSession session, User user) {
-    try {
+
       User userLogin = userService.doLogin(user);
-      session.setAttribute("loginUser", userLogin);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return "redirect:/admin/index";
+      if (userLogin!=null) {
+        session.setAttribute("loginUser", userLogin);
+        return "redirect:/admin";
+      }
+    return "redirect:/admin/system/showLoginPage";
   }
 
   /**

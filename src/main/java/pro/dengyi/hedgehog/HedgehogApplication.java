@@ -23,14 +23,14 @@ import pro.dengyi.hedgehog.servlet.VerifyServlet;
 @SpringBootApplication
 public class HedgehogApplication {
 
-  @Value("${spring.datasource.driver-class-name}")
-  private String driverClassName;
-  @Value("${spring.datasource.url}")
-  private String url;
-  @Value("${spring.datasource.username}")
-  private String username;
-  @Value("${spring.datasource.password}")
-  private String password;
+//  @Value("${spring.datasource.driver-class-name}")
+//  private String driverClassName;
+//  @Value("${spring.datasource.url}")
+//  private String url;
+//  @Value("${spring.datasource.username}")
+//  private String username;
+//  @Value("${spring.datasource.password}")
+//  private String password;
 
 
   public static void main(String[] args) {
@@ -42,33 +42,33 @@ public class HedgehogApplication {
   /**
    * 项目启动后创建数据库，jpa不会创建数据库，为了优化这一点
    */
-  @PostConstruct
-  public void createDataBase() {
-    Connection connection = null;
-    Statement statement = null;
-    try {
-      Class.forName(driverClassName);
-      String[] hedgehogs = url.split("hedgehog");
-      String databaseMysqlUrl = hedgehogs[0] + "mysql" + hedgehogs[1];
-      connection = DriverManager.getConnection(databaseMysqlUrl, username, password);
-      connection.setAutoCommit(false);
-      //默认自动提交事务
-      statement = connection.createStatement();
-      String createDataBaseSql = "CREATE DATABASE hedgehog DEFAULT CHARSET utf8 COLLATE utf8_general_ci;";
-      statement.execute(createDataBaseSql);
-      connection.commit();
-      statement.close();
-      connection.close();
-    } catch (ClassNotFoundException e) {
-      log.error("创建数据库时驱动类未找到");
-      e.printStackTrace();
-    } catch (SQLException e) {
-      log.error("创建数据库SQL异常");
-      e.printStackTrace();
-
-    }
-
-  }
+//  @PostConstruct
+//  public void createDataBase() {
+//    Connection connection = null;
+//    Statement statement = null;
+//    try {
+//      Class.forName(driverClassName);
+//      String[] hedgehogs = url.split("hedgehog");
+//      String databaseMysqlUrl = hedgehogs[0] + "mysql" + hedgehogs[1];
+//      connection = DriverManager.getConnection(databaseMysqlUrl, username, password);
+//      connection.setAutoCommit(false);
+//      //默认自动提交事务
+//      statement = connection.createStatement();
+//      String createDataBaseSql = "CREATE DATABASE hedgehog DEFAULT CHARSET utf8 COLLATE utf8_general_ci;";
+//      statement.execute(createDataBaseSql);
+//      connection.commit();
+//      statement.close();
+//      connection.close();
+//    } catch (ClassNotFoundException e) {
+//      log.error("创建数据库时驱动类未找到");
+//      e.printStackTrace();
+//    } catch (SQLException e) {
+//      log.error("创建数据库SQL异常");
+//      e.printStackTrace();
+//
+//    }
+//
+//  }
 
   /**
    * 注入验证码servlet

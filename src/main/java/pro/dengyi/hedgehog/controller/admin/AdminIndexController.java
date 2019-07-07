@@ -58,6 +58,7 @@ public class AdminIndexController {
     int days = siteInfoService.findInstallDays();
     //日志总数
     int logNum = logService.findLogNumber();
+    //pv数
     Long pvNum = siteInfoService.findPvNumber();
 
     model.addAttribute("categoryNumber", categoryNumber);

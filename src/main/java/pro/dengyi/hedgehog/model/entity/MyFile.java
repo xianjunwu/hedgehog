@@ -8,7 +8,7 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Data
 @Entity
 @Table(name = "t_file")
-public class File extends BaseEntity {
+public class MyFile extends BaseEntity {
 
   /**
    * 文件名
@@ -31,7 +31,7 @@ public class File extends BaseEntity {
    */
   private Long fileSize;
 
-  public File(Long id, String fileName, String suffix, String fileUrl, String fileType,
+  public MyFile(Long id, String fileName, String suffix, String fileUrl, String fileType,
       Long fileSize) {
     super.id = id;
     this.fileName = fileName;

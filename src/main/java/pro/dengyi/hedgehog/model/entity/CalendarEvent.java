@@ -62,15 +62,5 @@ public class CalendarEvent extends BaseEntity {
     super.setId(id);
   }
 
-  @Override
-  @JsonIgnore
-  public LocalDateTime getCreateTime() {
-    return super.getCreateTime();
-  }
 
-  @Override
-  @JsonIgnore
-  public LocalDateTime getUpdateTime() {
-    return super.getUpdateTime();
-  }
 }

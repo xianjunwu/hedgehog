@@ -105,7 +105,7 @@
                   <i class="icon icon-time"></i>
                 </div>
                 <div class="info-box-content">
-                  <span class="info-box-text">异常日志数</span>
+                  <span class="info-box-text">日志数</span>
                   <span class="info-box-number">${logNum}
                                         <small>条</small>
                                     </span>
@@ -283,41 +283,41 @@
       activeSider();
       queryAllNotice();
       addAllEvents();
+      //初始化日历
+      $('#calendar').calendar({
+        clickEvent: function (event) {
+          // console.log(event);
+        }, change: function (event) {
+          var change = event.changes[0];
+          var changedEventInCalendar = change.event;
+          var changedStartTime = changedEventInCalendar.start;
+          var formatedChangedStartTime = myFormatTime(changedStartTime);
+          //日期计算问题
+          var changedEndTime = new Date(changedStartTime).addDays(changedEventInCalendar.days - 1);
+          var formatedChangedEndTime = myFormatTime(changedEndTime);
+          changedEventInCalendar.start = formatedChangedStartTime;
+          changedEventInCalendar.end = formatedChangedEndTime;
+          $.post("/admin/calendar/saveOrUpdateEvent", changedEventInCalendar, function (data) {
+            if (data.result === 'success') {
+              //防止出现异常重新加载日历
+              var calendar = $('#calendar').data('zui.calendar');
+              calendar.resetData({
+                events: []
+              });
+              //重新查询数据进行新增
+              addAllEvents();
+            }
+          });
+        },
+        //点击事件添加
+        clickCell: function (event) {
+          var calendarStartDate = myFormatTime(event.date);
+          $("#start").val(calendarStartDate);
+          $('#addModal').modal()
+        }
+      });
+    });
 
-    });
-    //初始化日历
-    $('#calendar').calendar({
-      clickEvent: function (event) {
-        // console.log(event);
-      }, change: function (event) {
-        var change = event.changes[0];
-        var changedEventInCalendar = change.event;
-        var changedStartTime = changedEventInCalendar.start;
-        var formatedChangedStartTime = myFormatTime(changedStartTime);
-        //日期计算问题
-        var changedEndTime = new Date(changedStartTime).addDays(changedEventInCalendar.days - 1);
-        var formatedChangedEndTime = myFormatTime(changedEndTime);
-        changedEventInCalendar.start = formatedChangedStartTime;
-        changedEventInCalendar.end = formatedChangedEndTime;
-        $.post("/admin/calendar/saveOrUpdateEvent", changedEventInCalendar, function (data) {
-          if (data.result === 'success') {
-            //防止出现异常重新加载日历
-            var calendar = $('#calendar').data('zui.calendar');
-            calendar.resetData({
-              events: []
-            });
-            //重新查询数据进行新增
-            addAllEvents();
-          }
-        });
-      },
-      //点击事件添加
-      clickCell: function (event) {
-        var calendarStartDate = myFormatTime(event.date);
-        $("#start").val(calendarStartDate);
-        $('#addModal').modal()
-      }
-    });
 
     //格式化时间
     function myFormatTime(time) {
@@ -389,16 +389,18 @@
         start: $("#start").val(),
         end: $("#end").val()
       }, function (data) {
+        clearModel('addModal');
         if (data.result === 'success') {
+          new $.zui.Messager('保存草稿成功！', {
+            type: 'success', // 定义颜色主题，
+            time: 1000,
+            icon: 'ok'
+          }).show();
           addOneEventToCalendar(data.data);
           $('#addModal').modal('hide');
-          clearModel("addModel");
-
         }
       })
     }
-
-
   </script>
   </body>
   </html>

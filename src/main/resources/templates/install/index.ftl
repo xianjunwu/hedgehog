@@ -143,6 +143,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="siteUrl" class="col-sm-4 required">域名</label>
+            <div class="col-md-6 col-sm-10">
+              <input type="text" class="form-control" id="siteUrl" placeholder="域名">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="slogen" class="col-sm-4 required">网站标语</label>
             <div class="col-md-6 col-sm-10">
               <input type="text" class="form-control" id="slogen" placeholder="网站标语">
@@ -155,15 +161,25 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="logoUrl" class="col-sm-4 required">网站标志</label>
+            <label for="logoUrlUpload" class="col-sm-4 required">网站标志</label>
             <div class="col-md-6 col-sm-10">
-              <input type="text" class="form-control" id="logoUrl" placeholder="网站标志">
+              <div id="logoUrlUpload" class="uploader">
+                <div class="file-list" data-drag-placeholder="请拖拽文件到此处"></div>
+                <button type="button" class="btn btn-primary uploader-btn-browse"><i
+                      class="icon icon-cloud-upload"></i> 选择文件
+                </button>
+              </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="faviconUrl" class="col-sm-4 required">网页图标</label>
+            <label for="faviconUrlUpload" class="col-sm-4 required">网页图标</label>
             <div class="col-md-6 col-sm-10">
-              <input type="password" class="form-control" id="faviconUrl" placeholder="网页图标">
+              <div id="faviconUrlUpload" class="uploader">
+                <div class="file-list" data-drag-placeholder="请拖拽文件到此处"></div>
+                <button type="button" class="btn btn-primary uploader-btn-browse"><i
+                      class="icon icon-cloud-upload"></i> 选择文件
+                </button>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -206,7 +222,7 @@
           <div class="form-group">
             <label for="btoken" class="col-sm-4 required">百度推送token</label>
             <div class="col-md-6 col-sm-10">
-              <input type="password" class="form-control" id="btoken" placeholder="百度推送token">
+              <input type="text" class="form-control" id="btoken" placeholder="百度推送token">
             </div>
           </div>
           <div class="form-group">
@@ -241,94 +257,146 @@
   });
 
   function toNext(i) {
-
     if (i === 0) {
-      //保存用户设置
-      $.post("/install/saveUser", {
-        phoneNumber: $("#phoneNumber").val(),
-        id: $("#userId").val(),
-        nickName: $("#nickName").val(),
-        password: $("#password").val(),
-        userEmail: $("#userEmail").val()
-      }, function (data) {
-        if (data.result === 'success') {
-          //新增成功
-          new $.zui.Messager('保存管理员成功！', {
-            type: 'success', // 定义颜色主题，
-            time: 1000,
-            icon: 'ok'
-          }).show();
-          //将id存回来，防止倒回来修改
-          $("#userId").val(data.data.id);
-          //跳转到下一项
-          $("#installstep").wizard('goTo', i + 1);
+      var inputArray = [
+        'phoneNumber',
+        'nickName',
+        'password',
+        'userEmail'
+      ];
+      //页面校验
+      if (validInputNotNull(inputArray)) {
+        //重新输入密码是否和第一次密码相同
+        if ($('#password').val() === $('#repassword').val()) {
+          //保存用户设置
+          $.post("/install/saveUser", {
+            phoneNumber: $("#phoneNumber").val(),
+            id: $("#userId").val(),
+            nickName: $("#nickName").val(),
+            password: $("#password").val(),
+            userEmail: $("#userEmail").val()
+          }, function (data) {
+            if (data.result === 'success') {
+              //新增成功
+              new $.zui.Messager('保存管理员成功！', {
+                type: 'success', // 定义颜色主题，
+                time: 1000,
+                icon: 'ok'
+              }).show();
+              //将id存回来，防止倒回来修改
+              $("#userId").val(data.data.id);
+              //跳转到下一项
+              $("#installstep").wizard('goTo', i + 1);
+            } else {
+              //浮动消息通知
+              new $.zui.Messager('保存管理员失败！', {
+                icon: 'warning-sign', // 定义消息图标
+                time: 1000
+              }).show();
+              //重新跳回去
+              $("#installstep").wizard('goTo', i);
+            }
+          })
+
         } else {
-          //浮动消息通知
-          new $.zui.Messager('保存管理员失败！', {
+          new $.zui.Messager('两次输入密码不相同', {
             icon: 'warning-sign', // 定义消息图标
+            type: 'danger',
             time: 1000
           }).show();
-          //重新跳回去
-          $("#installstep").wizard('goTo', i);
         }
-
-      })
+      } else {
+        new $.zui.Messager('必填项必须填写', {
+          icon: 'warning-sign', // 定义消息图标
+          type: 'danger',
+          time: 1000
+        }).show();
+      }
     } else if (i === 1) {
-      //保存网站基本信息
-      $.post("/install/saveSiteInfo", {
-        siteName: $("#siteName").val(),
-        id: $("#websiteid").val(),
-        slogen: $("#slogen").val(),
-        copyright: $("#copyright").val(),
-        logoUrl: $("#logoUrl").val(),
-        faviconUrl: $("#faviconUrl").val()
-      }, function (data) {
-        if (data.result === 'success') {
-          //新增成功
-          new $.zui.Messager('保存网站信息成功！', {
-            type: 'success', // 定义颜色主题，
-            time: 1000,
-            icon: 'ok'
-          }).show();
-          //将id存回来，防止倒回来修改
-          $("#websiteid").val(data.data.id);
-          //跳转到下一项
-          $("#installstep").wizard('goTo', i + 1);
-        } else {
-          //浮动消息通知
-          new $.zui.Messager('保存网站信息失败！', {
-            icon: 'warning-sign', // 定义消息图标
-            time: 1000
-          }).show();
-          //重新跳回去
-          $("#installstep").wizard('goTo', i);
-        }
+      var inputArray = [
+        'siteName',
+        'slogen',
+        'copyright',
+        'siteUrl'
+      ];
+      if (validInputNotNull(inputArray)) {
+        //保存网站基本信息
+        $.post("/install/saveSiteInfo", {
+          siteName: $("#siteName").val(),
+          id: $("#websiteid").val(),
+          slogen: $("#slogen").val(),
+          copyright: $("#copyright").val(),
+          siteUrl: $("#siteUrl").val()
+        }, function (data) {
+          if (data.result === 'success') {
+            //新增成功
+            new $.zui.Messager('保存网站信息成功！', {
+              type: 'success', // 定义颜色主题，
+              time: 1000,
+              icon: 'ok'
+            }).show();
+            //将id存回来，防止倒回来修改
+            $("#websiteid").val(data.data.id);
+            //跳转到下一项
+            $("#installstep").wizard('goTo', i + 1);
+          } else {
+            //浮动消息通知
+            new $.zui.Messager('保存网站信息失败!', {
+              icon: 'warning-sign', // 定义消息图标
+              type: 'danger',
+              time: 1000
+            }).show();
+            //重新跳回去
+            $("#installstep").wizard('goTo', i);
+          }
 
-      })
+        })
+      } else {
+        new $.zui.Messager('必填项必须填写', {
+          icon: 'warning-sign', // 定义消息图标
+          type: 'danger',
+          time: 1000
+        }).show();
+      }
     } else {
+      var inputArray = [
+        'keywords',
+        'description',
+        'author',
+        'gtoken',
+        'btoken'
+      ];
+      if (validInputNotNull(inputArray)) {}else{
+        new $.zui.Messager('必填项必须填写', {
+          icon: 'warning-sign', // 定义消息图标
+          type: 'danger',
+          time: 1000
+        }).show();
+      }
       //保存seo信息
       $.post("/install/saveSeo", {
-        siteName: $("#siteName").val(),
+        keywords: $("#keywords").val(),
         id: $("#seoid").val(),
-        slogen: $("#slogen").val(),
-        copyright: $("#copyright").val(),
-        logoUrl: $("#logoUrl").val(),
-        faviconUrl: $("#faviconUrl").val()
+        description: $("#description").val(),
+        author: $("#author").val(),
+        gtoken: $("#gtoken").val(),
+        btoken: $("#btoken").val()
       }, function (data) {
         if (data.result === 'success') {
           //新增成功
-          new $.zui.Messager('保存网站信息成功！', {
+          new $.zui.Messager('保存seo信息成功！', {
             type: 'success', // 定义颜色主题，
             time: 1000,
             icon: 'ok'
           }).show();
           //不用存id这一步是最后一步，不能在安装也修改了
           //重定向到管理主页
-          window.location.replace("/admin/index")
+          window.location.replace("/admin")
         } else {
           //浮动消息通知
-          new $.zui.Messager('保存网站信息失败！', {
+          new $.zui.Messager('保存seo信息失败', {
             icon: 'warning-sign', // 定义消息图标
+            type: 'danger',
             time: 1000
           }).show();
           //重新跳回去
@@ -338,10 +406,34 @@
       })
     }
 
+    //校验不能为空
+    function validInputNotNull(inputArray) {
+      var validFlag = true;
+      for (var j = 0; j < inputArray.length; j++) {
+        if ($('#' + inputArray[i]).val() === '') {
+          validFlag = false;
+        }
+      }
+      return validFlag;
+    }
+
+    //
+    $('#logoUrlUpload').uploader({
+      autoUpload: true,            // 当选择文件后立即自动进行上传操作
+      url: '/admin/file/uploadLogo'  // 文件上传提交地址
+    });
+    $('#faviconUrlUpload').uploader({
+      type: 'image/x-icon',
+      autoUpload: true,            // 当选择文件后立即自动进行上传操作
+      url: '/admin/file/uploadFavicon'  // 文件上传提交地址
+    });
+
   }
 </script>
 <!-- zui js -->
 <script src="/static/plugins/zui/js/zui.min.js"></script>
+<link rel="stylesheet" href="/static/plugins/zui/lib/uploader/zui.uploader.min.css">
+<script src="/static/plugins/zui/lib/uploader/zui.uploader.min.js"></script>
 <!-- app js -->
 <script src="/static/js/app.js"></script>
 </body>

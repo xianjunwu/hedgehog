@@ -11,6 +11,8 @@ import pro.dengyi.hedgehog.base.BaseEntity;
 @Table(name = "t_site_info")
 public class SiteInfo extends BaseEntity {
 
+
+  private String siteUrl;
   /**
    * 网站名
    */
@@ -26,16 +28,6 @@ public class SiteInfo extends BaseEntity {
    */
   @Column(length = 250)
   private String copyright;
-  /**
-   * 网站标志
-   */
-  @Column(length = 150)
-  private String logoUrl;
-  /**
-   * 网页图标
-   */
-  @Column(length = 150)
-  private String faviconUrl;
   /**
    * pv
    */

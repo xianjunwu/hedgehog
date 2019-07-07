@@ -4,6 +4,9 @@ import com.qiniu.common.Zone;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
@@ -15,7 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import pro.dengyi.hedgehog.dao.FileDao;
-import pro.dengyi.hedgehog.model.entity.File;
+import pro.dengyi.hedgehog.model.entity.MyFile;
 import pro.dengyi.hedgehog.service.FileService;
 import pro.dengyi.hedgehog.utils.FileUtil;
 import pro.dengyi.hedgehog.utils.QiNiuYunUtil;
@@ -26,6 +29,8 @@ public class FileServiceImpl implements FileService {
 
   @Autowired
   private FileDao fileDao;
+
+  private final static String IMG_PATH_PREFIX = "src/main/resources/static";
 
   @Value("${com.qiniu.accessKey}")
   private String accessKey;
@@ -87,7 +92,7 @@ public class FileServiceImpl implements FileService {
         int statusCode = uploadResponse.statusCode;
         if (statusCode == 200) {
           String fileUrl = outLink + multipartFile.getOriginalFilename();
-          fileDao.save(new File(null, multipartFile.getOriginalFilename(),
+          fileDao.save(new MyFile(null, multipartFile.getOriginalFilename(),
               FileUtil.getExtendName(multipartFile), fileUrl, bucketName, multipartFile.getSize()));
           return fileUrl;
         }
@@ -95,5 +100,34 @@ public class FileServiceImpl implements FileService {
     }
 
     return null;
+  }
+
+  @Override
+  public void uploadImageToProject(MultipartFile multipartFile, String type) {
+    String absolutePath = getAbsolutePath();
+
+    try {
+      switch (type) {
+        case "logo":
+
+          absolutePath=absolutePath+"/logo."+FileUtil.getExtendName(multipartFile);
+          break;
+        case "ico":
+          absolutePath=absolutePath+"/favicon.ico";
+          break;
+      }
+      File file = new File(absolutePath);
+      FileOutputStream fileOutputStream=new FileOutputStream(file);
+      fileOutputStream.write(multipartFile.getBytes());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+
+  }
+
+  private String getAbsolutePath() {
+    File file = new java.io.File(IMG_PATH_PREFIX);
+    return file.getAbsolutePath();
   }
 }

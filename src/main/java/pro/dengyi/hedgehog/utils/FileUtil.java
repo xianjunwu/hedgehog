@@ -23,8 +23,8 @@ public class FileUtil {
    * @date 2019/6/24 15:30
    */
   public static String getExtendName(MultipartFile multipartFile) {
-
-    return Objects.requireNonNull(multipartFile.getOriginalFilename()).split("\\.")[1];
+    String[] split = multipartFile.getOriginalFilename().split("\\.");
+    return split[split.length-1];
   }
 
   /**

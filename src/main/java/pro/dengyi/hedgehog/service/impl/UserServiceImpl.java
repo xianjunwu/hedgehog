@@ -1,6 +1,6 @@
 package pro.dengyi.hedgehog.service.impl;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     String encodePassword = Md5Util.encodePassword(user.getPassword());
     user.setPassword(encodePassword);
     User adminUser = findAdminUser();
-    if (adminUser.equals(user)) {
+    if (adminUser.getPassword().equalsIgnoreCase(user.getPassword())&&adminUser.getPhoneNumber().equalsIgnoreCase(user.getPhoneNumber())) {
       return adminUser;
     }
     return null;
@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService {
       //密码加密
       String encodePassword = Md5Util.encodePassword(user.getPassword());
       user.setPassword(encodePassword);
-      user.setCreateTime(LocalDateTime.now());
+      user.setCreateTime(new Date());
     } else {
-      user.setUpdateTime(LocalDateTime.now());
+      user.setUpdateTime(new Date());
     }
     return userDao.save(user);
   }
