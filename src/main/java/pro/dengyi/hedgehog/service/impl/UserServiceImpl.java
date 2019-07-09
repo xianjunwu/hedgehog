@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
   public User findAdminUser() {
     List<User> userList = userDao.findAll();
     if (CollectionUtils.isEmpty(userList)) {
-      LOGGER.error("系统管理员为空");
+      LOGGER.error("系统管理员为空,必须安装系统");
       return null;
     } else {
       return userList.get(0);

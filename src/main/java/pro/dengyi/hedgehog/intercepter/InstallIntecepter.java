@@ -31,7 +31,7 @@ public class InstallIntecepter implements HandlerInterceptor {
     if (user != null) {
       return true;
     } else {
-      response.sendRedirect("/install/index");
+      response.sendRedirect("/install");
       return false;
     }
 

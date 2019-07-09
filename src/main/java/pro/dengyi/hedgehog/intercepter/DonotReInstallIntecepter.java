@@ -30,7 +30,7 @@ public class DonotReInstallIntecepter implements HandlerInterceptor {
       response.sendRedirect("/install/donotreinstall");
       return true;
     } else {
-      response.sendRedirect("/install/index");
+      response.sendRedirect("/install");
       return true;
     }
 

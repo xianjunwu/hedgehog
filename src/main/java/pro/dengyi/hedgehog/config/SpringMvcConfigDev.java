@@ -1,7 +1,6 @@
 package pro.dengyi.hedgehog.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -41,13 +40,13 @@ public class SpringMvcConfigDev implements WebMvcConfigurer {
    */
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(installIntecepter).addPathPatterns("/**");
-    registry.addInterceptor(donotReInstallIntecepter).addPathPatterns("/install/**").excludePathPatterns("/install/donotreinstall");
+    registry.addInterceptor(installIntecepter).addPathPatterns("/**").excludePathPatterns("/install/**","/static/**");
+//    registry.addInterceptor(donotReInstallIntecepter).addPathPatterns("/install");
     registry.addInterceptor(pvIntercepter).addPathPatterns("/**")
         .excludePathPatterns("/admin/**", "/static/**", "/category/findAllCategory", "/install/**");
     registry.addInterceptor(loginIntercepter).addPathPatterns("/admin/**")
         .excludePathPatterns("/static/**", "/admin/system/doLogin", "/admin/system/showLoginPage",
-            "/admin/system/getVerificationCode", "/admin/system/checkVerificationCode");
+            "/admin/system/getVerificationCode", "/admin/system/checkVerificationCode","/install/**");
 
 
   }
