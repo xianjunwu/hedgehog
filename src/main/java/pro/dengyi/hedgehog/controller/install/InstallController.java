@@ -51,6 +51,11 @@ public class InstallController {
     return "install/index";
   }
 
+  @GetMapping("/donotreinstall")
+  public String donotreinstall(){
+    return "install/donotreinstall";
+  }
+
   /**
    * 新增用户方法
    *

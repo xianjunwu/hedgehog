@@ -27,7 +27,7 @@ public class DonotReInstallIntecepter implements HandlerInterceptor {
       throws Exception {
     User adminUser = userService.findAdminUser();
     if (adminUser != null) {
-      response.sendRedirect("/admin");
+      response.sendRedirect("/install/donotreinstall");
       return true;
     } else {
       response.sendRedirect("/install/index");

@@ -41,7 +41,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(installIntecepter).addPathPatterns("/**");
-    registry.addInterceptor(donotReInstallIntecepter).addPathPatterns("/install/**");
+    registry.addInterceptor(donotReInstallIntecepter).addPathPatterns("/install/**").excludePathPatterns("/install/donotreinstall");
     registry.addInterceptor(pvIntercepter).addPathPatterns("/**")
         .excludePathPatterns("/admin/**", "/static/**", "/category/findAllCategory", "/install/**");
     registry.addInterceptor(loginIntercepter).addPathPatterns("/admin/**")
