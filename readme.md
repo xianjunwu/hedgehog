@@ -11,6 +11,8 @@
 ### 登录页面
 ![登录页面](https://github.com/BruceAKABear/hedgehog/blob/master/doc/img/loginpage.jpg)
 
+###后台管理页
+![后台管理页](https://github.com/BruceAKABear/hedgehog/blob/master/doc/img/adminpage.jpg)
 ## 所使用技术列表
 + 前端
     - jquery
