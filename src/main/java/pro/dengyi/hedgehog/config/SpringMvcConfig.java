@@ -6,7 +6,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pro.dengyi.hedgehog.intercepter.DonotReInstallIntecepter;
 import pro.dengyi.hedgehog.intercepter.InstallIntecepter;
+import pro.dengyi.hedgehog.intercepter.LoginIntercepter;
+import pro.dengyi.hedgehog.intercepter.PvIntercepter;
 
 /**
  * springmvc 配置类，正式环境配置类
@@ -21,6 +24,12 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
   @Autowired
   private InstallIntecepter installIntecepter;
+  @Autowired
+  private PvIntercepter pvIntercepter;
+  @Autowired
+  private LoginIntercepter loginIntercepter;
+  @Autowired
+  private DonotReInstallIntecepter donotReInstallIntecepter;
 
   /**
    * 注册拦截器
@@ -31,8 +40,13 @@ public class SpringMvcConfig implements WebMvcConfigurer {
    */
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(installIntecepter).addPathPatterns("/admin/**");
-
+    registry.addInterceptor(installIntecepter).addPathPatterns("/**");
+    registry.addInterceptor(donotReInstallIntecepter).addPathPatterns("/install/**");
+    registry.addInterceptor(pvIntercepter).addPathPatterns("/**")
+        .excludePathPatterns("/admin/**", "/static/**", "/category/findAllCategory", "/install/**");
+    registry.addInterceptor(loginIntercepter).addPathPatterns("/admin/**")
+        .excludePathPatterns("/static/**", "/admin/system/doLogin", "/admin/system/showLoginPage",
+            "/admin/system/getVerificationCode", "/admin/system/checkVerificationCode");
   }
 
   /**
@@ -44,12 +58,10 @@ public class SpringMvcConfig implements WebMvcConfigurer {
    */
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/favicon.ico")
-        .addResourceLocations("classpath:/static/images/favicon.ico");
     registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     // 解决 SWAGGER 404报错
-    registry.addResourceHandler("/swagger-ui.html")
-        .addResourceLocations("classpath:/META-INF/resources/");
+//    registry.addResourceHandler("/swagger-ui.html")
+//        .addResourceLocations("classpath:/META-INF/resources/");
 //        registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/").addResourceLocations("classpath:/robots.txt");
 
   }

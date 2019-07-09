@@ -63,8 +63,8 @@ public class SpringMvcConfigDev implements WebMvcConfigurer {
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     // 解决 SWAGGER 404报错
-    registry.addResourceHandler("/swagger-ui.html")
-        .addResourceLocations("classpath:/META-INF/resources/");
+//    registry.addResourceHandler("/swagger-ui.html")
+//        .addResourceLocations("classpath:/META-INF/resources/");
 //        registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/").addResourceLocations("classpath:/robots.txt");
 
   }
