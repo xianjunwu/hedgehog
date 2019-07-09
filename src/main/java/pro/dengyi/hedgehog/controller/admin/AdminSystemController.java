@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pro.dengyi.hedgehog.model.dto.SingleResult;
+import pro.dengyi.hedgehog.model.entity.SiteInfo;
 import pro.dengyi.hedgehog.model.entity.User;
+import pro.dengyi.hedgehog.service.SiteInfoService;
 import pro.dengyi.hedgehog.service.UserService;
 import pro.dengyi.hedgehog.utils.VerificationCodeUtil;
 
@@ -34,6 +37,8 @@ public class AdminSystemController {
 
   @Autowired
   private UserService userService;
+  @Autowired
+  private SiteInfoService siteInfoService;
 
   /**
    * 退出系统 <br/>
@@ -62,11 +67,11 @@ public class AdminSystemController {
   @PostMapping("/doLogin")
   public String doLogin(HttpSession session, User user) {
 
-      User userLogin = userService.doLogin(user);
-      if (userLogin!=null) {
-        session.setAttribute("loginUser", userLogin);
-        return "redirect:/admin";
-      }
+    User userLogin = userService.doLogin(user);
+    if (userLogin != null) {
+      session.setAttribute("loginUser", userLogin);
+      return "redirect:/admin";
+    }
     return "redirect:/admin/system/showLoginPage";
   }
 
@@ -119,6 +124,13 @@ public class AdminSystemController {
     }
     map.put("valid", status);
     return map;
+  }
+
+  @GetMapping("/gotoFrontIco")
+  @ResponseBody
+  public SingleResult<SiteInfo> gotoFrontIco() {
+    SiteInfo siteInfo = siteInfoService.gotoFrontIco();
+    return new SingleResult<>("success", "操作成功", siteInfo);
   }
 
 }

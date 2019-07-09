@@ -1,4 +1,15 @@
 /**
+ * 查询前台地址填充
+ */
+function queryFrontAddress() {
+  $.get("/admin/system/gotoFrontIco", function (data) {
+    if (data.result === 'success') {
+      $('#gotoFrontIco').attr('href', 'http://'+data.data.siteUrl);
+    }
+
+  })
+}
+/**
  *模块是否是激活
  *
  */

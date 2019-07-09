@@ -29,4 +29,6 @@ public interface SiteInfoService {
 
   Long findPvNumber();
 
+  SiteInfo gotoFrontIco();
+
 }

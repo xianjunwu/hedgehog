@@ -42,7 +42,7 @@ public class SystemConfigController {
   private SeoService seoService;
 
 
-  @GetMapping("/basis")
+  @GetMapping("/basicconfig")
   public String showPage(Model model) {
     User adminUser = userService.findAdminUser();
     SiteInfo siteInfo = siteInfoService.findSiteInfo();
@@ -50,7 +50,7 @@ public class SystemConfigController {
     model.addAttribute("adminUser", adminUser);
     model.addAttribute("siteInfo", siteInfo);
     model.addAttribute("seo", seo);
-    return "admin/systemconfig";
+    return "admin/basicconfig";
   }
 
   /**

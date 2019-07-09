@@ -13,6 +13,9 @@
     <meta name="theme-color" content="#fff">
       <#--通过每个页面将页面的title传入-->
     <title><#nested></title>
+      <#--引入js-->
+    <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
+    <script src="/static/js/hedgehog.js"></script>
     <!-- 引入css -->
     <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
     <link rel="stylesheet" href="/static/theme/blue.css">
@@ -42,7 +45,7 @@
         <form action="/search" method="get" autocomplete="off" class="navbar-form navbar-right"
               role="search" id="headerSearchForm">
           <div class="form-group">
-            <input name="key" type="text" class="form-control" placeholder="搜索"/>
+            <input name="key" type="text" class="form-control" required placeholder="搜索"/>
           </div>
           <button type="submit" class="btn btn-success">搜索</button>
         </form>
@@ -53,9 +56,7 @@
 
 <#--通用脚，自定义宏命令-->
 <#macro foot>
-<#--引入js-->
-  <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
-  <script src="/static/js/hedgehog.js"></script>
+
   <script>
     /**
      * 每个页面加载时，都需要调用的相应ajax

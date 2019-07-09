@@ -1,106 +1,74 @@
 <#--compress指令的作用是将页面压缩-->
 <#compress >
-  <!DOCTYPE html>
-  <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>后台管理页面</title>
-    <!-- jquery js -->
-    <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
-    <script src="/static/js/hedgehog-admin.js"></script>
-    <!-- zui css -->
-    <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
-    <link rel="stylesheet" href="/static/theme/blue.css">
-    <!-- app css -->
-    <link rel="stylesheet" href="/static/css/app.css">
-    <script src="/static/plugins/zui/lib/kindeditor/kindeditor.min.js"></script>
-    <link rel="stylesheet" href="/static/plugins/zui/lib/kindeditor/plugins/code/prettify.css">
-    <link rel="stylesheet" href="/static/plugins/zui/lib/kindeditor/kindeditor.min.css">
-    <script src="/static/plugins/zui/lib/kindeditor/plugins/code/prettify.js"></script>
-
-  </head>
-  <script type="text/javascript">
-    prettyPrint();
-  </script>
-  <body>
-  <div class="wrapper">
-      <#--通用头部-->
-      <#include "common/header.ftl">
-      <#--通用侧边栏-->
-      <#include "common/sider.ftl">
-      <#--内容体-->
-    <div class="content-wrapper">
-      <div class="content-header">
-        <ul class="breadcrumb">
-          <li><a href="#"><i class="icon icon-home"></i></a></li>
-          <li class="active">写博客</li>
-        </ul>
-      </div>
-      <div class="content-body">
-        <div class="container-fluid">
-          <div class="row">
-            <form method="post" action="/admin/article/saveOrUpdate">
-              <input type="hidden" id="id" name="id">
-              <div class="col-md-12" style="margin-top: 20px">
-                <div class="input-control">
-                  <input id="title" name="title" type="text" class="form-control input-lg"
-                         onfocus="removeError()" placeholder="文章标题" autocomplete="off">
-                </div>
+    <#include "common/marco.ftl">
+    <@head ></@head>
+  <div class="content-wrapper">
+    <div class="content-header">
+      <ul class="breadcrumb">
+        <li><a href="#"><i class="icon icon-home"></i></a></li>
+        <li class="active">写博客</li>
+      </ul>
+    </div>
+    <div class="content-body">
+      <div class="container-fluid">
+        <div class="row">
+          <form method="post" action="/admin/article/saveOrUpdate">
+            <input type="hidden" id="id" name="id">
+            <div class="col-md-12" style="margin-top: 20px">
+              <div class="input-control">
+                <input id="title" name="title" type="text" class="form-control input-lg"
+                       onfocus="removeError()" placeholder="文章标题" autocomplete="off">
               </div>
-              <div class="col-md-12" style="margin-top: 20px">
+            </div>
+            <div class="col-md-12" style="margin-top: 20px">
 								<textarea class="form-control" name="summary" id="summary" rows="3"
                           placeholder="摘要" autocomplete="off"></textarea>
-              </div>
-              <div class="col-md-12" style="margin-top: 20px">
+            </div>
+            <div class="col-md-12" style="margin-top: 20px">
 								<textarea id="content" name="content" class="form-control kindeditor"
                           style="height:550px;"></textarea>
+            </div>
+            <div class="col-md-12 form-inline" style="margin-top: 20px">
+              <div class="form-group">
+                <label for="category">选择分类</label>
+                <select class="form-control" id="category">
+                </select>
               </div>
-              <div class="col-md-12 form-inline" style="margin-top: 20px">
-                <div class="form-group">
-                  <label for="category">选择分类</label>
-                  <select class="form-control" id="category">
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="allowComment">是否允许评论</label>
-                  <select class="form-control" id="allowComment">
-                    <option value="true">允许</option>
-                    <option value="false">不允许</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="isRecommend">是否推荐</label>
-                  <select class="form-control" id="isRecommend">
-                    <option value="true">推荐</option>
-                    <option value="false">不推荐</option>
-                  </select>
-                </div>
+              <div class="form-group">
+                <label for="allowComment">是否允许评论</label>
+                <select class="form-control" id="allowComment">
+                  <option value="true">允许</option>
+                  <option value="false">不允许</option>
+                </select>
               </div>
-              <div class="col-md-12" style="margin-top: 20px">
-                <div class="col-md-6">
-                  <button class="btn btn-block" type="button" onclick="saveAsDraft()">保存为草稿</button>
-                </div>
-                <div class="col-md-6">
-                  <button class="btn btn-block btn-success" type="button"
-                          onclick="saveAndPublish()">
-                    保存并发布
-                  </button>
-                </div>
+              <div class="form-group">
+                <label for="isRecommend">是否推荐</label>
+                <select class="form-control" id="isRecommend">
+                  <option value="true">推荐</option>
+                  <option value="false">不推荐</option>
+                </select>
               </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 20px">
+              <div class="col-md-6">
+                <button class="btn btn-block" type="button" onclick="saveAsDraft()">保存为草稿</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-block btn-success" type="button"
+                        onclick="saveAndPublish()">
+                  保存并发布
+                </button>
+              </div>
+            </div>
 
-            </form>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-
   <script>
     var kindeditor;
     $(function () {
-      activeSider();
       kindeditor = KindEditor.create('textarea.kindeditor', {
         basePath: '/static/plugins/zui/lib/kindeditor/',
         allowFileManager: true,
@@ -229,10 +197,5 @@
       }
     }
   </script>
-  <!-- zui js -->
-  <script src="/static/plugins/zui/js/zui.min.js"></script>
-  <!-- app js -->
-  <script src="/static/js/app.js"></script>
-  </body>
-  </html>
+    <@foot></@foot>
 </#compress>

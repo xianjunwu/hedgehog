@@ -1,134 +1,109 @@
 <#--compress指令的作用是将页面压缩-->
 <#compress >
-  <!DOCTYPE html>
-  <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>后台管理页面</title>
-    <!-- jquery js -->
-    <script src="/static/plugins/zui/lib/jquery/jquery.js"></script>
-    <script src="/static/js/hedgehog-admin.js"></script>
-    <!-- zui css -->
-    <link rel="stylesheet" href="/static/plugins/zui/css/zui.min.css">
-    <link rel="stylesheet" href="/static/theme/blue.css">
-    <!-- app css -->
-    <link rel="stylesheet" href="/static/css/app.css">
-    <link href="/static/plugins/zui/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
-    <script src="/static/plugins/zui/lib/datagrid/zui.datagrid.min.js"></script>
+    <#include "common/marco.ftl">
+    <@head ></@head>
+<#--内容体-->
+  <div class="content-wrapper">
+    <div class="content-header">
+      <ul class="breadcrumb">
+        <li><a href="/admin"><i class="icon icon-home"></i></a></li>
+        <li class="active">文章分类列表</li>
+      </ul>
+    </div>
+    <div class="content-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div id="datagridExample" class="datagrid">
+              <div class="input-control search-box search-box-circle has-icon-left has-icon-right"
+                   id="searchboxExample2"
+                   style="margin-bottom: 10px; max-width: 300px">
 
-
-  </head>
-  <body>
-  <div class="wrapper">
-      <#--通用头部-->
-      <#include "common/header.ftl">
-      <#--通用侧边栏-->
-      <#include "common/sider.ftl">
-      <#--内容体-->
-    <div class="content-wrapper">
-      <div class="content-header">
-        <ul class="breadcrumb">
-          <li><a href="/admin"><i class="icon icon-home"></i></a></li>
-          <li class="active">文章分类列表</li>
-        </ul>
-      </div>
-      <div class="content-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div id="datagridExample" class="datagrid">
-                <div class="input-control search-box search-box-circle has-icon-left has-icon-right"
-                     id="searchboxExample2"
-                     style="margin-bottom: 10px; max-width: 300px">
-
-                  <!-- 大对话框 -->
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#addcategoryModal">新增分类
-                    </button>
-                    <button type="button" class="btn btn-warning" onclick="activeEditModel()">编辑分类
-                    </button>
-                    <button type="button" class="btn btn-danger" onclick="deleteItems()">删除分类
-                    </button>
-                  </div>
-                  <div class="modal fade" id="addcategoryModal">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                                onclick="clearModel('addcategoryModal')"><span
-                              aria-hidden="true">×</span><span class="sr-only">关闭</span>
-                        </button>
-                        <h4 class="modal-title">新增分类</h4>
-                      </div>
-                      <div class="modal-body">
-                        <input type="hidden" id="id">
-                        <form>
-                          <div class="form-group">
-                            <label for="categoryName" class="required">分类名</label>
-                            <input type="text" class="form-control"
-                                   id="categoryName"
-                                   placeholder="分类名" onfocus="removeError()">
-                          </div>
-                          <div class="form-group">
-                            <label for="categoryDesc" class="required">分类描述</label>
-                            <input type="text" class="form-control"
-                                   id="categoryDesc" placeholder="分类描述">
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default"
-                                onclick="clearModel('addcategoryModal')"
-                                data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="saveCategory()">
-                          保存
-                        </button>
-                      </div>
+                <!-- 大对话框 -->
+                <div class="form-inline">
+                  <button type="button" class="btn btn-primary" data-toggle="modal"
+                          data-target="#addcategoryModal">新增分类
+                  </button>
+                  <button type="button" class="btn btn-warning" onclick="activeEditModel()">编辑分类
+                  </button>
+                  <button type="button" class="btn btn-danger" onclick="deleteItems()">删除分类
+                  </button>
+                </div>
+                <div class="modal fade" id="addcategoryModal">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"
+                              onclick="clearModel('addcategoryModal')"><span
+                            aria-hidden="true">×</span><span class="sr-only">关闭</span>
+                      </button>
+                      <h4 class="modal-title">新增分类</h4>
                     </div>
-                  </div>
-                  <div class="modal fade" id="editModal">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                                onclick="clearModel('editModal')"><span
-                              aria-hidden="true">×</span><span class="sr-only">关闭</span>
-                        </button>
-                        <h4 class="modal-title">编辑分类</h4>
-                      </div>
-                      <div class="modal-body">
-                        <input type="hidden" id="idEdit">
-                        <form>
-                          <div class="form-group">
-                            <label for="categoryName" class="required">分类名</label>
-                            <input type="text" class="form-control"
-                                   id="categoryNameEdit"
-                                   placeholder="分类名" onfocus="removeError()">
-                          </div>
-                          <div class="form-group">
-                            <label for="categoryDesc" class="required">分类描述</label>
-                            <input type="text" class="form-control"
-                                   id="categoryDescEdit" placeholder="分类描述">
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default"
-                                onclick="clearModel('addcategoryModal')"
-                                data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="saveEditCategory()">
-                          保存
-                        </button>
-                      </div>
+                    <div class="modal-body">
+                      <input type="hidden" id="id">
+                      <form>
+                        <div class="form-group">
+                          <label for="categoryName" class="required">分类名</label>
+                          <input type="text" class="form-control"
+                                 id="categoryName"
+                                 placeholder="分类名" onfocus="removeError()">
+                        </div>
+                        <div class="form-group">
+                          <label for="categoryDesc" class="required">分类描述</label>
+                          <input type="text" class="form-control"
+                                 id="categoryDesc" placeholder="分类描述">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default"
+                              onclick="clearModel('addcategoryModal')"
+                              data-dismiss="modal">关闭
+                      </button>
+                      <button type="button" class="btn btn-primary" onclick="saveCategory()">
+                        保存
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div class="datagrid-container"></div>
-                <div class="pager"></div>
+                <div class="modal fade" id="editModal">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"
+                              onclick="clearModel('editModal')"><span
+                            aria-hidden="true">×</span><span class="sr-only">关闭</span>
+                      </button>
+                      <h4 class="modal-title">编辑分类</h4>
+                    </div>
+                    <div class="modal-body">
+                      <input type="hidden" id="idEdit">
+                      <form>
+                        <div class="form-group">
+                          <label for="categoryName" class="required">分类名</label>
+                          <input type="text" class="form-control"
+                                 id="categoryNameEdit"
+                                 placeholder="分类名" onfocus="removeError()">
+                        </div>
+                        <div class="form-group">
+                          <label for="categoryDesc" class="required">分类描述</label>
+                          <input type="text" class="form-control"
+                                 id="categoryDescEdit" placeholder="分类描述">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default"
+                              onclick="clearModel('addcategoryModal')"
+                              data-dismiss="modal">关闭
+                      </button>
+                      <button type="button" class="btn btn-primary" onclick="saveEditCategory()">
+                        保存
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <div class="datagrid-container"></div>
+              <div class="pager"></div>
             </div>
           </div>
         </div>
@@ -137,8 +112,6 @@
   </div>
   <script>
     $(function () {
-      //1. 激活侧边栏选项卡
-      activeSider();
       //2. 初始化datagrid
       $('#datagridExample').datagrid({
         dataSource: {
@@ -347,11 +320,5 @@
     }
 
   </script>
-
-  <!-- zui js -->
-  <script src="/static/plugins/zui/js/zui.min.js"></script>
-  <!-- app js -->
-  <script src="/static/js/app.js"></script>
-  </body>
-  </html>
+    <@foot></@foot>
 </#compress>

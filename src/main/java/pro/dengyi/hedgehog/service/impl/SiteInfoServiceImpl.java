@@ -85,4 +85,10 @@ public class SiteInfoServiceImpl implements SiteInfoService {
     List<SiteInfo> all = siteInfoDao.findAll();
     return all.get(0).getPv();
   }
+
+  @Override
+  public SiteInfo gotoFrontIco() {
+    List<SiteInfo> all = siteInfoDao.findAll();
+    return all.get(0);
+  }
 }
